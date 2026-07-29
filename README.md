@@ -54,13 +54,13 @@ CBC gets a token but never `sup=1`; a good fingerprint under CBC still never `su
 ## Install
 
 ```bash
-go get github.com/yourusername/arkose-solver/arkose
+go get github.com/buggerlogger/arkose-solver/arkose
 ```
 
 Or build the server:
 
 ```bash
-git clone https://github.com/yourusername/arkose-solver
+git clone https://github.com/buggerlogger/arkose-solver
 cd arkose-solver
 go build -ldflags="-s -w" -o arkose-server ./cmd/arkose-server
 ```
@@ -115,7 +115,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/yourusername/arkose-solver/arkose"
+	"github.com/buggerlogger/arkose-solver/arkose"
 )
 
 func main() {

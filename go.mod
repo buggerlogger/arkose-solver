@@ -1,4 +1,4 @@
-module github.com/yourusername/arkose-solver
+module github.com/buggerlogger/arkose-solver
 
 go 1.24.1
 

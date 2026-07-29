@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/yourusername/arkose-solver/arkose"
+	"github.com/buggerlogger/arkose-solver/arkose"
 )
 
 func main() {
