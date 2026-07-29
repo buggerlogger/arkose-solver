@@ -1,7 +1,8 @@
-# binaries
+# binaries (anchored so cmd/arkose-server/ source dir is NOT ignored)
+/arkose-server
+/arkose-server.exe
 *.exe
 *.exe~
-arkose-server
 /dist/
 # go
 /vendor/
