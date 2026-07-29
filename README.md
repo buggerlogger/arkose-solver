@@ -21,6 +21,8 @@ GET /token  ->  {"token":"98718c6b...|r=eu-west-1|...|sup=1|...","suppressed":tr
   browser byte-for-byte. Legacy AES-CBC path kept for old `capi` versions.
 - **Ground-truth BDA fingerprint** — real Chrome 150 / Windows feature set, with WebGL/GPU,
   canvas, audio, and codec fields rotating per request from built-in real pools.
+- **Coherent device profiles** — GPU + screen + RAM are picked as one real machine (no impossible
+  combos like a server GPU on a 1366×768 laptop). 14 curated real Windows-Chrome profiles.
 - **Configurable per site** — site key, RSA key, verify host, origin, UA, language, proxy.
 - **TLS impersonation** — Chrome fingerprint via `bogdanfinn/tls-client`.
 - **Per-request proxy override** — send a `Proxy:` header to the server, or `WithProxy(...)`.
@@ -248,7 +250,8 @@ arkose-solver/
 │   ├── solver.go           # New(), Solve(), transport, payload/headers
 │   ├── bda.go              # BDA + enhanced_fp + fe/f (ground-truth Chrome)
 │   ├── encryption.go       # RSA-OAEP+AES-GCM (Encrypt) and AES-CBC (EncryptAES)
-│   ├── rotators.go         # per-request rotating pools (resolution, langs, versions…)
+│   ├── rotators.go         # per-request rotating pools (chrome version, audio, langs, speech…)
+│   ├── profiles.go         # coherent device profiles (real GPU+screen+RAM as one unit)
 │   ├── gpu.go / gpu_data.go# WebGL vendor/renderer/hash pool (930 GPUs)
 │   ├── logger.go           # phase logging
 │   └── pow.go              # (unused — sup=1 means no PoW)

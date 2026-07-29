@@ -121,14 +121,15 @@ func buildEnhancedFP(preset *Config) []Item {
 	// unmasked_vendor/unmasked_renderer/hash_webgl vary; the hash is a deterministic md5 of
 	// the tuple so each GPU consistently reports the same hash across calls (matching a real
 	// device with a stable driver install).
-	gpu := FormatWebGL(PickGPU())
+	// COHERENT DEVICE PROFILE (profiles.go): one real machine picked as a unit, so the GPU, the
+	// screen sizes, and the RAM all belong together instead of being mixed independently. This is
+	// the "full static fingerprint" — every request looks like one genuine Windows-Chrome device.
+	device := PickDeviceProfile()
+	gpu := device.WebGL()
 
-	// Per-request rotations from other STATIC POOLS — see rotators.go. All picks are coherent
-	// tuples (Chrome version → UA brands + WebGL version strings together; screen → outer+inner
-	// dimensions together; speech → default+hash together). Everything else in this block stays
-	// hardcoded static.
+	// These pools stay independent (they don't correlate with the GPU): Chrome version tuple and
+	// the speech voice+hash tuple.
 	chrome := PickChromeVersion()
-	screen := PickScreen()
 	speech := PickSpeechVoice()
 
 	// Ancestor origins may be nil; ensure marshals to [] not null.
@@ -193,12 +194,12 @@ func buildEnhancedFP(preset *Config) []Item {
 		{Key: "network_info_save_data", Value: false},
 		{Key: "network_info_rtt_type", Value: "730442"},
 		{Key: "screen_pixel_depth", Value: 96},
-		{Key: "navigator_device_memory", Value: PickDeviceMemory()},
+		{Key: "navigator_device_memory", Value: device.DeviceMemory},
 		{Key: "navigator_languages", Value: "en-US,en"},
-		{Key: "window_inner_width", Value: screen.InnerWidth},
-		{Key: "window_inner_height", Value: screen.InnerHeight},
-		{Key: "window_outer_width", Value: screen.OuterWidth},
-		{Key: "window_outer_height", Value: screen.OuterHeight},
+		{Key: "window_inner_width", Value: device.InnerWidth},
+		{Key: "window_inner_height", Value: device.InnerHeight},
+		{Key: "window_outer_width", Value: device.OuterWidth},
+		{Key: "window_outer_height", Value: device.OuterHeight},
 		{Key: "browser_detection_firefox", Value: false},
 		{Key: "browser_detection_brave", Value: false},
 		{Key: "9f41a2c", Value: false},
