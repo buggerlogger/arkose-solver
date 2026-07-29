@@ -169,25 +169,57 @@ Three values are site-specific. Two are trivial; one you capture once.
    (the client reconstructs it at runtime inside an obfuscated VM), so you capture it once from a
    real browser mint. It's stable per site key for weeks.
 
-### Capture the RSA key (30 seconds, one time)
+### Option A — automated (recommended): the `capture-key` tool
 
-Open the target site in Chrome with DevTools, paste this in the Console **before** triggering the
-captcha, then trigger it (submit the form / do the action that shows Arkose):
+A one-command tool that launches Chrome, injects the hook into **every frame before page scripts**,
+**forces** the Arkose mint, catches the RSA key, writes it to a file, and closes Chrome:
+
+```bash
+go build -o capture-key ./cmd/capture-key
+capture-key -url https://www.example.com/sign-in -out rsa_key.txt
+```
+
+Output:
+
+```
+Chrome open on https://www.example.com/sign-in
+Waiting for the Arkose mint (auto-triggered)…
+
+[OK] captured RSA key (392 chars) -> rsa_key.txt
+
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB...
+```
+
+Then use it: `-rsa "$(cat rsa_key.txt)"` or `WithRSAPublicKey(...)`.
+
+Flags: `-url` (page that uses Arkose, required), `-out` (default `rsa_key.txt`),
+`-timeout` (default 90s), `-headless` (default off — leave off if a site is picky),
+`-keep` (leave Chrome open for debugging). Chrome must be installed.
+
+> **Why a plain console paste often fails:** Arkose runs its crypto inside a **cross-origin iframe**,
+> and on suppressed sites (e.g. iStock) the mint **never fires on its own** — it must be triggered.
+> The tool handles both: it hooks all frames at document-start and calls the enforcement's
+> `initSession()` to force the mint. That's why the manual snippet printed nothing.
+
+### Option B — manual (one-off)
+
+Switch the DevTools **console context** to the Arkose iframe (`verify.<site>.com` / `*.arkoselabs.com`
+in the context dropdown), paste the hook below, then trigger the captcha. Or run it as a Tampermonkey
+userscript with `@run-at document-start` + `@all-frames true`:
 
 ```js
 const _i = crypto.subtle.importKey.bind(crypto.subtle);
-crypto.subtle.importKey = async function (fmt, kd, algo, ...r) {
-  const k = await _i(fmt, kd, algo, ...r);
-  if (String(algo?.name || algo).includes('RSA')) {
-    const spki = await crypto.subtle.exportKey('spki', k).catch(() => 0);
-    if (spki) console.log('RSA_SPKI =', btoa(String.fromCharCode(...new Uint8Array(spki))));
-  }
-  return k;
+crypto.subtle.importKey = function (fmt, kd) {
+  try {
+    if (fmt === 'spki' && kd && kd.byteLength)
+      console.log('RSA_SPKI =', btoa(String.fromCharCode(...new Uint8Array(kd))));
+  } catch (e) {}
+  return _i.apply(this, arguments);
 };
 console.log('[hooked — now trigger the captcha]');
 ```
 
-Copy the printed `RSA_SPKI = MIIBIjAN…` value into `WithRSAPublicKey(...)` / `-rsa`.
+Copy the printed `RSA_SPKI = MIIBIjAN…` into `WithRSAPublicKey(...)` / `-rsa`.
 
 > Without the RSA key the solver falls back to AES-CBC: the server still returns a token, but it
 > will **not** be `sup=1`. The solver logs a warning in that case.
@@ -221,6 +253,8 @@ arkose-solver/
 │   ├── logger.go           # phase logging
 │   └── pow.go              # (unused — sup=1 means no PoW)
 ├── cmd/arkose-server/      # tiny HTTP server (GET /token, /health)
+│   └── ...
+├── cmd/capture-key/        # auto RSA-key capture: opens Chrome, hooks, saves to file, closes
 └── examples/basic/         # minimal library example
 ```
 
