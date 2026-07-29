@@ -1,0 +1,11 @@
+# binaries
+*.exe
+*.exe~
+arkose-server
+/dist/
+# go
+/vendor/
+# local/secret configs
+*.local
+keys.txt
+proxies.txt
