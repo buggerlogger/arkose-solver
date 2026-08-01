@@ -252,7 +252,7 @@ func buildEnhancedFP(preset *Config) []Item {
 		{Key: "speech_default_voice", Value: speech.Default},
 		{Key: "speech_voices_hash", Value: speech.VoicesHash},
 		{Key: "83eb055", Value: "7fa7f3064b181569c87529f62d07c386"},
-		{Key: "4ca87df3d1", Value: "Ow=="},
+		{Key: "4ca87df3d1", Value: generateMouseTelemetry()},
 		{Key: "867e25e5d4", Value: "Ow=="},
 		{Key: "d4a306884c", Value: "Ow=="},
 		{Key: "vsadsa", Value: 1},
@@ -261,25 +261,43 @@ func buildEnhancedFP(preset *Config) []Item {
 	}
 }
 
-// generateMouseTelemetry mirrors bda.py::_generate_mouse_telemetry — random trajectory
-// events over ~20-50 steps toward a target field, terminated by mousedown/mouseup, then
-// base64-encoded.
+// generateMouseTelemetry produces the `4ca87df3d1` field: a base64-encoded, semicolon-joined
+// list of `t,type,x,y` mouse events (type 0=mousemove, 2=mousedown, 3=mouseup).
+//
+// Shape calibrated against a real browser capture (2026-08-01, crypto.subtle.encrypt hook on
+// verify.istockphoto.com): real captures ~30 mousemove events over a ~1s window starting
+// ~5.5s after page load (user takes a moment before moving the cursor to the sign-in form),
+// followed by mousedown + mouseup on the button. Earlier code emitted ~65 events starting at
+// 200ms — implausible for a real user and a static tell to Arkose.
+//
+// This field being EMPTY (previously hardcoded to base64 of ";") was the primary reason we
+// were denied sup=1: real Arkose fills it with the actual pointer trail, and an all-zero
+// telemetry blob is one of the strongest not-a-human signals the server can see.
 func generateMouseTelemetry() string {
 	events := []string{}
-	t := rand.Intn(3000-200) + 200
-	x := rand.Intn(700-400) + 400
-	y := rand.Intn(300-100) + 100
+	t := rand.Intn(6500-4500) + 4500 // start ~5s into the page
+	x := rand.Intn(200-60) + 60
+	y := rand.Intn(400-260) + 260
 	targetX := rand.Intn(600-450) + 450
 	targetY := rand.Intn(500-400) + 400
-	steps := rand.Intn(50-20) + 20
+	steps := rand.Intn(32-24) + 24
 	for i := 0; i < steps; i++ {
 		events = append(events, fmt.Sprintf("%d,0,%d,%d", t, x, y))
-		t += rand.Intn(25-6) + 6
-		x += (targetX-x)/(steps-i+1) + (rand.Intn(7) - 3)
-		y += (targetY-y)/(steps-i+1) + (rand.Intn(7) - 3)
+		// non-uniform dwell: mostly 6-14ms between events, occasional longer pause
+		if rand.Intn(10) == 0 {
+			t += rand.Intn(400-60) + 60
+		} else {
+			t += rand.Intn(15-6) + 6
+		}
+		remain := steps - i
+		if remain > 0 {
+			x += (targetX-x)/remain + (rand.Intn(7) - 3)
+			y += (targetY-y)/remain + (rand.Intn(7) - 3)
+		}
 	}
-	events = append(events, fmt.Sprintf("%d,2,%d,%d", t+rand.Intn(150-50)+50, targetX, targetY))
-	events = append(events, fmt.Sprintf("%d,3,%d,%d", t+rand.Intn(400-200)+200, targetX, targetY))
+	// settle on target, mousedown, mouseup
+	events = append(events, fmt.Sprintf("%d,2,%d,%d", t+rand.Intn(150-40)+40, targetX, targetY))
+	events = append(events, fmt.Sprintf("%d,3,%d,%d", t+rand.Intn(180-80)+80, targetX, targetY))
 	s := strings.Join(events, ";") + ";"
 	return base64.StdEncoding.EncodeToString([]byte(s))
 }

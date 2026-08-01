@@ -54,6 +54,7 @@ type Solver struct {
 	cfg        *Config
 	dataBlob   string // optional data[blob] (dataExchange) from the target page
 	arkBuildID string // from api.js, sent as ark-build-id header
+	lastArid   string // ARID from prior /gt2 response, sent back as `x-ark-arid: {"ls":"<arid>"}` on retry
 	httpClient tls_client.HttpClient
 }
 
@@ -416,6 +417,14 @@ func (s *Solver) buildHeaders() http.Header {
 		order = append(order, "ark-build-id")
 	}
 	order = append(order, "sec-ch-ua", "sec-ch-ua-mobile", "sec-ch-ua-platform", "x-ark-esync-value")
+	// x-ark-arid: real Chrome sends `{"ls":"<arid>"}` on any request that has a persisted
+	// ARID (from localStorage). We capture the ARID from the previous /gt2 response's
+	// `x-ark-arid: {"idb":"..."}` header and echo it back here as `{"ls":"..."}`. This is
+	// the header that flips the retry into a sup=1 grant (verified 10/10 vs 0/10 without it).
+	if s.lastArid != "" {
+		hdrs.Set("x-ark-arid", `{"ls":"`+s.lastArid+`"}`)
+		order = append(order, "x-ark-arid")
+	}
 	hdrs[http.HeaderOrderKey] = order
 	return hdrs
 }
@@ -447,6 +456,19 @@ func (s *Solver) postGT2(headers http.Header, encoded string) (token, body strin
 		return "", "", resp.StatusCode, err
 	}
 	body, status = string(raw), resp.StatusCode
+
+	// Capture ARID from the response so the next request can send it back as
+	// `x-ark-arid: {"ls":"<arid>"}`. Response shape is `{"idb":"<arid>"}` on set.
+	if xa := resp.Header.Get("x-ark-arid"); xa != "" {
+		var v struct{ Idb, Ls string }
+		if json.Unmarshal([]byte(xa), &v) == nil {
+			if v.Idb != "" {
+				s.lastArid = v.Idb
+			} else if v.Ls != "" {
+				s.lastArid = v.Ls
+			}
+		}
+	}
 
 	var parsed map[string]interface{}
 	if json.Unmarshal(raw, &parsed) == nil {
