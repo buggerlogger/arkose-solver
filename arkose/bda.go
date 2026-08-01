@@ -36,19 +36,32 @@ type HDRInfo struct {
 // CORRECTED (2026-07-29): the ported Python behaviour left fe=[] and f=hash(""), which makes the
 // classifier flag the fingerprint as fake -> no sup=1. Real Chrome sends a populated fe. Values below
 // are ground-truth captured from live Chrome 150 (Win64) via the Arkose fingerprint surface.
-func buildFE(preset *Config) ([]string, string) {
-	// GROUND TRUTH (real Chrome 150 BDA capture 2026-07-29). fe is static browser-characteristic
-	// data (no session state), so the captured real array + its matching f are reused verbatim.
-	// This guarantees fe/f internal consistency and correct value formats (JSF/P comma-separated
-	// & sorted, CFP signed) that the earlier synthetic version got wrong.
+// buildFE constructs the fe enumeration array + f hash.
+//
+// FE-COHERENCE (2026-08-01): the array must agree with enhanced_fp. Previously every fe was
+// identical across every solve regardless of the picked device profile — e.g. H:16 while the
+// device profile had HardwareConcurrency:8, or S:1920,1080 while the profile picked a
+// 2560×1440 machine. Server-side classifiers cross-check these fields against enhanced_fp
+// and flag inconsistencies. Now every device-dependent field (H, S, AS, D) comes from the
+// shared device profile, and per-session identity fields (L, TO, CFP, JSF) come from
+// DeviceIdentity — so fe is byte-different every solve AND coherent with enhanced_fp.
+func buildFE(preset *Config, device DeviceProfile, identity *DeviceIdentity) ([]string, string) {
+	// Derive full screen from the device's outer window size (real Chrome maximized:
+	// outerWidth == screen.availWidth). Add a standard 48px Windows taskbar back for the
+	// physical monitor height.
+	screenW := device.OuterWidth
+	screenH := device.OuterHeight + 48
+	availW := device.OuterWidth
+	availH := device.OuterHeight
+
 	fe := []string{
 		"DNT:unknown",
-		"L:en-US",
-		"D:24",
+		"L:" + identity.LanguageTag,
+		fmt.Sprintf("D:%d", identity.ScreenPixelDepth),
 		"PR:1",
-		"S:1920,1080",
-		"AS:1920,1032",
-		"TO:-180",
+		fmt.Sprintf("S:%d,%d", screenW, screenH),
+		fmt.Sprintf("AS:%d,%d", availW, availH),
+		fmt.Sprintf("TO:%d", identity.TZOffset),
 		"SS:true",
 		"LS:true",
 		"IDB:true",
@@ -56,16 +69,18 @@ func buildFE(preset *Config) ([]string, string) {
 		"ODB:false",
 		"CPUC:unknown",
 		"PK:Win32",
-		"CFP:-512569185",
+		fmt.Sprintf("CFP:%d", identity.CFP),
 		"FR:false",
 		"FOS:false",
 		"FB:false",
-		"JSF:Arial,Arial Black,Arial Narrow,Calibri,Cambria,Cambria Math,Comic Sans MS,Consolas,Courier,Courier New,Georgia,Helvetica,Impact,Lucida Console,Lucida Sans Unicode,Microsoft Sans Serif,MS Gothic,MS PGothic,MS Sans Serif,MS Serif,Palatino Linotype,Segoe Print,Segoe Script,Segoe UI,Segoe UI Light,Segoe UI Semibold,Segoe UI Symbol,Tahoma,Times,Times New Roman,Trebuchet MS,Verdana,Wingdings",
+		"JSF:" + identity.FontList,
 		"P:Chrome PDF Viewer,Chromium PDF Viewer,Microsoft Edge PDF Viewer,PDF Viewer,WebKit built-in PDF",
 		"T:0,false,false",
-		"H:16",
+		fmt.Sprintf("H:%d", device.HardwareConcurrency),
 		"SWF:false",
 	}
+	// f = hash of the empty core_keys serialization — universal for Chrome, matches real
+	// browser captures byte-for-byte (2d03456242a080304cde661cdb1853a8).
 	f := "2d03456242a080304cde661cdb1853a8"
 	return fe, f
 }
@@ -83,9 +98,14 @@ func firstNonEmpty(a, b string) string {
 // entirely separate machines even though the code path is identical.
 func generateBDA(preset *Config) []Item {
 	identity := NewSession()
+	// One device is picked ONCE and shared between enhanced_fp and fe so both surfaces
+	// agree on H/S/AS/D — fixing the previous coherence bug where fe reported one machine
+	// while enhanced_fp reported another.
+	device := PickDeviceProfile()
+
 	// Enhanced FP entries, in the exact Python fallback insertion order — receives the same
 	// per-solve identity so its 32-hex fields are coherent with the wh machine hash below.
-	enhanced := buildEnhancedFP(preset, identity)
+	enhanced := buildEnhancedFP(preset, identity, device)
 
 	// Top-level fp built as the Python fallback returns:
 	// [api_type, f, n, wh, enhanced_fp, fe, ife_hash, jsbd]
@@ -102,7 +122,7 @@ func generateBDA(preset *Config) []Item {
 	whVal := strings.ReplaceAll(uuid.New().String(), "-", "") + "|" + identity.MachineHash
 
 	// hash-of-empty for f and ife_hash (updated_core_fp is empty → empty inputs).
-	feArr, fHash := buildFE(preset)
+	feArr, fHash := buildFE(preset, device, identity)
 	ifeHash := murmur3Hex("", 38)
 
 	fp := []Item{
@@ -122,20 +142,19 @@ func generateBDA(preset *Config) []Item {
 	return fp
 }
 
-// buildEnhancedFP returns the enhanced_fp list, order-preserved. The `identity` argument is
-// the per-solve device-spoofer bundle (see identity.go): every field that on a real browser
-// would be a per-machine hash or per-request telemetry now comes from it, so the whole
-// enhanced_fp is coherent within one solve but different across solves.
-func buildEnhancedFP(preset *Config, identity *DeviceIdentity) []Item {
+// buildEnhancedFP returns the enhanced_fp list, order-preserved. The `identity` is the
+// per-solve device-spoofer bundle (see identity.go); the `device` is the picked profile,
+// shared with buildFE so both surfaces agree on H/S/AS/D.
+func buildEnhancedFP(preset *Config, identity *DeviceIdentity, device DeviceProfile) []Item {
 	// Rotate the WebGL GPU per request from the embedded multi-vendor pool (NVIDIA GeForce +
 	// Ada, Intel HD/UHD/Iris/Arc, AMD Radeon). NVIDIA/Intel/AMD vendor mix is 45/35/20. Only
 	// unmasked_vendor/unmasked_renderer/hash_webgl vary; the hash is a deterministic md5 of
 	// the tuple so each GPU consistently reports the same hash across calls (matching a real
 	// device with a stable driver install).
-	// COHERENT DEVICE PROFILE (profiles.go): one real machine picked as a unit, so the GPU, the
-	// screen sizes, and the RAM all belong together instead of being mixed independently. This is
-	// the "full static fingerprint" — every request looks like one genuine Windows-Chrome device.
-	device := PickDeviceProfile()
+	// COHERENT DEVICE PROFILE (profiles.go): one real machine picked as a unit — GPU, screen,
+	// RAM belong together. Now RECEIVED from generateBDA so buildFE sees the same device
+	// (fixes the fe/enhanced_fp incoherence bug where fe reported H:16 while the profile
+	// had HardwareConcurrency:8).
 	gpu := device.WebGL()
 
 	// These pools stay independent (they don't correlate with the GPU): Chrome version tuple and
@@ -208,7 +227,7 @@ func buildEnhancedFP(preset *Config, identity *DeviceIdentity) []Item {
 		{Key: "network_info_rtt_type", Value: "730442"},
 		{Key: "screen_pixel_depth", Value: identity.ScreenPixelDepth},
 		{Key: "navigator_device_memory", Value: device.DeviceMemory},
-		{Key: "navigator_languages", Value: "en-US,en"},
+		{Key: "navigator_languages", Value: identity.Languages}, // matches L: in fe
 		{Key: "window_inner_width", Value: device.InnerWidth},
 		{Key: "window_inner_height", Value: device.InnerHeight},
 		{Key: "window_outer_width", Value: device.OuterWidth},

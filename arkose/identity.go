@@ -50,6 +50,18 @@ type DeviceIdentity struct {
 
 	// Real Chrome's window tree_structure varies by page content and iframes.
 	TreeStructure string
+
+	// FE-COHERENCE fields (2026-08-01): the fe enumeration array was completely static and
+	// independent of the picked device profile — reporting H:16 while the device profile said
+	// HardwareConcurrency:8, or S:1920,1080 while the profile picked a 2560×1440 machine.
+	// Server-side classifiers cross-check fe against enhanced_fp and flag inconsistencies.
+	// These per-session fields plus the picked device profile now feed buildFE to keep the
+	// two surfaces coherent.
+	CFP         int32  // canvas fingerprint hash (signed int32; per-machine in real Chrome)
+	TZOffset    int    // -(Date.getTimezoneOffset) minutes; sample from a global distribution
+	LanguageTag string // navigator.language, e.g. "en-US" (matches fe L: and Languages below)
+	Languages   string // navigator_languages value, e.g. "en-US,en"
+	FontList    string // JSF: value in fe (installed-font list; varies per Windows install)
 }
 
 // randHexBytes returns n bytes of hex-encoded randomness.
@@ -84,6 +96,66 @@ func NewSession() *DeviceIdentity {
 		"[[],[],[],[[]],[[]],[],[]]",
 	}
 
+	// Real global timezone-offset distribution. Bias toward zones with the most
+	// Chrome-Windows fleet share (EU, Americas, East Asia, Middle East).
+	tzPool := []int{
+		-180, -180, -180, // UTC+3
+		-120, -120, // UTC+2
+		-60, -60, // UTC+1
+		0, 0, // UTC
+		60,       // UTC-1
+		300, 300, // UTC-5 (EST)
+		360,      // UTC-6 (CST)
+		420, 420, // UTC-7
+		480, 480, // UTC-8 (PST)
+		-480, -540, -330, -240, // Asia + Middle East
+	}
+
+	// Canvas fingerprint — signed int32; real captures span the full range.
+	cfp := int32(rand.Int31())
+	if rand.Intn(2) == 0 {
+		cfp = -cfp
+	}
+
+	// Language pool — weighted en heavy for a US-facing deployment, with realistic diversity.
+	langChoices := []struct {
+		tag, full string
+		w         int
+	}{
+		{"en-US", "en-US,en", 55},
+		{"en-GB", "en-GB,en", 12},
+		{"en", "en", 8},
+		{"es-ES", "es-ES,es", 4},
+		{"pt-BR", "pt-BR,pt", 4},
+		{"de-DE", "de-DE,de", 4},
+		{"fr-FR", "fr-FR,fr", 4},
+		{"it-IT", "it-IT,it", 3},
+		{"ru-RU", "ru-RU,ru", 3},
+		{"tr-TR", "tr-TR,tr", 3},
+	}
+	total := 0
+	for _, l := range langChoices {
+		total += l.w
+	}
+	pick := rand.Intn(total)
+	langTag, langFull := langChoices[0].tag, langChoices[0].full
+	for _, l := range langChoices {
+		pick -= l.w
+		if pick < 0 {
+			langTag, langFull = l.tag, l.full
+			break
+		}
+	}
+
+	// Font pool — four realistic Windows-Chrome installs (bare, minimal, standard, full with
+	// Office+CJK). Real fingerprint probes ~30-40 fonts; installs differ subtly.
+	fontSets := []string{
+		"Arial,Arial Black,Arial Narrow,Calibri,Cambria,Cambria Math,Comic Sans MS,Consolas,Courier,Courier New,Georgia,Helvetica,Impact,Lucida Console,Lucida Sans Unicode,Microsoft Sans Serif,MS Gothic,MS PGothic,MS Sans Serif,MS Serif,Palatino Linotype,Segoe Print,Segoe Script,Segoe UI,Segoe UI Light,Segoe UI Semibold,Segoe UI Symbol,Tahoma,Times,Times New Roman,Trebuchet MS,Verdana,Wingdings",
+		"Arial,Arial Black,Arial Narrow,Calibri,Comic Sans MS,Consolas,Courier,Courier New,Georgia,Impact,Lucida Console,Lucida Sans Unicode,Microsoft Sans Serif,MS Gothic,MS PGothic,MS Sans Serif,MS Serif,Palatino Linotype,Segoe UI,Segoe UI Light,Segoe UI Symbol,Tahoma,Times,Times New Roman,Trebuchet MS,Verdana",
+		"Arial,Arial Black,Arial Narrow,Calibri,Cambria,Cambria Math,Comic Sans MS,Consolas,Courier,Courier New,Georgia,Impact,Lucida Console,Lucida Sans Unicode,Marlett,Microsoft Sans Serif,MS Gothic,MS PGothic,MS Sans Serif,MS Serif,Palatino Linotype,Segoe Print,Segoe Script,Segoe UI,Segoe UI Light,Segoe UI Semibold,Segoe UI Symbol,Sylfaen,Tahoma,Times,Times New Roman,Trebuchet MS,Verdana,Webdings,Wingdings",
+		"Arial,Arial Black,Bahnschrift,Calibri,Cambria,Cambria Math,Candara,Comic Sans MS,Consolas,Constantia,Corbel,Courier New,Ebrima,Franklin Gothic Medium,Gadugi,Georgia,Impact,Ink Free,Javanese Text,Leelawadee UI,Lucida Console,Lucida Sans Unicode,MS Gothic,MS PGothic,MV Boli,Malgun Gothic,Marlett,Microsoft Himalaya,Microsoft JhengHei,Microsoft New Tai Lue,Microsoft PhagsPa,Microsoft Sans Serif,Microsoft Tai Le,Microsoft YaHei,Microsoft Yi Baiti,MingLiU-ExtB,PMingLiU-ExtB,MS Sans Serif,MS Serif,Nirmala UI,Palatino Linotype,Segoe MDL2 Assets,Segoe Print,Segoe Script,Segoe UI,Segoe UI Emoji,Segoe UI Historic,Segoe UI Symbol,SimSun,Sitka Small,Sylfaen,Tahoma,Times New Roman,Trebuchet MS,Verdana,Webdings,Wingdings,Yu Gothic",
+	}
+
 	return &DeviceIdentity{
 		Salt:                      salt,
 		MachineHash:               hashField(salt, "machine_hash"),
@@ -100,6 +172,12 @@ func NewSession() *DeviceIdentity {
 		NetworkInfoRTT:            rttPool[rand.Intn(len(rttPool))],
 		ScreenPixelDepth:          24,
 		TreeStructure:             treeStructures[rand.Intn(len(treeStructures))],
+
+		CFP:         cfp,
+		TZOffset:    tzPool[rand.Intn(len(tzPool))],
+		LanguageTag: langTag,
+		Languages:   langFull,
+		FontList:    fontSets[rand.Intn(len(fontSets))],
 	}
 }
 
