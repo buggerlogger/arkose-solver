@@ -77,9 +77,15 @@ func firstNonEmpty(a, b string) string {
 	return b
 }
 
+// generateBDA builds the top-level fingerprint list. Every solve gets a fresh DeviceIdentity
+// (see identity.go) — a coherent per-request bundle of the hex hashes and per-machine
+// telemetry that were previously hardcoded. Two consecutive solves therefore look like two
+// entirely separate machines even though the code path is identical.
 func generateBDA(preset *Config) []Item {
-	// Enhanced FP entries, in the exact Python fallback insertion order.
-	enhanced := buildEnhancedFP(preset)
+	identity := NewSession()
+	// Enhanced FP entries, in the exact Python fallback insertion order — receives the same
+	// per-solve identity so its 32-hex fields are coherent with the wh machine hash below.
+	enhanced := buildEnhancedFP(preset, identity)
 
 	// Top-level fp built as the Python fallback returns:
 	// [api_type, f, n, wh, enhanced_fp, fe, ife_hash, jsbd]
@@ -90,8 +96,10 @@ func generateBDA(preset *Config) []Item {
 	nowSec := time.Now().Unix()
 	nVal := base64.StdEncoding.EncodeToString([]byte(fmt.Sprintf("%d", nowSec)))
 
-	whStatic := "79169737225f825ee428975a81c22b8f"
-	whVal := strings.ReplaceAll(uuid.New().String(), "-", "") + "|" + whStatic
+	// wh = <per-request window hash>|<per-machine hash>. The tail was hardcoded to a single
+	// value across every solve — now rotated per-session via identity.MachineHash, so each
+	// solve looks like a different physical machine.
+	whVal := strings.ReplaceAll(uuid.New().String(), "-", "") + "|" + identity.MachineHash
 
 	// hash-of-empty for f and ife_hash (updated_core_fp is empty → empty inputs).
 	feArr, fHash := buildFE(preset)
@@ -114,8 +122,11 @@ func generateBDA(preset *Config) []Item {
 	return fp
 }
 
-// buildEnhancedFP returns the enhanced_fp list, order-preserved.
-func buildEnhancedFP(preset *Config) []Item {
+// buildEnhancedFP returns the enhanced_fp list, order-preserved. The `identity` argument is
+// the per-solve device-spoofer bundle (see identity.go): every field that on a real browser
+// would be a per-machine hash or per-request telemetry now comes from it, so the whole
+// enhanced_fp is coherent within one solve but different across solves.
+func buildEnhancedFP(preset *Config, identity *DeviceIdentity) []Item {
 	// Rotate the WebGL GPU per request from the embedded multi-vendor pool (NVIDIA GeForce +
 	// Ada, Intel HD/UHD/Iris/Arc, AMD Radeon). NVIDIA/Intel/AMD vendor mix is 45/35/20. Only
 	// unmasked_vendor/unmasked_renderer/hash_webgl vary; the hash is a deterministic md5 of
@@ -158,10 +169,12 @@ func buildEnhancedFP(preset *Config) []Item {
 	surl := preset.Surl
 	c8480Hex := md5Hex(surl)
 
-	// Item 1f220c9 alternates between its default hash and null.
-	var val1f220c9 interface{} = "4265a56c672d7e6aa6193578832fbe69"
-	if rand.Intn(2) == 0 {
-		val1f220c9 = nil
+	// 1f220c9 alternates between its per-session hash and null (~50/50 in real captures).
+	val1f220c9 := identity.Pick1f220c9()
+
+	// Honor explicit preset override; otherwise use this session's pick.
+	if treeStructure == "" {
+		treeStructure = identity.TreeStructure
 	}
 
 	nowMs := time.Now().UnixMilli()
@@ -188,12 +201,12 @@ func buildEnhancedFP(preset *Config) []Item {
 		{Key: "webgl_hash_webgl", Value: gpu.HashWebGL},
 		{Key: "user_agent_data_brands", Value: chrome.UAData},
 		{Key: "user_agent_data_mobile", Value: false},
-		{Key: "navigator_connection_downlink", Value: 10},
-		{Key: "navigator_connection_downlink_max", Value: nil},
-		{Key: "network_info_rtt", Value: 50},
+		{Key: "navigator_connection_downlink", Value: identity.NavConnectionDownlink},
+		{Key: "navigator_connection_downlink_max", Value: identity.NavConnectionDownlink_Max},
+		{Key: "network_info_rtt", Value: identity.NetworkInfoRTT},
 		{Key: "network_info_save_data", Value: false},
 		{Key: "network_info_rtt_type", Value: "730442"},
-		{Key: "screen_pixel_depth", Value: 96},
+		{Key: "screen_pixel_depth", Value: identity.ScreenPixelDepth},
 		{Key: "navigator_device_memory", Value: device.DeviceMemory},
 		{Key: "navigator_languages", Value: "en-US,en"},
 		{Key: "window_inner_width", Value: device.InnerWidth},
@@ -233,25 +246,25 @@ func buildEnhancedFP(preset *Config) []Item {
 		{Key: "z87b89t5", Value: nil}, // ground truth 2026-07-29: present in real BDA, value null
 		{Key: "audio_fingerprint", Value: PickAudioFingerprint()},
 		{Key: "navigator_battery_charging", Value: true},
-		{Key: "7541c2s", Value: "199eba60310b53c200cc783906883c67"},
+		{Key: "7541c2s", Value: identity.Hash7541c2s},
 		{Key: "1f220c9", Value: val1f220c9},
-		{Key: "math_fingerprint", Value: "0ce80c69b75667d69baedc0a70c82da7"},
-		{Key: "supported_math_functions", Value: "67d1759d7e92844d98045708c0a91c2f"},
+		{Key: "math_fingerprint", Value: identity.MathFingerprint},
+		{Key: "supported_math_functions", Value: identity.SupportedMathFuncs},
 		{Key: "3f76dd27", Value: "landscape-primary"},
 		{Key: "5dd48ca0", Value: 5},
 		{Key: "4b4b269e68", Value: uuid.New().String()},
-		{Key: "6a62b2a558", Value: "69a18bd7597a6f0636c0c2f982c6a8c3"},
+		{Key: "6a62b2a558", Value: identity.Hash6a62b2a558},
 		{Key: "is_keyless", Value: false},
 		{Key: "client_config__wait_for_settings", Value: false},
-		{Key: "c2d2015", Value: "29d13b1af8803cb86c2697345d7ea9eb"},
+		{Key: "c2d2015", Value: identity.Hashc2d2015},
 		{Key: "43f2d94", Value: []interface{}{}},
 		{Key: "20c15922", Value: true},
 		{Key: "4f59ca8", Value: nil},
 		{Key: "3ea7194", Value: HDRInfo{Supported: true, Formats: []string{"HDR10", "HLG"}, IsHDR: false}},
-		{Key: "05d3d24", Value: "ab6efc6cd639554bade6762c82ba9199"},
+		{Key: "05d3d24", Value: identity.Hash05d3d24},
 		{Key: "speech_default_voice", Value: speech.Default},
 		{Key: "speech_voices_hash", Value: speech.VoicesHash},
-		{Key: "83eb055", Value: "7fa7f3064b181569c87529f62d07c386"},
+		{Key: "83eb055", Value: identity.Hash83eb055},
 		{Key: "4ca87df3d1", Value: generateMouseTelemetry()},
 		{Key: "867e25e5d4", Value: "Ow=="},
 		{Key: "d4a306884c", Value: "Ow=="},
