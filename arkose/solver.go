@@ -78,6 +78,14 @@ func New(opts ...Option) (*Solver, error) {
 // attribute the target page embeds). Optional; only some sites require it.
 func (s *Solver) SetDataBlob(blob string) { s.dataBlob = blob }
 
+// SetHTTPClient injects an EXTERNAL tls_client that the solver reuses for the Arkose /gt2 POST
+// and settings warmup. Callers driving a full sign-in flow (fetch sign-in page → solve → POST
+// login) should build ONE client and pass it in so cookies (session, csrf, ARID, tracking)
+// accumulate together — the target site's server-side validation of the atok is typically
+// tied to the session that requested it, and fragmenting across multiple clients causes
+// otherwise-valid atoks to be rejected. Verified 2026-08-01 via browser MCP diagnostic.
+func (s *Solver) SetHTTPClient(c tls_client.HttpClient) { s.httpClient = c }
+
 // Config returns the resolved config (with defaults applied). Read-only use.
 func (s *Solver) Config() Config { return *s.cfg }
 
