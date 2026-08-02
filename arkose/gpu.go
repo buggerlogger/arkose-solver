@@ -9,23 +9,6 @@ import (
 	"strings"
 )
 
-// This file assembles a multi-vendor GPU pool for the BDA WebGL section. NVIDIA lists come from
-// https://github.com/pxCaptcha/GraphicCardsList (GeForce + Ada/server). Intel + AMD are curated
-// hand-lists of common consumer chips (vendor_data/intel.txt, vendor_data/amd.txt) — same
-// `ID: <4-hex>, Device: <name>` file format for consistency.
-//
-// Chrome formats the ANGLE renderer per vendor:
-//   NVIDIA: ANGLE (NVIDIA, NVIDIA <name> (0x0000<ID>) Direct3D11 vs_5_0 ps_5_0, D3D11)
-//   Intel:  ANGLE (Intel, Intel(R) <name> (0x0000<ID>) Direct3D11 vs_5_0 ps_5_0, D3D11)
-//   AMD:    ANGLE (AMD, AMD <name> (0x0000<ID>) Direct3D11 vs_5_0 ps_5_0, D3D11)
-// The unmasked_vendor is always "Google Inc. (<Vendor>)". webgl_hash_webgl is a deterministic
-// md5 of the (vendor|renderer) pair — same GPU → same hash, matching how a real device with
-// a stable driver install always reports the same hash.
-//
-// Vendor mix at pick time is 45/35/20 NVIDIA/Intel/AMD, roughly matching the overall Chrome-on-
-// Windows population (NVIDIA leads among enthusiasts, Intel dominates laptops/integrated, AMD
-// is smaller but present). Adjust `pickVendor` below to shift the distribution.
-
 type Vendor int
 
 const (
@@ -34,21 +17,16 @@ const (
 	VendorAMD
 )
 
-// geforceList, nonGeforceList, intelList, amdList are defined as inline `const` strings in
-// gpu_data.go — the project ships as a single Go compilation unit with no external data files.
-
-// GPU: parsed device entry. Vendor determines the ANGLE renderer string and unmasked_vendor.
 type GPU struct {
 	ID     string
 	Name   string
 	Vendor Vendor
 }
 
-// WebGLFingerprint bundles the three GPU-tied fields we surface into the BDA payload.
 type WebGLFingerprint struct {
-	UnmaskedVendor   string // e.g. "Google Inc. (NVIDIA)"
-	UnmaskedRenderer string // full ANGLE (...) string
-	HashWebGL        string // md5(vendor|renderer)
+	UnmaskedVendor   string
+	UnmaskedRenderer string
+	HashWebGL        string
 }
 
 var (
@@ -68,8 +46,6 @@ func init() {
 	}
 }
 
-// parseGPUList reads lines shaped `ID: 28B8, Device: <name>` and returns the resulting slice,
-// tagging every entry with the given vendor. Malformed lines are skipped silently.
 func parseGPUList(raw string, vendor Vendor) []GPU {
 	var out []GPU
 	sc := bufio.NewScanner(strings.NewReader(raw))
@@ -98,9 +74,6 @@ func parseGPUList(raw string, vendor Vendor) []GPU {
 	return out
 }
 
-// PickGPU picks a GPU across all vendors, weighted to match rough real-fleet distribution.
-// NVIDIA 45% / Intel 35% / AMD 20%. Within NVIDIA, GeForce vs Ada is 90/10 (same as before —
-// gaming laptops and desktops dominate; almost nobody browses on an L4).
 func PickGPU() GPU {
 	switch r := rand.Intn(100); {
 	case r < 45:
@@ -112,7 +85,6 @@ func PickGPU() GPU {
 	}
 }
 
-// PickNvidiaGPU is retained for callers that specifically want an NVIDIA card (tests, mostly).
 func PickNvidiaGPU() GPU {
 	return pickNvidia()
 }
@@ -124,9 +96,6 @@ func pickNvidia() GPU {
 	return nvidiaOtherGPUs[rand.Intn(len(nvidiaOtherGPUs))]
 }
 
-// FormatWebGL builds the exact Chrome-on-Windows ANGLE strings for the given GPU. Format
-// depends on vendor — Chrome uses different prefixes ("NVIDIA, NVIDIA GeForce X", "Intel,
-// Intel(R) X", "AMD, AMD Radeon X"). unmasked_vendor also varies.
 func FormatWebGL(g GPU) WebGLFingerprint {
 	idLower := strings.ToLower(g.ID)
 	var vendor, renderer string
@@ -143,7 +112,7 @@ func FormatWebGL(g GPU) WebGLFingerprint {
 			"ANGLE (AMD, AMD %s (0x0000%s) Direct3D11 vs_5_0 ps_5_0, D3D11)",
 			g.Name, idLower,
 		)
-	default: // NVIDIA
+	default:
 		vendor = "Google Inc. (NVIDIA)"
 		renderer = fmt.Sprintf(
 			"ANGLE (NVIDIA, NVIDIA %s (0x0000%s) Direct3D11 vs_5_0 ps_5_0, D3D11)",

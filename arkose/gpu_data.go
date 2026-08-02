@@ -1,11 +1,5 @@
 package arkose
 
-// Auto-generated: GPU device-ID lists inlined as Go string constants so the
-// project builds as a SINGLE compilation unit — no vendor_data/ folder needed.
-// Sources: pxCaptcha/GraphicCardsList (NVIDIA) + curated Intel/AMD.
-// Format: one entry per line, "ID: <4hex>, Device: <name>".
-// To add or trim entries, edit the string constants below and rebuild.
-
 const geforceList = `
 ID: 28B8, Device: GeForce RTX 4060 Max-Q / Mobile
 ID: 28E1, Device: GeForce RTX 4050 Max-Q / Mobile

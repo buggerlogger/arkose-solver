@@ -1,18 +1,3 @@
-// Package arkose is a pure-Go Arkose Labs / FunCaptcha token solver. It builds a real-browser
-// BDA fingerprint, encrypts it with the site's RSA-OAEP + AES-GCM envelope, and posts it to
-// /fc/gt2/public_key/{pk} to obtain a suppressed (sup=1) token — no browser, no PoW.
-//
-// Basic use:
-//
-//	s, err := arkose.New(
-//	    arkose.WithSurl("https://verify.example.com"),
-//	    arkose.WithPublicKey("YOUR-SITE-KEY-UUID"),
-//	    arkose.WithRSAPublicKey("MIIBIjAN..."),   // see README: capture once
-//	    arkose.WithSite("https://www.example.com"),
-//	    arkose.WithProxy("http://user:pass@host:port"),
-//	)
-//	res, err := s.Solve()
-//	fmt.Println(res.Token)
 package arkose
 
 import (
@@ -33,7 +18,6 @@ import (
 	"github.com/bogdanfinn/tls-client/profiles"
 )
 
-// capiCacheEntry stores a per-public-key /v2/{pk}/api.js lookup: capi version + build id.
 type capiCacheEntry struct {
 	Version   string
 	VMKey     string
@@ -47,18 +31,15 @@ var (
 	capiCacheTL = 5 * time.Minute
 )
 
-// Solver holds a solving context bound to one Config. Construct with New(). It is safe to
-// reuse across sequential Solve() calls; for concurrency, create one Solver per goroutine
-// (each keeps its own TLS client + cookie jar).
 type Solver struct {
-	cfg        *Config
-	dataBlob   string // optional data[blob] (dataExchange) from the target page
-	arkBuildID string // from api.js, sent as ark-build-id header
-	lastArid   string // ARID from prior /gt2 response, sent back as `x-ark-arid: {"ls":"<arid>"}` on retry
-	httpClient tls_client.HttpClient
+	cfg            *Config
+	dataBlob       string
+	arkBuildID     string
+	lastArid       string
+	httpClient     tls_client.HttpClient
+	externalClient bool
 }
 
-// New builds a Solver from options. It returns an error if a required field is missing.
 func New(opts ...Option) (*Solver, error) {
 	cfg := &Config{}
 	for _, o := range opts {
@@ -74,19 +55,10 @@ func New(opts ...Option) (*Solver, error) {
 	return &Solver{cfg: cfg}, nil
 }
 
-// SetDataBlob supplies the per-request dataExchange blob (the value of a data-adx / data[blob]
-// attribute the target page embeds). Optional; only some sites require it.
 func (s *Solver) SetDataBlob(blob string) { s.dataBlob = blob }
 
-// SetHTTPClient injects an EXTERNAL tls_client that the solver reuses for the Arkose /gt2 POST
-// and settings warmup. Callers driving a full sign-in flow (fetch sign-in page → solve → POST
-// login) should build ONE client and pass it in so cookies (session, csrf, ARID, tracking)
-// accumulate together — the target site's server-side validation of the atok is typically
-// tied to the session that requested it, and fragmenting across multiple clients causes
-// otherwise-valid atoks to be rejected. Verified 2026-08-01 via browser MCP diagnostic.
-func (s *Solver) SetHTTPClient(c tls_client.HttpClient) { s.httpClient = c }
+func (s *Solver) SetHTTPClient(c tls_client.HttpClient) { s.httpClient = c; s.externalClient = true }
 
-// Config returns the resolved config (with defaults applied). Read-only use.
 func (s *Solver) Config() Config { return *s.cfg }
 
 func (s *Solver) newHTTPClient() (tls_client.HttpClient, error) {
@@ -109,21 +81,21 @@ func (s *Solver) newHTTPClient() (tls_client.HttpClient, error) {
 	return c, nil
 }
 
-// SolveResult reports what the solve produced. Token is non-empty on success. Suppressed is
-// true when the token carries sup=1 (trusted, no challenge required — the goal).
 type SolveResult struct {
 	Token      string
-	Suppressed bool                     // token contains sup=1
-	Timings    map[string]time.Duration // named phase durations
+	Suppressed bool
+	Timings    map[string]time.Duration
 }
 
-// Solve runs the pipeline: fetch api.js settings, build+encrypt the BDA, POST /fc/gt2, and
-// (if the first token wasn't suppressed) retry once with the ARID warmup cookie.
 func (s *Solver) Solve() (*SolveResult, error) {
 	timings := map[string]time.Duration{}
 	res := &SolveResult{Timings: timings}
 
-	// Phase 1: fetch api.js → capi_version + build_id
+	if !s.externalClient {
+		s.httpClient = nil
+		s.lastArid = ""
+	}
+
 	t0 := time.Now()
 	capiVersion, vmKey, buildID, err := s.getCAPI()
 	timings["settings"] = time.Since(t0)
@@ -136,9 +108,19 @@ func (s *Solver) Solve() (*SolveResult, error) {
 	}
 	logPhase(1, 4, "fetch settings", timings["settings"], fmt.Sprintf("capi=%s bid=%s", capiVersion, truncate(buildID, 8)))
 
-	// Phase 2: build BDA + encrypt
+	if s.cfg.DataExchangeURL != "" {
+		tb := time.Now()
+		if blob, ferr := s.fetchDataExchange(); ferr != nil {
+			logInfo("dataExchange fetch failed (minting without blob): %s", ferr.Error())
+		} else {
+			s.dataBlob = blob
+			logPhase(1, 4, "dataExchange blob", time.Since(tb), fmt.Sprintf("%d chars", len(blob)))
+		}
+		timings["dataexchange"] = time.Since(tb)
+	}
+
 	t0 = time.Now()
-	bda := generateBDA(s.cfg)
+	bda := generateBDA(s.cfg, s.arkBuildID)
 	bdaJSON, err := marshalBDA(bda)
 	if err != nil {
 		timings["bda"] = time.Since(t0)
@@ -146,8 +128,6 @@ func (s *Solver) Solve() (*SolveResult, error) {
 		return nil, fmt.Errorf("marshal bda: %w", err)
 	}
 
-	// Prefer the RSA key from config (captured once); the api.js regex almost never finds it
-	// because the key is VM-reconstructed at runtime, not a static literal.
 	if vmKey == "" {
 		vmKey = s.cfg.RSAPublicKey
 	}
@@ -162,7 +142,7 @@ func (s *Solver) Solve() (*SolveResult, error) {
 		logPhase(2, 4, "build bda + encrypt", timings["bda"], "FAILED")
 		return nil, err
 	}
-	// Modern Arkose uses "c" when a build id is present, "bda" otherwise.
+
 	payloadKey := "bda"
 	if s.arkBuildID != "" {
 		payloadKey = "c"
@@ -170,7 +150,6 @@ func (s *Solver) Solve() (*SolveResult, error) {
 	timings["bda"] = time.Since(t0)
 	logPhase(2, 4, "build bda + encrypt", timings["bda"], fmt.Sprintf("%d B", len(encryptedBDA)))
 
-	// Phase 3: POST /fc/gt2/public_key/{pk}
 	t0 = time.Now()
 	data := s.buildPayload(encryptedBDA, payloadKey, capiVersion)
 	encoded := arkoseFormEncode(data)
@@ -187,7 +166,6 @@ func (s *Solver) Solve() (*SolveResult, error) {
 	}
 	logPhase(3, 4, "POST /fc/gt2/public_key", timings["gt2"], "token acquired")
 
-	// Phase 4: check suppression; one ARID-warmup retry if not suppressed.
 	if strings.Contains(token, "sup=1") {
 		logPhaseSkipped(4, 4, "suppress", "sup=1 (trusted)")
 		res.Token, res.Suppressed = token, true
@@ -195,7 +173,7 @@ func (s *Solver) Solve() (*SolveResult, error) {
 	}
 
 	logInfo("first token not suppressed — retrying with ARID warmup")
-	bda2, _ := marshalBDA(generateBDA(s.cfg))
+	bda2, _ := marshalBDA(generateBDA(s.cfg, s.arkBuildID))
 	enc2, err := s.encryptBDA(string(bda2), vmKey, capiVersion)
 	if err == nil {
 		data2 := s.buildPayload(enc2, payloadKey, capiVersion)
@@ -215,8 +193,6 @@ func (s *Solver) Solve() (*SolveResult, error) {
 	return res, nil
 }
 
-// encryptBDA picks the RSA-OAEP+AES-GCM envelope (modern, gets sup=1) or the legacy AES-CBC
-// path (old capi, or when no RSA key is available).
 func (s *Solver) encryptBDA(bdaJSON, vmKey, capiVersion string) (string, error) {
 	if vmKey != "" && !isOldCapiVersion(capiVersion) {
 		enc, err := Encrypt(bdaJSON, vmKey)
@@ -232,8 +208,57 @@ func (s *Solver) encryptBDA(bdaJSON, vmKey, capiVersion string) (string, error) 
 	return base64.StdEncoding.EncodeToString([]byte(enc)), nil
 }
 
-// getCAPI fetches /v2/{pk}/api.js and pulls (capi_version, build_id) from it (cached 5 min).
-// vm_key extraction is attempted but usually misses (see comment in Solve); the config key wins.
+var defaultAdxRe = regexp.MustCompile(`data-adx="([^"]+)"`)
+
+func (s *Solver) fetchDataExchange() (string, error) {
+	client, err := s.newHTTPClient()
+	if err != nil {
+		return "", err
+	}
+	req, err := http.NewRequest(http.MethodGet, s.cfg.DataExchangeURL, nil)
+	if err != nil {
+		return "", err
+	}
+	req.Header = http.Header{
+		"user-agent":                {s.cfg.UserAgent},
+		"accept":                    {"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8"},
+		"accept-language":           {"en-US,en;q=0.9"},
+		"accept-encoding":           {"gzip, deflate, br"},
+		"sec-ch-ua":                 {`"Not;A=Brand";v="8", "Chromium";v="150", "Google Chrome";v="150"`},
+		"sec-ch-ua-mobile":          {"?0"},
+		"sec-ch-ua-platform":        {`"Windows"`},
+		"sec-fetch-site":            {"none"},
+		"sec-fetch-mode":            {"navigate"},
+		"sec-fetch-user":            {"?1"},
+		"sec-fetch-dest":            {"document"},
+		"upgrade-insecure-requests": {"1"},
+		http.HeaderOrderKey: {"user-agent", "accept", "accept-language", "accept-encoding",
+			"sec-ch-ua", "sec-ch-ua-mobile", "sec-ch-ua-platform", "sec-fetch-site",
+			"sec-fetch-mode", "sec-fetch-user", "sec-fetch-dest", "upgrade-insecure-requests"},
+	}
+	resp, err := client.Do(req)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return "", err
+	}
+	re := defaultAdxRe
+	if s.cfg.DataExchangeRegex != "" {
+		re, err = regexp.Compile(s.cfg.DataExchangeRegex)
+		if err != nil {
+			return "", fmt.Errorf("dataexchange regex: %w", err)
+		}
+	}
+	m := re.FindStringSubmatch(string(body))
+	if len(m) < 2 {
+		return "", fmt.Errorf("dataexchange blob not found at %s (status=%d, len=%d)", s.cfg.DataExchangeURL, resp.StatusCode, len(body))
+	}
+	return m[1], nil
+}
+
 func (s *Solver) getCAPI() (version, vmKey, buildID string, err error) {
 	pk := s.cfg.PublicKey
 	capiCacheMu.Lock()
@@ -296,7 +321,6 @@ func (s *Solver) getCAPI() (version, vmKey, buildID string, err error) {
 		buildID = m[1]
 	}
 
-	// best-effort vm_key scrape (usually empty for modern deployments)
 	vmKeyRe := regexp.MustCompile("[\"'`]([A-Za-z0-9+/]{200,}={0,2})[\"'`]")
 	for _, m := range vmKeyRe.FindAllStringSubmatch(content, -1) {
 		if dec, e := base64.StdEncoding.DecodeString(m[1]); e == nil && len(dec) >= 2 && dec[0] == 0x30 && dec[1] == 0x82 {
@@ -324,12 +348,10 @@ func isOldCapiVersion(v string) bool {
 
 func isDigit(b byte) bool { return b >= '0' && b <= '9' }
 
-// getXArkValue returns the ms timestamp truncated to a 21600-ms bucket (x-ark-esync-value).
 func getXArkValue() string {
-	return strconv.FormatInt((time.Now().UnixMilli()/21600)*21600, 10)
+	return strconv.FormatInt((time.Now().Unix()/21600)*21600, 10)
 }
 
-// buildPayload assembles the form for /fc/gt2/public_key/{pk}.
 func (s *Solver) buildPayload(encryptedBDA, payloadKey, capiVersion string) *orderedMap {
 	m := newOrderedMap()
 	m.Set(payloadKey, encryptedBDA)
@@ -364,7 +386,6 @@ func ifEmpty(v, def string) string {
 	return v
 }
 
-// arkoseFormEncode joins fields as urllib.parse.quote(v, safe='()') would.
 func arkoseFormEncode(m *orderedMap) string {
 	var b strings.Builder
 	for i, k := range m.Keys() {
@@ -395,7 +416,6 @@ func quotePython(s string) string {
 	return b.String()
 }
 
-// buildHeaders sets the request headers in the order Arkose expects (HTTP/2 header order).
 func (s *Solver) buildHeaders() http.Header {
 	referer := s.cfg.Referer
 	if referer == "" {
@@ -425,19 +445,15 @@ func (s *Solver) buildHeaders() http.Header {
 		order = append(order, "ark-build-id")
 	}
 	order = append(order, "sec-ch-ua", "sec-ch-ua-mobile", "sec-ch-ua-platform", "x-ark-esync-value")
-	// x-ark-arid: real Chrome sends `{"ls":"<arid>"}` on any request that has a persisted
-	// ARID (from localStorage). We capture the ARID from the previous /gt2 response's
-	// `x-ark-arid: {"idb":"..."}` header and echo it back here as `{"ls":"..."}`. This is
-	// the header that flips the retry into a sup=1 grant (verified 10/10 vs 0/10 without it).
+
 	if s.lastArid != "" {
-		hdrs.Set("x-ark-arid", `{"ls":"`+s.lastArid+`"}`)
+		hdrs.Set("x-ark-arid", `{"ls":"`+s.lastArid+`","idb":"`+s.lastArid+`"}`)
 		order = append(order, "x-ark-arid")
 	}
 	hdrs[http.HeaderOrderKey] = order
 	return hdrs
 }
 
-// postGT2 posts the form and returns the parsed token, raw body, status, and transport error.
 func (s *Solver) postGT2(headers http.Header, encoded string) (token, body string, status int, err error) {
 	surl := s.cfg.Surl
 	if !strings.HasPrefix(surl, "http") {
@@ -465,8 +481,6 @@ func (s *Solver) postGT2(headers http.Header, encoded string) (token, body strin
 	}
 	body, status = string(raw), resp.StatusCode
 
-	// Capture ARID from the response so the next request can send it back as
-	// `x-ark-arid: {"ls":"<arid>"}`. Response shape is `{"idb":"<arid>"}` on set.
 	if xa := resp.Header.Get("x-ark-arid"); xa != "" {
 		var v struct{ Idb, Ls string }
 		if json.Unmarshal([]byte(xa), &v) == nil {
@@ -500,7 +514,6 @@ func truncate(s string, n int) string {
 	return s[:n] + "..."
 }
 
-// orderedMap keeps insertion order for the form fields.
 type orderedMap struct {
 	keys []string
 	m    map[string]string

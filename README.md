@@ -17,12 +17,18 @@ GET /token  ->  {"token":"98718c6b...|r=eu-west-1|...|sup=1|...","suppressed":tr
 ## Features
 
 - **`sup=1` suppressed tokens** — the trusted, no-challenge token, produced directly.
+- **dataExchange auto-fetch** — the single biggest reliability lever: point `WithDataExchangeURL`
+  at the embedding page and every solve pulls a fresh `data[blob]` on the same session. Measured
+  in practice: **with blob → reliably `sup=1`; without → mostly unsuppressed.** (See below.)
+- **Ground-truth BDA fingerprint** — every field validated byte-for-byte against a live Chrome-150
+  mint (the universal hashes are pinned to their real values, not fabricated).
+- **A new, unique device every solve** — each solve synthesizes a fresh, internally-coherent
+  Windows-Chrome machine (GPU from a ~900-device pool + matching RAM/cores/screen, random per-GPU
+  WebGL hash), so no two tokens share a fingerprint and there's no fleet-constant tell.
+- **Fresh session per solve** — each `Solve()` uses its own cookie jar so a spent, low-trust
+  session can't poison the next token (inject your own client with `SetHTTPClient` to share one).
 - **Correct crypto envelope** — RSA-2048-OAEP-wrapped AES-256-GCM (`iv|tag|rsa|ct`), matching the
   browser byte-for-byte. Legacy AES-CBC path kept for old `capi` versions.
-- **Ground-truth BDA fingerprint** — real Chrome 150 / Windows feature set, with WebGL/GPU,
-  canvas, audio, and codec fields rotating per request from built-in real pools.
-- **Coherent device profiles** — GPU + screen + RAM are picked as one real machine (no impossible
-  combos like a server GPU on a 1366×768 laptop). 14 curated real Windows-Chrome profiles.
 - **Configurable per site** — site key, RSA key, verify host, origin, UA, language, proxy.
 - **TLS impersonation** — Chrome fingerprint via `bogdanfinn/tls-client`.
 - **Per-request proxy override** — send a `Proxy:` header to the server, or `WithProxy(...)`.
@@ -154,6 +160,42 @@ func main() {
 | `WithCapiMode(m)` | `lightbox` (default) or `inline` |
 | `WithReferer(r)` / `WithOrigin(o)` | override headers explicitly |
 | `WithSitedataLocationHref(u)` | set the page URL reported in the BDA |
+| `WithTitle(t)` | document.title of the embedding page (BDA `jsbd` `DT`) |
+| `WithDataExchangeURL(u)` | **auto-fetch a fresh `data[blob]` per solve** from this page URL — the biggest `sup=1` lever (see below) |
+| `WithDataExchangeRegex(re)` | override the blob extractor (default `data-adx="([^"]+)"`) |
+
+### The dataExchange blob — the biggest `sup=1` lever
+
+Many Arkose deployments embed a per-page-load **dataExchange blob** — a short-lived, server-minted
+token — in the host page, and forward it as the `data[blob]` mint field. Supplying a **fresh,
+same-session** blob is the single largest driver of suppression (back-to-back, same IP: with blob →
+reliably `sup=1`; without → mostly unsuppressed).
+
+`WithDataExchangeURL` makes this autonomous: before each solve the library GETs that page **on the
+same TLS client** (which also warms the session cookies), extracts the blob, and forwards it — no
+browser needed.
+
+```go
+s, _ := arkose.New(
+    arkose.WithSurl("https://verify.example.com"),
+    arkose.WithPublicKey("00000000-0000-0000-0000-000000000000"),
+    arkose.WithRSAPublicKey(rsaKey),
+    arkose.WithSite("https://www.example.com"),
+    arkose.WithTitle("Sign in - Example"),
+    arkose.WithDataExchangeURL("https://www.example.com/sign-in"),
+)
+res, _ := s.Solve() // fetches a fresh blob, then mints
+```
+
+Notes:
+- The blob is **single-use**: it's re-fetched every `Solve()`.
+- The page GET uses a full browser header set on purpose — a minimal request makes some origins
+  serve a **blob-less** page variant. If the default `data-adx` extractor doesn't fit your site,
+  pass `WithDataExchangeRegex`.
+- Or supply a blob yourself per solve with `Solver.SetDataBlob(...)` (e.g. from a `data-adx` /
+  `data-exchange` attribute you already have).
+- **IP reputation is a separate axis:** even a perfect blob won't yield `sup=1` from an IP that
+  Arkose has throttled after a burst. Spread solves out and/or rotate egress proxies for volume.
 
 `Solve()` returns `*SolveResult{ Token, Suppressed, Timings }`. `Suppressed == true` means the
 token carries `sup=1` and is accepted with no challenge.
@@ -199,7 +241,7 @@ Flags: `-url` (page that uses Arkose, required), `-out` (default `rsa_key.txt`),
 `-keep` (leave Chrome open for debugging). Chrome must be installed.
 
 > **Why a plain console paste often fails:** Arkose runs its crypto inside a **cross-origin iframe**,
-> and on suppressed sites (e.g. iStock) the mint **never fires on its own** — it must be triggered.
+> and on suppressed sites the mint **never fires on its own** — it must be triggered.
 > The tool handles both: it hooks all frames at document-start and calls the enforcement's
 > `initSession()` to force the mint. That's why the manual snippet printed nothing.
 
@@ -231,6 +273,8 @@ Copy the printed `RSA_SPKI = MIIBIjAN…` into `WithRSAPublicKey(...)` / `-rsa`.
 ## How it works
 
 1. **`GET /v2/{pk}/api.js`** — read the current `capi_version` and `ark-build-id`.
+1a. **(optional) fetch the dataExchange blob** — if `WithDataExchangeURL` is set, GET that page on
+   the same client and extract a fresh `data[blob]` (also warms session cookies). See above.
 2. **Build the BDA** — a real Chrome fingerprint: `api_type, f, n, wh, enhanced_fp (91 fields),
    fe, ife_hash, jsbd, c`. WebGL/GPU, canvas, audio, codecs, and math fields rotate per request.
 3. **Encrypt** — random AES-256 key + 12-byte IV; AES-GCM the BDA; RSA-OAEP(SHA-256) wrap the AES

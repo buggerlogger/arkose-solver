@@ -1,17 +1,3 @@
-// Command capture-key automates the one-time RSA public-key capture for an Arkose site.
-//
-// It launches Chrome, injects a WebCrypto hook into every frame *before* page scripts run,
-// navigates to the page you give it, forces the Arkose enforcement to mint, catches the RSA
-// SPKI the instant importKey is called, writes it to a file, and closes Chrome.
-//
-//	capture-key -url https://www.istockphoto.com/sign-in?returnurl=%2F -out rsa_key.txt
-//
-// The printed / saved value goes straight into WithRSAPublicKey(...) / the -rsa flag.
-//
-// Notes:
-//   - Run it HEADFUL (default). Arkose is far less likely to mint in headless mode.
-//   - Chrome must be installed; chromedp finds it automatically.
-//   - Site isolation is disabled so the (cross-origin) Arkose iframe's console reaches us.
 package main
 
 import (
@@ -29,10 +15,6 @@ import (
 	"github.com/chromedp/chromedp"
 )
 
-// hookJS runs as the first script in every document/frame. It (1) wraps crypto.subtle.importKey
-// and logs the SPKI bytes the site imports (the RSA public key), and (2) polls for the Arkose
-// client API on the top frame and calls initSession() to force a mint — because suppressed
-// deployments (e.g. iStock) never mint on their own.
 const hookJS = `(function () {
   function hook() {
     try {
@@ -124,7 +106,6 @@ func main() {
 		}
 	})
 
-	// Install the hook before any page script runs (applies to every frame), then navigate.
 	if err := chromedp.Run(ctx,
 		chromedp.ActionFunc(func(ctx context.Context) error {
 			_, err := page.AddScriptToEvaluateOnNewDocument(hookJS).Do(ctx)
@@ -162,7 +143,7 @@ func main() {
 	if !*keep {
 		cancelCtx()
 		cancelAlloc()
-		// give Chrome a moment to die cleanly
+
 		time.Sleep(300 * time.Millisecond)
 	} else {
 		fmt.Println("(-keep set: leaving Chrome open; close it manually)")

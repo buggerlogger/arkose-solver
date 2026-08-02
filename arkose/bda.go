@@ -15,40 +15,19 @@ import (
 	"github.com/spaolacci/murmur3"
 )
 
-// Item — one BDA fingerprint entry: {"key": ..., "value": ...}.
-// Field order in the struct dictates JSON output order (key first, then value).
 type Item struct {
 	Key   string      `json:"key"`
 	Value interface{} `json:"value"`
 }
 
-// HDRInfo mirrors {'supported': True, 'formats': [...], 'isHDR': False} for key 3ea7194.
 type HDRInfo struct {
 	Supported bool     `json:"supported"`
 	Formats   []string `json:"formats"`
 	IsHDR     bool     `json:"isHDR"`
 }
 
-// generateBDA builds the final BDA fingerprint list matching Python bda.py output.
-// Order and value semantics are preserved byte-for-byte with the Python fallback path
-// (which is what runs when the on-disk fingerprints directory is missing — as here).
-// buildFE constructs the Arkose feature-enumeration array (fe) and its hash (f).
-// CORRECTED (2026-07-29): the ported Python behaviour left fe=[] and f=hash(""), which makes the
-// classifier flag the fingerprint as fake -> no sup=1. Real Chrome sends a populated fe. Values below
-// are ground-truth captured from live Chrome 150 (Win64) via the Arkose fingerprint surface.
-// buildFE constructs the fe enumeration array + f hash.
-//
-// FE-COHERENCE (2026-08-01): the array must agree with enhanced_fp. Previously every fe was
-// identical across every solve regardless of the picked device profile — e.g. H:16 while the
-// device profile had HardwareConcurrency:8, or S:1920,1080 while the profile picked a
-// 2560×1440 machine. Server-side classifiers cross-check these fields against enhanced_fp
-// and flag inconsistencies. Now every device-dependent field (H, S, AS, D) comes from the
-// shared device profile, and per-session identity fields (L, TO, CFP, JSF) come from
-// DeviceIdentity — so fe is byte-different every solve AND coherent with enhanced_fp.
 func buildFE(preset *Config, device DeviceProfile, identity *DeviceIdentity) ([]string, string) {
-	// Derive full screen from the device's outer window size (real Chrome maximized:
-	// outerWidth == screen.availWidth). Add a standard 48px Windows taskbar back for the
-	// physical monitor height.
+
 	screenW := device.OuterWidth
 	screenH := device.OuterHeight + 48
 	availW := device.OuterWidth
@@ -57,7 +36,8 @@ func buildFE(preset *Config, device DeviceProfile, identity *DeviceIdentity) ([]
 	fe := []string{
 		"DNT:unknown",
 		"L:" + identity.LanguageTag,
-		fmt.Sprintf("D:%d", identity.ScreenPixelDepth),
+
+		fmt.Sprintf("D:%d", identity.ColorDepth),
 		"PR:1",
 		fmt.Sprintf("S:%d,%d", screenW, screenH),
 		fmt.Sprintf("AS:%d,%d", availW, availH),
@@ -79,8 +59,7 @@ func buildFE(preset *Config, device DeviceProfile, identity *DeviceIdentity) ([]
 		fmt.Sprintf("H:%d", device.HardwareConcurrency),
 		"SWF:false",
 	}
-	// f = hash of the empty core_keys serialization — universal for Chrome, matches real
-	// browser captures byte-for-byte (2d03456242a080304cde661cdb1853a8).
+
 	f := "2d03456242a080304cde661cdb1853a8"
 	return fe, f
 }
@@ -92,38 +71,31 @@ func firstNonEmpty(a, b string) string {
 	return b
 }
 
-// generateBDA builds the top-level fingerprint list. Every solve gets a fresh DeviceIdentity
-// (see identity.go) — a coherent per-request bundle of the hex hashes and per-machine
-// telemetry that were previously hardcoded. Two consecutive solves therefore look like two
-// entirely separate machines even though the code path is identical.
-func generateBDA(preset *Config) []Item {
+func buildJsbd(preset *Config) string {
+	if preset.Jsbd != "" {
+		return preset.Jsbd
+	}
+	dt, err := json.Marshal(preset.Title)
+	if err != nil {
+		dt = []byte(`""`)
+	}
+	return `{"HL":2,"NCE":true,"DT":` + string(dt) + `,"NWD":"false","DMTO":1,"DOTO":1}`
+}
+
+func generateBDA(preset *Config, buildID string) []Item {
 	identity := NewSession()
-	// One device is picked ONCE and shared between enhanced_fp and fe so both surfaces
-	// agree on H/S/AS/D — fixing the previous coherence bug where fe reported one machine
-	// while enhanced_fp reported another.
-	device := PickDeviceProfile()
 
-	// Enhanced FP entries, in the exact Python fallback insertion order — receives the same
-	// per-solve identity so its 32-hex fields are coherent with the wh machine hash below.
-	enhanced := buildEnhancedFP(preset, identity, device)
+	device := GenerateDevice()
 
-	// Top-level fp built as the Python fallback returns:
-	// [api_type, f, n, wh, enhanced_fp, fe, ife_hash, jsbd]
-	// Then generate() recomputes f/fe/ife_hash but core_keys are absent, producing
-	// hashes-of-empty. Then _add_extra_items appends vsadsa, basfas, lfasdgs to fp.
-	// We reproduce that exact final structure directly.
+	enhanced := buildEnhancedFP(preset, identity, device, buildID)
 
 	nowSec := time.Now().Unix()
 	nVal := base64.StdEncoding.EncodeToString([]byte(fmt.Sprintf("%d", nowSec)))
 
-	// wh = <per-request window hash>|<per-machine hash>. The tail was hardcoded to a single
-	// value across every solve — now rotated per-session via identity.MachineHash, so each
-	// solve looks like a different physical machine.
 	whVal := strings.ReplaceAll(uuid.New().String(), "-", "") + "|" + identity.MachineHash
 
-	// hash-of-empty for f and ife_hash (updated_core_fp is empty → empty inputs).
 	feArr, fHash := buildFE(preset, device, identity)
-	ifeHash := murmur3Hex("", 38)
+	ifeHash := ukIfeHash
 
 	fp := []Item{
 		{Key: "api_type", Value: "js"},
@@ -133,36 +105,19 @@ func generateBDA(preset *Config) []Item {
 		{Key: "enhanced_fp", Value: enhanced},
 		{Key: "fe", Value: feArr},
 		{Key: "ife_hash", Value: ifeHash},
-		{Key: "jsbd", Value: preset.Jsbd},
-		// GROUND TRUTH (real BDA capture 2026-07-29): top-level ends with `c`, NOT vsadsa/basfas/lfasdgs.
-		// Those three live ONLY inside enhanced_fp (buildEnhancedFP already appends them). Putting them
-		// at top level was a structural tell that helped the classifier flag us as fake.
+		{Key: "jsbd", Value: buildJsbd(preset)},
+
 		{Key: "c", Value: "Copyright (c) 2026 Arkose Labs. All Rights Reserved."},
 	}
 	return fp
 }
 
-// buildEnhancedFP returns the enhanced_fp list, order-preserved. The `identity` is the
-// per-solve device-spoofer bundle (see identity.go); the `device` is the picked profile,
-// shared with buildFE so both surfaces agree on H/S/AS/D.
-func buildEnhancedFP(preset *Config, identity *DeviceIdentity, device DeviceProfile) []Item {
-	// Rotate the WebGL GPU per request from the embedded multi-vendor pool (NVIDIA GeForce +
-	// Ada, Intel HD/UHD/Iris/Arc, AMD Radeon). NVIDIA/Intel/AMD vendor mix is 45/35/20. Only
-	// unmasked_vendor/unmasked_renderer/hash_webgl vary; the hash is a deterministic md5 of
-	// the tuple so each GPU consistently reports the same hash across calls (matching a real
-	// device with a stable driver install).
-	// COHERENT DEVICE PROFILE (profiles.go): one real machine picked as a unit — GPU, screen,
-	// RAM belong together. Now RECEIVED from generateBDA so buildFE sees the same device
-	// (fixes the fe/enhanced_fp incoherence bug where fe reported H:16 while the profile
-	// had HardwareConcurrency:8).
+func buildEnhancedFP(preset *Config, identity *DeviceIdentity, device DeviceProfile, buildID string) []Item {
+
 	gpu := device.WebGL()
 
-	// These pools stay independent (they don't correlate with the GPU): Chrome version tuple and
-	// the speech voice+hash tuple.
 	chrome := PickChromeVersion()
-	speech := PickSpeechVoice()
 
-	// Ancestor origins may be nil; ensure marshals to [] not null.
 	ancestorOrigins := preset.WindowAncestorOrigins
 	if ancestorOrigins == nil {
 		ancestorOrigins = []string{}
@@ -172,15 +127,13 @@ func buildEnhancedFP(preset *Config, identity *DeviceIdentity, device DeviceProf
 		treeIndex = []int{}
 	}
 
-	// Randomise tree_structure like Python does when no explicit override is given.
 	treeStructures := []string{
 		"[[[],[]],[[]],[],[]]",
 		"[[],[],[],[[]],[]]",
 		"[[],[],[],[[]],[[]],[],[]]",
 	}
 	treeStructure := preset.WindowTreeStructure
-	// Python only overrides if tree_structure is not None; our preset always provides one,
-	// so we honor it exactly (preset provides "[]"). If preset ever set it to "", we'd randomize.
+
 	if treeStructure == "" {
 		treeStructure = treeStructures[rand.Intn(len(treeStructures))]
 	}
@@ -188,15 +141,15 @@ func buildEnhancedFP(preset *Config, identity *DeviceIdentity, device DeviceProf
 	surl := preset.Surl
 	c8480Hex := md5Hex(surl)
 
-	// 1f220c9 alternates between its per-session hash and null (~50/50 in real captures).
 	val1f220c9 := identity.Pick1f220c9()
 
-	// Honor explicit preset override; otherwise use this session's pick.
 	if treeStructure == "" {
 		treeStructure = identity.TreeStructure
 	}
 
 	nowMs := time.Now().UnixMilli()
+
+	innerW, innerH := device.Inner()
 
 	return []Item{
 		{Key: "webgl_extensions", Value: "ANGLE_instanced_arrays;EXT_blend_minmax;EXT_clip_control;EXT_color_buffer_half_float;EXT_depth_clamp;EXT_disjoint_timer_query;EXT_float_blend;EXT_frag_depth;EXT_polygon_offset_clamp;EXT_shader_texture_lod;EXT_texture_compression_bptc;EXT_texture_compression_rgtc;EXT_texture_filter_anisotropic;EXT_texture_mirror_clamp_to_edge;EXT_sRGB;KHR_parallel_shader_compile;OES_element_index_uint;OES_fbo_render_mipmap;OES_standard_derivatives;OES_texture_float;OES_texture_float_linear;OES_texture_half_float;OES_texture_half_float_linear;OES_vertex_array_object;WEBGL_blend_func_extended;WEBGL_color_buffer_float;WEBGL_compressed_texture_s3tc;WEBGL_compressed_texture_s3tc_srgb;WEBGL_debug_renderer_info;WEBGL_debug_shaders;WEBGL_depth_texture;WEBGL_draw_buffers;WEBGL_lose_context;WEBGL_multi_draw;WEBGL_polygon_mode"},
@@ -227,9 +180,9 @@ func buildEnhancedFP(preset *Config, identity *DeviceIdentity, device DeviceProf
 		{Key: "network_info_rtt_type", Value: "730442"},
 		{Key: "screen_pixel_depth", Value: identity.ScreenPixelDepth},
 		{Key: "navigator_device_memory", Value: device.DeviceMemory},
-		{Key: "navigator_languages", Value: identity.Languages}, // matches L: in fe
-		{Key: "window_inner_width", Value: device.InnerWidth},
-		{Key: "window_inner_height", Value: device.InnerHeight},
+		{Key: "navigator_languages", Value: identity.Languages},
+		{Key: "window_inner_width", Value: innerW},
+		{Key: "window_inner_height", Value: innerH},
 		{Key: "window_outer_width", Value: device.OuterWidth},
 		{Key: "window_outer_height", Value: device.OuterHeight},
 		{Key: "browser_detection_firefox", Value: false},
@@ -257,15 +210,17 @@ func buildEnhancedFP(preset *Config, identity *DeviceIdentity, device DeviceProf
 		{Key: "window__tree_structure", Value: treeStructure},
 		{Key: "window__location_href", Value: preset.WindowLocationHref},
 		{Key: "client_config__sitedata_location_href", Value: preset.SitedataLocationHref},
-		{Key: "client_config__language", Value: preset.Language},
+
+		{Key: "client_config__language", Value: strings.ToLower(preset.Language)},
 		{Key: "client_config__surl", Value: surl},
 		{Key: "c8480e29a", Value: c8480Hex + "⁢"},
 		{Key: "client_config__triggered_inline", Value: false},
 		{Key: "mobile_sdk__is_sdk", Value: false},
-		{Key: "z87b89t5", Value: nil}, // ground truth 2026-07-29: present in real BDA, value null
+		{Key: "z87b89t5", Value: nil},
 		{Key: "audio_fingerprint", Value: PickAudioFingerprint()},
 		{Key: "navigator_battery_charging", Value: true},
-		{Key: "7541c2s", Value: identity.Hash7541c2s},
+
+		{Key: "7541c2s", Value: nil},
 		{Key: "1f220c9", Value: val1f220c9},
 		{Key: "math_fingerprint", Value: identity.MathFingerprint},
 		{Key: "supported_math_functions", Value: identity.SupportedMathFuncs},
@@ -281,61 +236,21 @@ func buildEnhancedFP(preset *Config, identity *DeviceIdentity, device DeviceProf
 		{Key: "4f59ca8", Value: nil},
 		{Key: "3ea7194", Value: HDRInfo{Supported: true, Formats: []string{"HDR10", "HLG"}, IsHDR: false}},
 		{Key: "05d3d24", Value: identity.Hash05d3d24},
-		{Key: "speech_default_voice", Value: speech.Default},
-		{Key: "speech_voices_hash", Value: speech.VoicesHash},
+
+		{Key: "speech_default_voice", Value: nil},
+		{Key: "speech_voices_hash", Value: nil},
 		{Key: "83eb055", Value: identity.Hash83eb055},
-		{Key: "4ca87df3d1", Value: generateMouseTelemetry()},
+
+		{Key: "4ca87df3d1", Value: "Ow=="},
 		{Key: "867e25e5d4", Value: "Ow=="},
 		{Key: "d4a306884c", Value: "Ow=="},
 		{Key: "vsadsa", Value: 1},
 		{Key: "basfas", Value: []int64{0, randInt64(1_000_000_000, 4_294_967_295)}},
-		{Key: "lfasdgs", Value: uuid.New().String()},
+
+		{Key: "lfasdgs", Value: firstNonEmpty(buildID, uuid.New().String())},
 	}
 }
 
-// generateMouseTelemetry produces the `4ca87df3d1` field: a base64-encoded, semicolon-joined
-// list of `t,type,x,y` mouse events (type 0=mousemove, 2=mousedown, 3=mouseup).
-//
-// Shape calibrated against a real browser capture (2026-08-01, crypto.subtle.encrypt hook on
-// verify.istockphoto.com): real captures ~30 mousemove events over a ~1s window starting
-// ~5.5s after page load (user takes a moment before moving the cursor to the sign-in form),
-// followed by mousedown + mouseup on the button. Earlier code emitted ~65 events starting at
-// 200ms — implausible for a real user and a static tell to Arkose.
-//
-// This field being EMPTY (previously hardcoded to base64 of ";") was the primary reason we
-// were denied sup=1: real Arkose fills it with the actual pointer trail, and an all-zero
-// telemetry blob is one of the strongest not-a-human signals the server can see.
-func generateMouseTelemetry() string {
-	events := []string{}
-	t := rand.Intn(6500-4500) + 4500 // start ~5s into the page
-	x := rand.Intn(200-60) + 60
-	y := rand.Intn(400-260) + 260
-	targetX := rand.Intn(600-450) + 450
-	targetY := rand.Intn(500-400) + 400
-	steps := rand.Intn(32-24) + 24
-	for i := 0; i < steps; i++ {
-		events = append(events, fmt.Sprintf("%d,0,%d,%d", t, x, y))
-		// non-uniform dwell: mostly 6-14ms between events, occasional longer pause
-		if rand.Intn(10) == 0 {
-			t += rand.Intn(400-60) + 60
-		} else {
-			t += rand.Intn(15-6) + 6
-		}
-		remain := steps - i
-		if remain > 0 {
-			x += (targetX-x)/remain + (rand.Intn(7) - 3)
-			y += (targetY-y)/remain + (rand.Intn(7) - 3)
-		}
-	}
-	// settle on target, mousedown, mouseup
-	events = append(events, fmt.Sprintf("%d,2,%d,%d", t+rand.Intn(150-40)+40, targetX, targetY))
-	events = append(events, fmt.Sprintf("%d,3,%d,%d", t+rand.Intn(180-80)+80, targetX, targetY))
-	s := strings.Join(events, ";") + ";"
-	return base64.StdEncoding.EncodeToString([]byte(s))
-}
-
-// murmur3Hex — 128-bit MurmurHash3 x64 as hex, matching mmh3.hash_bytes(...,x64arch=True)
-// unpacked as little-endian uint64s then printed as `f"{h1:016x}{h2:016x}"`.
 func murmur3Hex(data string, seed uint32) string {
 	h1, h2 := murmur3.Sum128WithSeed([]byte(data), seed)
 	return fmt.Sprintf("%016x%016x", h1, h2)
@@ -346,7 +261,6 @@ func md5Hex(s string) string {
 	return hex.EncodeToString(h[:])
 }
 
-// randInt64 returns a random int64 in [lo, hi] inclusive on both ends, matching random.randint.
 func randInt64(lo, hi int64) int64 {
 	if hi < lo {
 		return lo
@@ -354,10 +268,6 @@ func randInt64(lo, hi int64) int64 {
 	return lo + rand.Int63n(hi-lo+1)
 }
 
-// marshalBDA produces the compact, non-HTML-escaped, Python-style JSON of the fingerprint.
-// Python's json.dumps(bda, separators=(',', ':')) escapes non-ASCII (ensure_ascii=True default).
-// Go's json.Marshal writes raw UTF-8 and escapes <,>,&. We disable the latter and re-escape
-// non-ASCII ourselves so the plaintext bytes match Python exactly.
 func marshalBDA(v interface{}) ([]byte, error) {
 	var buf bytes.Buffer
 	enc := json.NewEncoder(&buf)
@@ -365,16 +275,12 @@ func marshalBDA(v interface{}) ([]byte, error) {
 	if err := enc.Encode(v); err != nil {
 		return nil, err
 	}
-	// json.Encoder appends a trailing newline; strip it.
+
 	raw := bytes.TrimRight(buf.Bytes(), "\n")
 
-	// Now escape non-ASCII as \uXXXX to match Python's ensure_ascii=True default.
 	return escapeNonASCII(raw), nil
 }
 
-// escapeNonASCII walks the JSON output and rewrites any byte sequences that decode to
-// runes > 0x7F as `\uXXXX` escapes (or surrogate pairs for astral runes), matching
-// Python's json.dumps default ensure_ascii=True.
 func escapeNonASCII(in []byte) []byte {
 	var out bytes.Buffer
 	i := 0
@@ -385,12 +291,12 @@ func escapeNonASCII(in []byte) []byte {
 			i++
 			continue
 		}
-		// decode UTF-8 rune
+
 		r, size := decodeRune(in[i:])
 		if r <= 0xFFFF {
 			fmt.Fprintf(&out, `\u%04x`, r)
 		} else {
-			// surrogate pair
+
 			r -= 0x10000
 			hi := 0xD800 + (r >> 10)
 			lo := 0xDC00 + (r & 0x3FF)
@@ -401,7 +307,6 @@ func escapeNonASCII(in []byte) []byte {
 	return out.Bytes()
 }
 
-// decodeRune is a compact UTF-8 decoder returning (rune, size).
 func decodeRune(b []byte) (rune, int) {
 	if len(b) == 0 {
 		return 0, 0

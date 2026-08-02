@@ -8,7 +8,6 @@ import (
 	"unsafe"
 )
 
-// ANSI color codes.
 const (
 	cReset  = "\x1b[0m"
 	cDim    = "\x1b[2m"
@@ -22,8 +21,6 @@ const (
 
 var colorsEnabled = true
 
-// enableWindowsANSI toggles ENABLE_VIRTUAL_TERMINAL_PROCESSING on stdout so ANSI escapes render.
-// If the call fails, drop colors so log output stays readable.
 func enableWindowsANSI() {
 	const enableVTP = 0x0004
 	kernel32 := syscall.NewLazyDLL("kernel32.dll")
@@ -31,7 +28,6 @@ func enableWindowsANSI() {
 	getConsoleMode := kernel32.NewProc("GetConsoleMode")
 	setConsoleMode := kernel32.NewProc("SetConsoleMode")
 
-	// -11 == STD_OUTPUT_HANDLE
 	handle, _, _ := getStdHandle.Call(uintptr(^uint32(11 - 1)))
 	if handle == 0 || handle == ^uintptr(0) {
 		colorsEnabled = false
@@ -70,7 +66,6 @@ func logInfo(format string, args ...interface{}) {
 	)
 }
 
-// logPhase reports a phase completion with elapsed ms.
 func logPhase(step, total int, name string, elapsed time.Duration, extra string) {
 	pad := 32 - len(name)
 	if pad < 1 {
@@ -92,7 +87,6 @@ func logPhase(step, total int, name string, elapsed time.Duration, extra string)
 	)
 }
 
-// logPhaseSkipped reports a phase that was skipped rather than executed.
 func logPhaseSkipped(step, total int, name, reason string) {
 	pad := 32 - len(name)
 	if pad < 1 {

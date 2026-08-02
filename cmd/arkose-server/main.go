@@ -1,10 +1,3 @@
-// Command arkose-server exposes the solver over a tiny local HTTP API.
-//
-//	arkose-server -surl https://verify.example.com -pk SITE-KEY -rsa MIIBIjAN... -site https://www.example.com
-//
-// Then: GET http://127.0.0.1:8100/token  ->  {"token":"...","suppressed":true,"elapsed_ms":712}
-//
-// Per-request proxy override: send a `Proxy: host:port:user:pass` (or url form) header.
 package main
 
 import (
@@ -20,15 +13,18 @@ import (
 )
 
 var (
-	flagAddr  = flag.String("addr", "127.0.0.1:8100", "listen address")
-	flagSurl  = flag.String("surl", "", "Arkose verify host, e.g. https://verify.example.com (required)")
-	flagPK    = flag.String("pk", "", "Arkose site key / public_key UUID (required)")
-	flagRSA   = flag.String("rsa", "", "RSA public key (SPKI base64) — required for sup=1 tokens")
-	flagSite  = flag.String("site", "", "origin the widget runs on, e.g. https://www.example.com")
-	flagProxy = flag.String("proxy", "", "default egress proxy (any form)")
-	flagUA    = flag.String("ua", "", "override User-Agent")
-	flagLang  = flag.String("lang", "", "language (default en-US)")
-	flagMode  = flag.String("mode", "", "capi mode: lightbox (default) or inline")
+	flagAddr    = flag.String("addr", "127.0.0.1:8100", "listen address")
+	flagSurl    = flag.String("surl", "", "Arkose verify host, e.g. https://verify.example.com (required)")
+	flagPK      = flag.String("pk", "", "Arkose site key / public_key UUID (required)")
+	flagRSA     = flag.String("rsa", "", "RSA public key (SPKI base64) — required for sup=1 tokens")
+	flagSite    = flag.String("site", "", "origin the widget runs on, e.g. https://www.example.com")
+	flagProxy   = flag.String("proxy", "", "default egress proxy (any form)")
+	flagUA      = flag.String("ua", "", "override User-Agent")
+	flagLang    = flag.String("lang", "", "language (default en-US)")
+	flagMode    = flag.String("mode", "", "capi mode: lightbox (default) or inline")
+	flagTitle   = flag.String("title", "", "document.title of the embedding page (BDA jsbd DT field)")
+	flagBlobURL = flag.String("blob-url", "", "page URL to auto-fetch a fresh dataExchange blob from per token (biggest sup=1 lever; e.g. the sign-in page)")
+	flagBlobRe  = flag.String("blob-regex", "", "one-capture-group regex for the blob (default: data-adx=\"([^\"]+)\")")
 )
 
 func opts(proxyOverride string) []arkose.Option {
@@ -48,6 +44,15 @@ func opts(proxyOverride string) []arkose.Option {
 	}
 	if *flagMode != "" {
 		o = append(o, arkose.WithCapiMode(*flagMode))
+	}
+	if *flagTitle != "" {
+		o = append(o, arkose.WithTitle(*flagTitle))
+	}
+	if *flagBlobURL != "" {
+		o = append(o, arkose.WithDataExchangeURL(*flagBlobURL))
+	}
+	if *flagBlobRe != "" {
+		o = append(o, arkose.WithDataExchangeRegex(*flagBlobRe))
 	}
 	proxy := proxyOverride
 	if proxy == "" {

@@ -1,6 +1,3 @@
-// Minimal example: solve one Arkose token and print it.
-//
-//	go run ./examples/basic
 package main
 
 import (
@@ -12,11 +9,13 @@ import (
 
 func main() {
 	s, err := arkose.New(
-		arkose.WithSurl("https://verify.example.com"),         // Arkose verify host
-		arkose.WithPublicKey("00000000-0000-0000-0000-000000000000"), // site key (UUID)
+		arkose.WithSurl("https://verify.example.com"),
+		arkose.WithPublicKey("00000000-0000-0000-0000-000000000000"),
 		arkose.WithRSAPublicKey("MIIBIjAN...replace-with-your-captured-key..."),
 		arkose.WithSite("https://www.example.com"),
-		// arkose.WithProxy("http://user:pass@host:port"),
+		arkose.WithTitle("Sign in - Example"),
+
+		arkose.WithDataExchangeURL("https://www.example.com/sign-in"),
 	)
 	if err != nil {
 		log.Fatal(err)
