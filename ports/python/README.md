@@ -1,12 +1,19 @@
 # arkose-solver (Python)
 
-Pure-Python Arkose Labs / FunCaptcha solver producing `sup=1` suppressed tokens.
-The site's RSA public key is derived from the served `api.js` on every solve, so
-there is nothing to capture or pin.
+[![PyPI](https://img.shields.io/pypi/v/arkose-solver)](https://pypi.org/project/arkose-solver/)
+[![Python](https://img.shields.io/pypi/pyversions/arkose-solver)](https://pypi.org/project/arkose-solver/)
+
+Arkose Labs / FunCaptcha solver producing `sup=1` suppressed tokens. The site's
+RSA public key is derived from the served `api.js` on every solve, so there is
+nothing to capture or pin.
 
 ```bash
 pip install arkose-solver
 ```
+
+Requires Python 3.10+. Part of [arkose-solver](https://github.com/buggerlogger/arkose-solver),
+which is also available for [Go](https://pkg.go.dev/github.com/buggerlogger/arkose-solver/arkose)
+and [Node](https://www.npmjs.com/package/arkose-solver).
 
 ```python
 from arkose_solver import Solver

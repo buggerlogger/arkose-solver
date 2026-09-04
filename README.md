@@ -1,6 +1,11 @@
 # arkose-solver
 
-A pure-Go **Arkose Labs / FunCaptcha** token solver. It synthesises a real-browser
+[![Go Reference](https://pkg.go.dev/badge/github.com/buggerlogger/arkose-solver/arkose.svg)](https://pkg.go.dev/github.com/buggerlogger/arkose-solver/arkose)
+[![PyPI](https://img.shields.io/pypi/v/arkose-solver)](https://pypi.org/project/arkose-solver/)
+[![npm](https://img.shields.io/npm/v/arkose-solver)](https://www.npmjs.com/package/arkose-solver)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+An **Arkose Labs / FunCaptcha** token solver for **Go, Python and Node**. It synthesises a real-browser
 **BDA** fingerprint, encrypts it with the site's **RSA-OAEP + AES-GCM** envelope, and
 posts it to `/fc/gt2/public_key/{pk}` to obtain a **suppressed (`sup=1`) token** — no
 headless browser, no Node sandbox, no key to capture. One HTTP round-trip.
@@ -17,10 +22,13 @@ the site's RSA public key — is derived from the served `api.js` on every solve
 ## Install
 
 ```bash
-go get github.com/buggerlogger/arkose-solver/arkose
+go get github.com/buggerlogger/arkose-solver/arkose   # Go 1.25+
+pip install arkose-solver                             # Python 3.10+
+npm install arkose-solver node-tls-client             # Node 18+
 ```
 
-Requires Go 1.25+.
+The Go package is the reference implementation and the rest of this README
+documents it; see [Python and Node ports](#python-and-node-ports) for those.
 
 ## Library
 
@@ -209,12 +217,27 @@ maximised window is a fleet tell.
 
 ## Python and Node ports
 
-`ports/python` and `ports/node` mirror the derivation and BDA layers and reach
-`sup=1` against a live deployment, with the same automatic RSA key recovery.
+[`ports/python`](ports/python) and [`ports/node`](ports/node) mirror the
+derivation and BDA layers and reach `sup=1` against a live deployment, with the
+same automatic RSA key recovery. Both are published at the same version as the
+Go module.
 
 ```bash
-pip install ./ports/python      # arkose_solver.Solver
-npm  install ./ports/node       # require('arkose-solver').Solver
+pip install arkose-solver
+```
+```python
+from arkose_solver import Solver
+res = Solver(surl="https://verify.example.com", public_key="...").solve()
+print(res.token, res.suppressed)
+```
+
+```bash
+npm install arkose-solver node-tls-client
+```
+```js
+const { Solver } = require('arkose-solver');
+const res = await new Solver({ surl: 'https://verify.example.com', publicKey: '...' }).solve();
+console.log(res.token, res.suppressed);
 ```
 
 They stay honest via `ports/testvectors.json`, which the Go implementation

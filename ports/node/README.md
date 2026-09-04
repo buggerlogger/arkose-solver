@@ -1,5 +1,8 @@
 # arkose-solver (Node)
 
+[![npm](https://img.shields.io/npm/v/arkose-solver)](https://www.npmjs.com/package/arkose-solver)
+[![node](https://img.shields.io/node/v/arkose-solver)](https://www.npmjs.com/package/arkose-solver)
+
 Arkose Labs / FunCaptcha solver producing `sup=1` suppressed tokens. The site's
 RSA public key is derived from the served `api.js` on every solve, so there is
 nothing to capture or pin.
@@ -7,6 +10,10 @@ nothing to capture or pin.
 ```bash
 npm install arkose-solver node-tls-client
 ```
+
+Requires Node 18+. Part of [arkose-solver](https://github.com/buggerlogger/arkose-solver),
+which is also available for [Go](https://pkg.go.dev/github.com/buggerlogger/arkose-solver/arkose)
+and [Python](https://pypi.org/project/arkose-solver/).
 
 ```js
 const { Solver } = require('arkose-solver');

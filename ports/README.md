@@ -20,17 +20,24 @@ vector. It covers:
 
 ## python/ and node/
 
-Both ports are complete and reach `sup=1` against a live deployment. Neither is
-published to PyPI/npm yet.
+Both ports are complete, published, and reach `sup=1` against a live deployment.
+
+```bash
+pip install arkose-solver
+npm install arkose-solver node-tls-client
+```
 
 | | Python | Node |
 |---|---|---|
+| package | [PyPI](https://pypi.org/project/arkose-solver/) | [npm](https://www.npmjs.com/package/arkose-solver) |
+| requires | 3.10+ | 18+ |
 | conformance | 162 checks pass | 163 checks pass |
 | live solve | `sup=1` | `sup=1` |
 | key extraction | ~0.12 s | ~0.03 s |
 | transport | `curl_cffi` | `node-tls-client` |
 
-Run them with `python tests/conformance.py` and `npm test`.
+Run the suites from a checkout with `python tests/conformance.py` and `npm test`.
+All three languages are released at the same version.
 
 ### The blocker worth knowing
 
