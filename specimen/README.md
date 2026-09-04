@@ -1,8 +1,6 @@
 # Arkose specimen + recovered payload rules — capi 4.4.5, 2026-09-04
 
-Captured live from `https://www.istockphoto.com/sign-in?returnurl=%2F`
-(site key `E14A2FF7-4C77-4B85-B296-5B328F433135`, host `verify.istockphoto.com`).
-The mints used here returned `sup=1`, so this is a known-good reference.
+
 
 | File | What it is |
 |---|---|
