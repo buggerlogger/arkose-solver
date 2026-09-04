@@ -1,0 +1,417 @@
+{
+ "_note": "canPlayType + MediaSource.isTypeSupported captured from Chrome 152 / Windows. Order is significant: it is the JSON key order the hash is taken over.",
+ "audio": [
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40\"",
+   "canPlay": "maybe",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.1\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.2\"",
+   "canPlay": "probably",
+   "mediaSource": true
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.3\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.4\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.5\"",
+   "canPlay": "probably",
+   "mediaSource": true
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.6\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.7\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.8\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.9\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.12\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.13\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.14\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.15\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.16\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.17\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.19\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.20\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.21\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.22\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.23\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.24\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.25\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.26\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.27\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.28\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.29\"",
+   "canPlay": "probably",
+   "mediaSource": true
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.32\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.33\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.34\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.35\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.40.36\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.66\"",
+   "canPlay": "probably",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.67\"",
+   "canPlay": "probably",
+   "mediaSource": true
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.68\"",
+   "canPlay": "probably",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.69\"",
+   "canPlay": "probably",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp4a.6B\"",
+   "canPlay": "probably",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"mp3\"",
+   "canPlay": "probably",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"flac\"",
+   "canPlay": "probably",
+   "mediaSource": true
+  },
+  {
+   "mime": "audio/mp4; codecs=\"bogus\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"aac\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"ac3\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mp4; codecs=\"A52\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/mpeg; codecs=\"mp3\"",
+   "canPlay": "probably",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/wav; codecs=\"0\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/wav; codecs=\"2\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/wave; codecs=\"0\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/wave; codecs=\"1\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/wave; codecs=\"2\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/x-wav; codecs=\"0\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/x-wav; codecs=\"1\"",
+   "canPlay": "probably",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/x-wav; codecs=\"2\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/x-pn-wav; codecs=\"0\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/x-pn-wav; codecs=\"1\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "audio/x-pn-wav; codecs=\"2\"",
+   "canPlay": "",
+   "mediaSource": false
+  }
+ ],
+ "video": [
+  {
+   "mime": "video/mp4; codecs=\"hev1.1.6.L93.90\"",
+   "canPlay": "probably",
+   "mediaSource": true
+  },
+  {
+   "mime": "video/mp4; codecs=\"hvc1.1.6.L93.90\"",
+   "canPlay": "probably",
+   "mediaSource": true
+  },
+  {
+   "mime": "video/mp4; codecs=\"hev1.1.6.L93.B0\"",
+   "canPlay": "probably",
+   "mediaSource": true
+  },
+  {
+   "mime": "video/mp4; codecs=\"hvc1.1.6.L93.B0\"",
+   "canPlay": "probably",
+   "mediaSource": true
+  },
+  {
+   "mime": "video/mp4; codecs=\"vp09.00.10.08\"",
+   "canPlay": "probably",
+   "mediaSource": true
+  },
+  {
+   "mime": "video/mp4; codecs=\"vp09.00.50.08\"",
+   "canPlay": "probably",
+   "mediaSource": true
+  },
+  {
+   "mime": "video/mp4; codecs=\"vp09.01.20.08.01\"",
+   "canPlay": "probably",
+   "mediaSource": true
+  },
+  {
+   "mime": "video/mp4; codecs=\"vp09.01.20.08.01.01.01.01.00\"",
+   "canPlay": "probably",
+   "mediaSource": true
+  },
+  {
+   "mime": "video/mp4; codecs=\"vp09.02.10.10.01.09.16.09.01\"",
+   "canPlay": "probably",
+   "mediaSource": true
+  },
+  {
+   "mime": "video/mp4; codecs=\"av01.0.08M.08\"",
+   "canPlay": "probably",
+   "mediaSource": true
+  },
+  {
+   "mime": "video/webm; codecs=\"vorbis\"",
+   "canPlay": "probably",
+   "mediaSource": true
+  },
+  {
+   "mime": "video/webm; codecs=\"vp8\"",
+   "canPlay": "probably",
+   "mediaSource": true
+  },
+  {
+   "mime": "video/webm; codecs=\"vp8.0\"",
+   "canPlay": "probably",
+   "mediaSource": false
+  },
+  {
+   "mime": "video/webm; codecs=\"vp8.0, vorbis\"",
+   "canPlay": "probably",
+   "mediaSource": false
+  },
+  {
+   "mime": "video/webm; codecs=\"vp8, opus\"",
+   "canPlay": "probably",
+   "mediaSource": true
+  },
+  {
+   "mime": "video/webm; codecs=\"vp9\"",
+   "canPlay": "probably",
+   "mediaSource": true
+  },
+  {
+   "mime": "video/webm; codecs=\"vp9, vorbis\"",
+   "canPlay": "probably",
+   "mediaSource": true
+  },
+  {
+   "mime": "video/webm; codecs=\"vp9, opus\"",
+   "canPlay": "probably",
+   "mediaSource": true
+  },
+  {
+   "mime": "video/x-matroska; codecs=\"theora\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "application/x-mpegURL; codecs=\"avc1.42E01E\"",
+   "canPlay": "probably",
+   "mediaSource": false
+  },
+  {
+   "mime": "video/ogg; codecs=\"dirac, vorbis\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "video/ogg; codecs=\"theora, speex\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "video/ogg; codecs=\"theora, vorbis\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "video/ogg; codecs=\"theora, flac\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "video/ogg; codecs=\"dirac, flac\"",
+   "canPlay": "",
+   "mediaSource": false
+  },
+  {
+   "mime": "video/ogg; codecs=\"flac\"",
+   "canPlay": "probably",
+   "mediaSource": false
+  },
+  {
+   "mime": "video/3gpp; codecs=\"mp4v.20.8, samr\"",
+   "canPlay": "",
+   "mediaSource": false
+  }
+ ]
+}

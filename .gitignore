@@ -14,3 +14,7 @@ proxies.txt
 # python
 __pycache__/
 *.py[cod]
+
+# node
+node_modules/
+*.tgz

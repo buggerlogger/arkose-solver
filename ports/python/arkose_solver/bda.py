@@ -10,6 +10,16 @@ import random
 import time
 import uuid
 
+from .derived import (
+    audio_codecs_extended_hash,
+    compute_browser_object_checks,
+    compute_f58835f,
+    compute_speech,
+    compute_webgl_extensions_hash,
+    md5,
+    pick_voice_set,
+    video_codecs_extended_hash,
+)
 from .devices import CHROME_COLOR_DEPTH, generate_device, js_heap_size_limit
 from .hashes import compute_f, compute_ife_hash
 from .webgl import (
@@ -22,11 +32,6 @@ from .webgl import (
 
 MATH_FINGERPRINT = "e00752d866abf7fdf93bd4111bcfeb7b"
 SUPPORTED_MATH_FUNCS = "3f7aaba900fde542f258166cd2b71ef5"
-BROWSER_OBJECT_CHECKS = "554838a8451ac36cb977e719e9d6623c"
-F58835F = "6681f2144d3d1ceb383fe87f7aad9600"
-HASH_29S83IH9 = "68934a3e9455fa72420237eb05902327"
-AUDIO_CODECS_EXT_HASH = "805036349642e2569ec299baed02315b"
-VIDEO_CODECS_EXT_HASH = "5648501a58d24ea22ce3773cc234e563"
 DEFAULT_ENFORCEMENT_HASH = "2d1c8a89671586563cb793ae2399b954"
 DEFAULT_DOCUMENT_REFERRER = "https://www.google.com/"
 
@@ -56,18 +61,6 @@ LANG_CHOICES = [
     ("tr-TR", "tr-TR,tr", 3),
 ]
 
-VOICES = {
-    "en-US": "Microsoft David - English (United States)",
-    "en-GB": "Microsoft George - English (United Kingdom)",
-    "en": "Microsoft David - English (United States)",
-    "es-ES": "Microsoft Helena - Spanish (Spain)",
-    "pt-BR": "Microsoft Daniel - Portuguese (Brazil)",
-    "de-DE": "Microsoft Hedda - German (Germany)",
-    "fr-FR": "Microsoft Hortense - French (France)",
-    "it-IT": "Microsoft Elsa - Italian (Italy)",
-    "ru-RU": "Microsoft Irina - Russian (Russia)",
-    "tr-TR": "Microsoft Tolga - Turkish (Turkiye)",
-}
 
 FONT_SETS = [
     "Arial,Arial Black,Arial Narrow,Calibri,Cambria,Cambria Math,Comic Sans MS,Consolas,Courier,Courier New,Georgia,Helvetica,Impact,Lucida Console,Lucida Sans Unicode,Microsoft Sans Serif,MS Gothic,MS PGothic,MS Sans Serif,MS Serif,Palatino Linotype,Segoe Print,Segoe Script,Segoe UI,Segoe UI Light,Segoe UI Semibold,Segoe UI Symbol,Tahoma,Times,Times New Roman,Trebuchet MS,Verdana,Wingdings",
@@ -104,6 +97,7 @@ def new_session():
     salt = os.urandom(16).hex()
     tag, full = _weighted_lang()
     cfp = random.randint(-2147483648, 2147483647)
+    speech_voice, speech_hash = compute_speech(pick_voice_set(tag))
     return {
         "salt": salt,
         "machine_hash": _hash_field(salt, "machine_hash"),
@@ -113,9 +107,8 @@ def new_session():
         "hash_c2d2015": _hash_field(salt, "c2d2015"),
         "hash_05d3d24": _hash_field(salt, "05d3d24"),
         "hash_83eb055": _hash_field(salt, "83eb055"),
-        "speech_voices_hash": _hash_field(salt, "speech_voices"),
-        "speech_default_voice": "%s || %s" % (VOICES.get(tag, VOICES["en-US"]),
-                                              tag if tag in VOICES else "en-US"),
+        "speech_default_voice": speech_voice,
+        "speech_voices_hash": speech_hash,
         "tz_offset": random.choice(TZ_POOL),
         "language_tag": tag,
         "languages": full,
@@ -191,13 +184,13 @@ def build_enhanced_fp(cfg, identity, device, build_id):
         _item("9f41a2c", False),
         _item("5c273b3", False),
         _item("ce4046e", False),
-        _item("f58835f", F58835F),
-        _item("browser_object_checks", BROWSER_OBJECT_CHECKS),
-        _item("29s83ih9", HASH_29S83IH9 + "⁣"),
+        _item("f58835f", compute_f58835f()),
+        _item("browser_object_checks", compute_browser_object_checks(["chrome"])),
+        _item("29s83ih9", md5("false") + "⁣"),
         _item("audio_codecs", '{"ogg":"probably","mp3":"probably","wav":"probably","m4a":"maybe","aac":"probably"}'),
-        _item("audio_codecs_extended_hash", AUDIO_CODECS_EXT_HASH),
+        _item("audio_codecs_extended_hash", audio_codecs_extended_hash()),
         _item("video_codecs", '{"ogg":"","h264":"probably","webm":"probably","mpeg4v":"","mpeg4a":"","theora":""}'),
-        _item("video_codecs_extended_hash", VIDEO_CODECS_EXT_HASH),
+        _item("video_codecs_extended_hash", video_codecs_extended_hash()),
         _item("media_query_dark_mode", False),
         _item("f9bf2db", '{"pc":"no-preference","ah":"hover","ap":"fine","p":"fine","h":"hover","u":"fast","prm":"no-preference","prt":"no-preference","s":"enabled","fc":"none"}'),
         _item("headless_browser_phantom", False),

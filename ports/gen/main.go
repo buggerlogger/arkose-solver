@@ -67,6 +67,19 @@ type webglVector struct {
 	WantRTT   string        `json:"wantRttType"`
 }
 
+type derivedVectors struct {
+	WebGLExtensions         string         `json:"webglExtensions"`
+	WantWebGLExtensionsHash string         `json:"wantWebglExtensionsHash"`
+	WantF58835f             string         `json:"wantF58835f"`
+	WantBrowserObjectChecks string         `json:"wantBrowserObjectChecks"`
+	Want29s83ih9            string         `json:"want29s83ih9"`
+	SpeechVoices            []arkose.Voice `json:"speechVoices"`
+	WantSpeechDefaultVoice  string         `json:"wantSpeechDefaultVoice"`
+	WantSpeechVoicesHash    string         `json:"wantSpeechVoicesHash"`
+	WantAudioCodecsExtHash  string         `json:"wantAudioCodecsExtendedHash"`
+	WantVideoCodecsExtHash  string         `json:"wantVideoCodecsExtendedHash"`
+}
+
 type vectors struct {
 	Note              string           `json:"_note"`
 	Source            string           `json:"_source"`
@@ -78,6 +91,7 @@ type vectors struct {
 	ExtensionsHash    string           `json:"webglExtensionsHash"`
 	ScreenPixelFactor int              `json:"screenPixelDepthFactor"`
 	JSHeapByMemoryGB  map[string]int64 `json:"jsHeapSizeLimitByMemoryGB"`
+	Derived           derivedVectors   `json:"derived"`
 }
 
 func fail(what, got, want string) {
@@ -144,6 +158,39 @@ func main() {
 		ExtensionsHash:    extensionsHash,
 		ScreenPixelFactor: 3,
 		JSHeapByMemoryGB:  map[string]int64{"2": 2197815296, "4": 4294705152, "8": 4395630592, "16": 4395630592},
+	}
+
+	sampleVoices := []arkose.Voice{
+		{Name: "Microsoft David - English (United States)", Lang: "en-US", Default: true},
+		{Name: "Microsoft Zira - English (United States)", Lang: "en-US"},
+	}
+	sv, sh := arkose.ComputeSpeech(sampleVoices)
+	v.Derived = derivedVectors{
+		WebGLExtensions:         arkose.WebGLExtensions,
+		WantWebGLExtensionsHash: arkose.ComputeWebGLExtensionsHash(arkose.WebGLExtensions),
+		WantF58835f:             arkose.ChromeWindowsF58835f(),
+		WantBrowserObjectChecks: arkose.ComputeBrowserObjectChecks([]string{"chrome"}),
+		Want29s83ih9:            arkose.MD5("false"),
+		SpeechVoices:            sampleVoices,
+		WantSpeechDefaultVoice:  sv,
+		WantSpeechVoicesHash:    sh,
+		WantAudioCodecsExtHash:  arkose.AudioCodecsExtendedHash(),
+		WantVideoCodecsExtHash:  arkose.VideoCodecsExtendedHash(),
+	}
+	if v.Derived.WantWebGLExtensionsHash != extensionsHash {
+		fail("webgl_extensions_hash", v.Derived.WantWebGLExtensionsHash, extensionsHash)
+	}
+	if v.Derived.WantF58835f != "6681f2144d3d1ceb383fe87f7aad9600" {
+		fail("f58835f", v.Derived.WantF58835f, "6681f2144d3d1ceb383fe87f7aad9600")
+	}
+	if v.Derived.WantBrowserObjectChecks != "554838a8451ac36cb977e719e9d6623c" {
+		fail("browser_object_checks", v.Derived.WantBrowserObjectChecks, "554838a8451ac36cb977e719e9d6623c")
+	}
+	if v.Derived.WantAudioCodecsExtHash != "805036349642e2569ec299baed02315b" {
+		fail("audio_codecs_extended_hash", v.Derived.WantAudioCodecsExtHash, "805036349642e2569ec299baed02315b")
+	}
+	if v.Derived.WantVideoCodecsExtHash != "5648501a58d24ea22ce3773cc234e563" {
+		fail("video_codecs_extended_hash", v.Derived.WantVideoCodecsExtHash, "5648501a58d24ea22ce3773cc234e563")
 	}
 
 	out, err := json.MarshalIndent(v, "", " ")

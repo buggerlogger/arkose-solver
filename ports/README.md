@@ -18,31 +18,37 @@ vector. It covers:
   hash input string
 * `screen_pixel_depth` factor and the `jsHeapSizeLimit` table
 
-## python/ — incomplete, not published
+## python/ and node/
 
-Status: the derivation layer is written and verified against
-`testvectors.json`; the transport layer is not.
+Both ports are complete and reach `sup=1` against a live deployment. Neither is
+published to PyPI/npm yet.
 
-| Module | State |
-|---|---|
-| `hashes.py` | done — matches all `K`/`f`/`ife_hash` vectors |
-| `webgl.py` | done — reproduces both webgl hashes and the hash input byte-for-byte |
-| `vmkey.py` | done — extracts the RSA key from a live `api.js` in ~0.12 s, identical to Go |
-| `devices.py` | done — samples the shared `devices.json` |
-| `bda.py` | done — mirrors the Go 91-field assembly |
-| `crypto.py` | done — RSA-OAEP + AES-GCM envelope |
-| `solver.py` | **missing** — TLS-impersonating transport, header order, retry |
-| `pyproject.toml` | **missing** |
+| | Python | Node |
+|---|---|---|
+| conformance | 162 checks pass | 163 checks pass |
+| live solve | `sup=1` | `sup=1` |
+| key extraction | ~0.12 s | ~0.03 s |
+| transport | `curl_cffi` | `node-tls-client` |
 
-It is therefore not installable and not on PyPI. Run the modules directly if
-you want to use the derivations.
+Run them with `python tests/conformance.py` and `npm test`.
 
 ### The blocker worth knowing
 
-Arkose reads the TLS fingerprint (JA3/JA4), so the transport cannot be pure
-Python. The realistic options — `curl_cffi`, `tls-client` — are C- or Go-backed
-under the hood, which is why the Go implementation remains the reference.
+Arkose reads the TLS fingerprint (JA3/JA4), so neither transport can be pure.
+`curl_cffi` is C-backed and `node-tls-client` is Go-backed; the Go
+implementation remains the reference.
 
-## node/
+### What each port covers
 
-Not started.
+| Module | Python | Node |
+|---|---|---|
+| MurmurHash3 x64-128, `f`, `ife_hash` | `hashes.py` | `hashes.js` |
+| webgl fields, hash, `network_info_rtt_type` | `webgl.py` | `webgl.js` |
+| the reversed hashes (`f58835f`, speech, codecs, …) | `derived.py` | `derived.js` |
+| RSA key recovery from `api.js` | `vmkey.py` | `vmkey.js` |
+| device sampling, `jsHeapSizeLimit` | `devices.py` | `devices.js` |
+| 91-field enhanced_fp assembly | `bda.py` | `bda.js` |
+| RSA-OAEP + AES-GCM envelope | `crypto.py` | `crypto.js` |
+| transport | `solver.py` | `solver.js` |
+
+Per-port usage docs are in `python/README.md` and `node/README.md`.

@@ -207,6 +207,24 @@ every derived field recomputed for that device. Measured: 100 distinct `f` per 1
 solves. Window geometry is sampled independently of the screen; always emitting a
 maximised window is a fleet tell.
 
+## Python and Node ports
+
+`ports/python` and `ports/node` mirror the derivation and BDA layers and reach
+`sup=1` against a live deployment, with the same automatic RSA key recovery.
+
+```bash
+pip install ./ports/python      # arkose_solver.Solver
+npm  install ./ports/node       # require('arkose-solver').Solver
+```
+
+They stay honest via `ports/testvectors.json`, which the Go implementation
+generates and asserts against captured ground truth first; each port replays
+every vector plus 20 self-consistency checks over freshly generated payloads.
+
+Both need a TLS-impersonating transport (`curl_cffi`, `node-tls-client`) because
+Arkose reads JA3/JA4. Go remains the reference implementation. See
+[ports/README.md](ports/README.md).
+
 ## Notes & legality
 
 For research and authorized testing only. You are responsible for complying with

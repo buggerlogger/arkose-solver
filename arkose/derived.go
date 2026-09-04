@@ -94,9 +94,9 @@ var chromeWindowsFeatures = BrowserFeatures{
 }
 
 type Voice struct {
-	Name    string
-	Lang    string
-	Default bool
+	Name    string `json:"name"`
+	Lang    string `json:"lang"`
+	Default bool   `json:"default,omitempty"`
 }
 
 func ComputeSpeech(voices []Voice) (defaultVoice, voicesHash string) {
@@ -167,3 +167,7 @@ var localeVoices = map[string]string{
 	"ru-RU": "Microsoft Irina - Russian (Russia)",
 	"tr-TR": "Microsoft Tolga - Turkish (Turkiye)",
 }
+
+func MD5(s string) string { return md5Str(s) }
+
+func ChromeWindowsF58835f() string { return ComputeF58835f(chromeWindowsFeatures) }

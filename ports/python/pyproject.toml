@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "arkose-solver"
+version = "1.1.0"
+description = "Pure-Python Arkose Labs / FunCaptcha solver producing sup=1 suppressed tokens, with the site RSA key derived per solve"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "buggerlogger" }]
+keywords = ["arkose", "arkoselabs", "funcaptcha", "captcha", "captcha-solver", "bda", "token", "anti-bot", "reverse-engineering"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Security",
+  "Topic :: Software Development :: Testing",
+]
+dependencies = ["cryptography>=41", "curl_cffi>=0.6"]
+
+[project.urls]
+Homepage = "https://github.com/buggerlogger/arkose-solver"
+Repository = "https://github.com/buggerlogger/arkose-solver"
+Issues = "https://github.com/buggerlogger/arkose-solver/issues"
+
+[tool.setuptools.packages.find]
+include = ["arkose_solver*"]
+
+[tool.setuptools.package-data]
+arkose_solver = ["*.json"]

@@ -1,0 +1,3292 @@
+{
+ "gpus": [
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon(TM) Graphics",
+   "deviceId": "0x00001638",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001638) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 1630
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 4060",
+   "deviceId": "0x00002882",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 (0x00002882) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 1230
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon RX 580 2048SP",
+   "deviceId": "0x00006FDF",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon RX 580 2048SP (0x00006FDF) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 1032
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) Iris(R) Xe Graphics",
+   "deviceId": "0x00009A49",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 940
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 3060",
+   "deviceId": "0x00002504",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 (0x00002504) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 930
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics 520",
+   "deviceId": "0x00001916",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics 520 (0x00001916) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 922
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 4060 Ti",
+   "deviceId": "0x00002803",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Ti (0x00002803) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 833
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics",
+   "deviceId": "0x00009A78",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009A78) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 767
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics 530",
+   "deviceId": "0x00001912",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics 530 (0x00001912) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 630
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics 620",
+   "deviceId": "0x00005917",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics 620 (0x00005917) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 612
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 1050 Ti",
+   "deviceId": "0x00001C82",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1050 Ti (0x00001C82) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 582
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics 620",
+   "deviceId": "0x00005916",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics 620 (0x00005916) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 571
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon RX 6600",
+   "deviceId": "0x000073FF",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon RX 6600 (0x000073FF) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 525
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon(TM) Graphics",
+   "deviceId": "0x00001636",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001636) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 486
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics",
+   "deviceId": "0x0000A7A8",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x0000A7A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 415
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 1660 SUPER",
+   "deviceId": "0x000021C4",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 SUPER (0x000021C4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 411
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 3060 Ti",
+   "deviceId": "0x00002489",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Ti (0x00002489) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 398
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics 4600",
+   "deviceId": "0x00000412",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics 4600 (0x00000412) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 385
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics",
+   "deviceId": "0x00008A56",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00008A56) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 380
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics",
+   "deviceId": "0x00009B41",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009B41) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 373
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics 4000",
+   "deviceId": "0x00000166",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics 4000 (0x00000166) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 345
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics",
+   "deviceId": "0x000022B1",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics (0x000022B1) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 344
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics",
+   "deviceId": "0x000046A3",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x000046A3) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 343
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics 5500",
+   "deviceId": "0x00001616",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics 5500 (0x00001616) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 338
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 3060",
+   "deviceId": "0x00002487",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 (0x00002487) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 335
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 5060",
+   "deviceId": "0x00002D05",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5060 (0x00002D05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 330
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics",
+   "deviceId": "0x00000152",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics (0x00000152) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 327
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 1650",
+   "deviceId": "0x00001F82",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1650 (0x00001F82) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 325
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 4060 Laptop GPU",
+   "deviceId": "0x000028E0",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Laptop GPU (0x000028E0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 316
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics 620",
+   "deviceId": "0x00003EA0",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics 620 (0x00003EA0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 310
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics",
+   "deviceId": "0x00000F31",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics (0x00000F31) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 303
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 2060 SUPER",
+   "deviceId": "0x00001F06",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 2060 SUPER (0x00001F06) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 303
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon (TM) Graphics",
+   "deviceId": "0x000015E7",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon (TM) Graphics (0x000015E7) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 287
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon(TM) Vega 8 Graphics",
+   "deviceId": "0x000015D8",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon(TM) Vega 8 Graphics (0x000015D8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 285
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 2060",
+   "deviceId": "0x00001F08",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 2060 (0x00001F08) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 280
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) Iris(R) Xe Graphics",
+   "deviceId": "0x000046A6",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 277
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics",
+   "deviceId": "0x00009A68",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009A68) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 267
+  },
+  {
+   "vendor": "AMD",
+   "model": "Radeon RX550/550 Series",
+   "deviceId": "0x0000699F",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, Radeon RX550/550 Series (0x0000699F) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 261
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 1660 Ti",
+   "deviceId": "0x00002182",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002182) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 241
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics",
+   "deviceId": "0x00009BC4",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 240
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 3050",
+   "deviceId": "0x00002507",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3050 (0x00002507) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 238
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon RX 7600",
+   "deviceId": "0x00007480",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon RX 7600 (0x00007480) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 238
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon(TM) Graphics",
+   "deviceId": "0x0000164C",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x0000164C) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 237
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics 630",
+   "deviceId": "0x00003E9B",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics 630 (0x00003E9B) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 234
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GT 730",
+   "deviceId": "0x00000F02",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GT 730 (0x00000F02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 228
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 3070",
+   "deviceId": "0x00002484",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 (0x00002484) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 227
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics Family",
+   "deviceId": "0x00000A16",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics Family (0x00000A16) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 225
+  },
+  {
+   "vendor": "AMD",
+   "model": "Radeon RX 580 Series",
+   "deviceId": "0x000067DF",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, Radeon RX 580 Series (0x000067DF) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 218
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 5060 Ti",
+   "deviceId": "0x00002D04",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5060 Ti (0x00002D04) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 215
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics 4400",
+   "deviceId": "0x0000041E",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics 4400 (0x0000041E) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 214
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GT 610",
+   "deviceId": "0x0000104A",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GT 610 (0x0000104A) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 209
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 1650",
+   "deviceId": "0x00001F0A",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1650 (0x00001F0A) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 209
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 960",
+   "deviceId": "0x00001401",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 960 (0x00001401) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 209
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GT 710",
+   "deviceId": "0x0000128B",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GT 710 (0x0000128B) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 205
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) Iris(R) Xe Graphics",
+   "deviceId": "0x000046A8",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 196
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 3050",
+   "deviceId": "0x00002584",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3050 (0x00002584) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 191
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 3050 Laptop GPU",
+   "deviceId": "0x000025A2",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3050 Laptop GPU (0x000025A2) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 182
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 3050",
+   "deviceId": "0x00002582",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3050 (0x00002582) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 180
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics 630",
+   "deviceId": "0x00009BC8",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics 630 (0x00009BC8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 177
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 970",
+   "deviceId": "0x000013C2",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 970 (0x000013C2) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 174
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics",
+   "deviceId": "0x0000A7A9",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x0000A7A9) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 172
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 4070",
+   "deviceId": "0x00002786",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 (0x00002786) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 170
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon(TM) Graphics",
+   "deviceId": "0x00001900",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001900) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 168
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics",
+   "deviceId": "0x0000A78B",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x0000A78B) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 166
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) Iris(R) Xe Graphics",
+   "deviceId": "0x0000A7A0",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x0000A7A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 163
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 3060",
+   "deviceId": "0x00002503",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 (0x00002503) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 162
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics",
+   "deviceId": "0x00009A60",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009A60) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 158
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics 630",
+   "deviceId": "0x00005912",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics 630 (0x00005912) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 157
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 4070 SUPER",
+   "deviceId": "0x00002783",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 SUPER (0x00002783) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 151
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 1660",
+   "deviceId": "0x00002184",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 (0x00002184) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 148
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GT 1030",
+   "deviceId": "0x00001D01",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GT 1030 (0x00001D01) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 148
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 1060 6GB",
+   "deviceId": "0x00001C03",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1060 6GB (0x00001C03) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 147
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 4050 Laptop GPU",
+   "deviceId": "0x000028E1",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4050 Laptop GPU (0x000028E1) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 146
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 3080",
+   "deviceId": "0x00002216",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3080 (0x00002216) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 145
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 4070 Ti SUPER",
+   "deviceId": "0x00002705",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Ti SUPER (0x00002705) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 141
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 1070",
+   "deviceId": "0x00001B81",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1070 (0x00001B81) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 141
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 5070",
+   "deviceId": "0x00002F04",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 (0x00002F04) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 138
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 3050 Ti Laptop GPU",
+   "deviceId": "0x000025A0",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3050 Ti Laptop GPU (0x000025A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 136
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GT 730",
+   "deviceId": "0x00001287",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GT 730 (0x00001287) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 134
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics",
+   "deviceId": "0x000046B3",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x000046B3) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 134
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon(TM) Graphics",
+   "deviceId": "0x000015D8",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x000015D8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 132
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 5080",
+   "deviceId": "0x00002C02",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5080 (0x00002C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 131
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon RX 6500 XT",
+   "deviceId": "0x0000743F",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon RX 6500 XT (0x0000743F) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 125
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon(TM) Graphics",
+   "deviceId": "0x00001506",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001506) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 122
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 750 Ti",
+   "deviceId": "0x00001380",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 750 Ti (0x00001380) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 121
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon RX 6700 XT",
+   "deviceId": "0x000073DF",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon RX 6700 XT (0x000073DF) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 120
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 1060 5GB",
+   "deviceId": "0x00001C04",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1060 5GB (0x00001C04) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 120
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics 630",
+   "deviceId": "0x00003E92",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics 630 (0x00003E92) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 118
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 3050 - 24MD0XopoLyQ3yIs",
+   "deviceId": "0x00002584",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3050 - 24MD0XopoLyQ3yIs (0x00002584) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 116
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon(TM) Graphics",
+   "deviceId": "0x00001681",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 116
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon RX 5600 XT",
+   "deviceId": "0x0000731F",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon RX 5600 XT (0x0000731F) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 115
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 3060 Ti",
+   "deviceId": "0x000024C9",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Ti (0x000024C9) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 113
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 4060 Laptop GPU",
+   "deviceId": "0x000028A0",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Laptop GPU (0x000028A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 111
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 3080",
+   "deviceId": "0x00002206",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3080 (0x00002206) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 111
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics 600",
+   "deviceId": "0x00003185",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics 600 (0x00003185) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 111
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 3070 Ti",
+   "deviceId": "0x00002482",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Ti (0x00002482) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 111
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon RX 5700 XT",
+   "deviceId": "0x0000731F",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon RX 5700 XT (0x0000731F) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 110
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 5070 Ti",
+   "deviceId": "0x00002C05",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 107
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon(TM) Vega 3 Graphics",
+   "deviceId": "0x000015D8",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon(TM) Vega 3 Graphics (0x000015D8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 101
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics",
+   "deviceId": "0x0000A788",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x0000A788) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 101
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) Arc(TM) Graphics",
+   "deviceId": "0x00007D55",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) Arc(TM) Graphics (0x00007D55) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 100
+  },
+  {
+   "vendor": "AMD",
+   "model": "Radeon RX 5500 XT",
+   "deviceId": "0x00007340",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, Radeon RX 5500 XT (0x00007340) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 99
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 3070",
+   "deviceId": "0x00002488",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 (0x00002488) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 99
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 1060 3GB",
+   "deviceId": "0x00001C02",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1060 3GB (0x00001C02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 98
+  },
+  {
+   "vendor": "AMD",
+   "model": "Radeon RX 570 Series",
+   "deviceId": "0x000067DF",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, Radeon RX 570 Series (0x000067DF) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 94
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) Iris(R) Plus Graphics",
+   "deviceId": "0x00008A52",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) Iris(R) Plus Graphics (0x00008A52) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 94
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics",
+   "deviceId": "0x00000102",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics (0x00000102) Direct3D11 vs_4_1 ps_4_1, D3D11)",
+   "weight": 92
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 2050",
+   "deviceId": "0x000025AD",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 2050 (0x000025AD) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 91
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) Iris(R) Xe Graphics",
+   "deviceId": "0x0000A7A1",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x0000A7A1) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 91
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon RX 9060 XT",
+   "deviceId": "0x00007590",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon RX 9060 XT (0x00007590) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 90
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+   "deviceId": "0x000025EC",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3050 6GB Laptop GPU (0x000025EC) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 90
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics 4000",
+   "deviceId": "0x00000162",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics 4000 (0x00000162) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 89
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics 730",
+   "deviceId": "0x00004692",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics 730 (0x00004692) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 87
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) Graphics",
+   "deviceId": "0x00007D45",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) Graphics (0x00007D45) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 87
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics 620",
+   "deviceId": "0x00005921",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics 620 (0x00005921) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 85
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon 740M Graphics",
+   "deviceId": "0x00001901",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon 740M Graphics (0x00001901) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 82
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics 4600",
+   "deviceId": "0x00000416",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics 4600 (0x00000416) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 81
+  },
+  {
+   "vendor": "AMD",
+   "model": "Radeon RX550/550 Series",
+   "deviceId": "0x000067FF",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, Radeon RX550/550 Series (0x000067FF) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 78
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon RX590 GME",
+   "deviceId": "0x00006FDF",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon RX590 GME (0x00006FDF) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 78
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 2070",
+   "deviceId": "0x00001F02",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 2070 (0x00001F02) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 78
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 2070 SUPER",
+   "deviceId": "0x00001E84",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 2070 SUPER (0x00001E84) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 77
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 1650",
+   "deviceId": "0x00002188",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1650 (0x00002188) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 77
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics",
+   "deviceId": "0x0000468B",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x0000468B) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 75
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon(TM) R4 Graphics",
+   "deviceId": "0x00009851",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon(TM) R4 Graphics (0x00009851) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 73
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon RX 6600 XT",
+   "deviceId": "0x000073FF",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon RX 6600 XT (0x000073FF) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 71
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon 780M Graphics",
+   "deviceId": "0x000015BF",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon 780M Graphics (0x000015BF) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 68
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 5060 Laptop GPU",
+   "deviceId": "0x00002D59",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5060 Laptop GPU (0x00002D59) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 68
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 3060 Ti",
+   "deviceId": "0x00002486",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Ti (0x00002486) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 66
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) Graphics",
+   "deviceId": "0x0000A7AB",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) Graphics (0x0000A7AB) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 66
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 1050",
+   "deviceId": "0x00001C81",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1050 (0x00001C81) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 66
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 1650 SUPER",
+   "deviceId": "0x00002187",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1650 SUPER (0x00002187) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 65
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics",
+   "deviceId": "0x00004688",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00004688) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 65
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics",
+   "deviceId": "0x000046D0",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x000046D0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 65
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon(TM) 610M",
+   "deviceId": "0x0000164E",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon(TM) 610M (0x0000164E) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 65
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 2060",
+   "deviceId": "0x00001E89",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 2060 (0x00001E89) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 65
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 4060",
+   "deviceId": "0x00002808",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 (0x00002808) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 65
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 4050 Laptop GPU",
+   "deviceId": "0x000028A1",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4050 Laptop GPU (0x000028A1) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 64
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics 630",
+   "deviceId": "0x00003E98",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics 630 (0x00003E98) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 64
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon(TM) 860M Graphics",
+   "deviceId": "0x00001114",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon(TM) 860M Graphics (0x00001114) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 63
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon RX 6750 XT",
+   "deviceId": "0x000073DF",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon RX 6750 XT (0x000073DF) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 62
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon(TM) 610M",
+   "deviceId": "0x00001506",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon(TM) 610M (0x00001506) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 61
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 750",
+   "deviceId": "0x00001381",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 750 (0x00001381) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 61
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics 770",
+   "deviceId": "0x00004680",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics 770 (0x00004680) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 60
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics 530",
+   "deviceId": "0x0000191B",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics 530 (0x0000191B) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 59
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 2070",
+   "deviceId": "0x00001F07",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 2070 (0x00001F07) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 57
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon(TM) Vega 8 Graphics",
+   "deviceId": "0x000015DD",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon(TM) Vega 8 Graphics (0x000015DD) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 57
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics 3000",
+   "deviceId": "0x00000116",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics 3000 (0x00000116) Direct3D11 vs_4_1 ps_4_1, D3D11)",
+   "weight": 57
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics",
+   "deviceId": "0x00004628",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00004628) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 56
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 1650",
+   "deviceId": "0x00001F99",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1650 (0x00001F99) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 55
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics 605",
+   "deviceId": "0x00003184",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics 605 (0x00003184) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 55
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) Graphics",
+   "deviceId": "0x0000A7AC",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) Graphics (0x0000A7AC) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 54
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics 630",
+   "deviceId": "0x00003E91",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics 630 (0x00003E91) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 53
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 4080 SUPER",
+   "deviceId": "0x00002702",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4080 SUPER (0x00002702) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 53
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 3060 Laptop GPU",
+   "deviceId": "0x00002520",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Laptop GPU (0x00002520) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 53
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics 505",
+   "deviceId": "0x00005A84",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics 505 (0x00005A84) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 52
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon RX 5500 XT",
+   "deviceId": "0x00007340",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon RX 5500 XT (0x00007340) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 50
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics 750",
+   "deviceId": "0x00004C8A",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics 750 (0x00004C8A) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 50
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) Arc(TM) A580 Graphics",
+   "deviceId": "0x000056A2",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) Arc(TM) A580 Graphics (0x000056A2) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 50
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics",
+   "deviceId": "0x00009BCA",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BCA) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 49
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 980",
+   "deviceId": "0x000013C0",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 980 (0x000013C0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 49
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon(TM) RX Vega 11 Graphics",
+   "deviceId": "0x000015D8",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon(TM) RX Vega 11 Graphics (0x000015D8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 47
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 2080",
+   "deviceId": "0x00001E87",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 2080 (0x00001E87) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 47
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GT 740",
+   "deviceId": "0x00000FC8",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GT 740 (0x00000FC8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 47
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 4070 Ti",
+   "deviceId": "0x00002782",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Ti (0x00002782) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 46
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics 5300",
+   "deviceId": "0x0000161E",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics 5300 (0x0000161E) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 46
+  },
+  {
+   "vendor": "AMD",
+   "model": "NVIDIA GeForce RTX 4060",
+   "deviceId": "0x00006FDF",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, NVIDIA GeForce RTX 4060 (0x00006FDF) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 46
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon(TM) Graphics",
+   "deviceId": "0x0000164E",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x0000164E) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 45
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 550 Ti",
+   "deviceId": "0x00001244",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 550 Ti (0x00001244) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 45
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon RX 9070 XT",
+   "deviceId": "0x00007550",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon RX 9070 XT (0x00007550) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 44
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 1070 Ti",
+   "deviceId": "0x00001B82",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1070 Ti (0x00001B82) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 44
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics",
+   "deviceId": "0x0000A721",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x0000A721) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 43
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 4060 Ti",
+   "deviceId": "0x00002805",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Ti (0x00002805) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 42
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 3090",
+   "deviceId": "0x00002204",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3090 (0x00002204) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 41
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 4090",
+   "deviceId": "0x00002684",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4090 (0x00002684) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 41
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics",
+   "deviceId": "0x000046D1",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x000046D1) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 40
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics 610",
+   "deviceId": "0x00005906",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics 610 (0x00005906) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 40
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 5070 Laptop GPU",
+   "deviceId": "0x00002D18",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Laptop GPU (0x00002D18) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 40
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 5050",
+   "deviceId": "0x00002D83",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5050 (0x00002D83) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 40
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce 8400GS",
+   "deviceId": "0x000010C3",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce 8400GS (0x000010C3) Direct3D11 vs_4_1 ps_4_1, D3D11)",
+   "weight": 39
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon(TM) Vega 3 Graphics",
+   "deviceId": "0x000015DD",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon(TM) Vega 3 Graphics (0x000015DD) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 39
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon RX 6650 XT",
+   "deviceId": "0x000073EF",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon RX 6650 XT (0x000073EF) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 39
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 3060 Ti",
+   "deviceId": "0x00002414",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Ti (0x00002414) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 38
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon RX 6950 XT",
+   "deviceId": "0x000073A5",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon RX 6950 XT (0x000073A5) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 37
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) Arc(TM) 130V GPU (8GB)",
+   "deviceId": "0x000064A0",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 37
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) Graphics",
+   "deviceId": "0x00007DD5",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) Graphics (0x00007DD5) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 37
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon RX 6700",
+   "deviceId": "0x000073DF",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon RX 6700 (0x000073DF) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 37
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA RTX 2000 Ada Generation",
+   "deviceId": "0x000028B0",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA RTX 2000 Ada Generation (0x000028B0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 37
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA Quadro K620",
+   "deviceId": "0x000013BB",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA Quadro K620 (0x000013BB) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 37
+  },
+  {
+   "vendor": "AMD",
+   "model": "Radeon RX 560 Series",
+   "deviceId": "0x000067EF",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, Radeon RX 560 Series (0x000067EF) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 37
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics 770",
+   "deviceId": "0x0000A780",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics 770 (0x0000A780) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 36
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon(TM) RX Vega 10 Graphics",
+   "deviceId": "0x000015D8",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon(TM) RX Vega 10 Graphics (0x000015D8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 36
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics 630",
+   "deviceId": "0x0000591B",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics 630 (0x0000591B) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 35
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA Quadro P600",
+   "deviceId": "0x00001CBC",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA Quadro P600 (0x00001CBC) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 35
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon 780M Graphics",
+   "deviceId": "0x00001900",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon 780M Graphics (0x00001900) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 34
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) Arc(TM) B580 Graphics",
+   "deviceId": "0x0000E20B",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) Arc(TM) B580 Graphics (0x0000E20B) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 34
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 3050 OEM",
+   "deviceId": "0x00002508",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3050 OEM (0x00002508) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 34
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics 630",
+   "deviceId": "0x00009BC5",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics 630 (0x00009BC5) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 33
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 1650",
+   "deviceId": "0x00001F9D",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1650 (0x00001F9D) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 33
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 1650 Ti",
+   "deviceId": "0x00001F95",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1650 Ti (0x00001F95) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 32
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics 610",
+   "deviceId": "0x00005902",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics 610 (0x00005902) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 32
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 1080 Ti",
+   "deviceId": "0x00001B06",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1080 Ti (0x00001B06) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 32
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 2060",
+   "deviceId": "0x00001F15",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 2060 (0x00001F15) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 31
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 4060 Ti",
+   "deviceId": "0x00002788",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Ti (0x00002788) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 31
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics 520",
+   "deviceId": "0x00001921",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics 520 (0x00001921) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 31
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 3060",
+   "deviceId": "0x00002544",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 (0x00002544) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 30
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 1080",
+   "deviceId": "0x00001B80",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1080 (0x00001B80) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 30
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon RX 6400",
+   "deviceId": "0x0000743F",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon RX 6400 (0x0000743F) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 30
+  },
+  {
+   "vendor": "AMD",
+   "model": "Radeon RX 560 Series",
+   "deviceId": "0x000067FF",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, Radeon RX 560 Series (0x000067FF) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 30
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) Arc(TM) 140V GPU (16GB)",
+   "deviceId": "0x000064A0",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 30
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 2060",
+   "deviceId": "0x00001F03",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 2060 (0x00001F03) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 30
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon(TM) RX 6500M",
+   "deviceId": "0x0000743F",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon(TM) RX 6500M (0x0000743F) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 30
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) Graphics",
+   "deviceId": "0x00007D41",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) Graphics (0x00007D41) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 29
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce 210",
+   "deviceId": "0x00000A65",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce 210  (0x00000A65) Direct3D11 vs_4_1 ps_4_1, D3D11)",
+   "weight": 29
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics",
+   "deviceId": "0x00001606",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics (0x00001606) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 29
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon RX 7700 XT",
+   "deviceId": "0x0000747E",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon RX 7700 XT (0x0000747E) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 28
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics 610",
+   "deviceId": "0x00009BA8",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics 610 (0x00009BA8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 28
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 3080 Ti",
+   "deviceId": "0x00002208",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3080 Ti (0x00002208) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 27
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 2080 SUPER",
+   "deviceId": "0x00001E81",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 2080 SUPER (0x00001E81) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 27
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) UHD Graphics",
+   "deviceId": "0x00004E55",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00004E55) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 25
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon R7 200 Series",
+   "deviceId": "0x00006613",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon R7 200 Series (0x00006613) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 25
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+   "deviceId": "0x000025AC",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3050 6GB Laptop GPU (0x000025AC) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 24
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics",
+   "deviceId": "0x00000402",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics (0x00000402) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 23
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon(TM) R5 Graphics",
+   "deviceId": "0x000098E4",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon(TM) R5 Graphics (0x000098E4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 23
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 1650",
+   "deviceId": "0x00001F91",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1650 (0x00001F91) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 21
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) Graphics",
+   "deviceId": "0x00007D67",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) Graphics (0x00007D67) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 21
+  },
+  {
+   "vendor": "Intel",
+   "model": "Intel(R) HD Graphics",
+   "deviceId": "0x00000156",
+   "glVendor": "Google Inc. (Intel)",
+   "glRenderer": "ANGLE (Intel, Intel(R) HD Graphics (0x00000156) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 21
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 2050",
+   "deviceId": "0x000025ED",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 2050 (0x000025ED) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 21
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA Quadro FX 580",
+   "deviceId": "0x00000659",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA Quadro FX 580 (0x00000659) Direct3D11 vs_4_0 ps_4_0, D3D11)",
+   "weight": 20
+  },
+  {
+   "vendor": "AMD",
+   "model": "Radeon(TM) RX 580",
+   "deviceId": "0x000067DF",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, Radeon(TM) RX 580 (0x000067DF) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 20
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce GTX 650",
+   "deviceId": "0x000011C8",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 650 (0x000011C8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 20
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon(TM) RX 560 Series",
+   "deviceId": "0x000067EF",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon(TM) RX 560 Series (0x000067EF) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 20
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon RX 6800 XT",
+   "deviceId": "0x000073BF",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon RX 6800 XT (0x000073BF) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 20
+  },
+  {
+   "vendor": "AMD",
+   "model": "AMD Radeon RX 580 2048SP - GLnG4b1z2km95SAI",
+   "deviceId": "0x00006FDF",
+   "glVendor": "Google Inc. (AMD)",
+   "glRenderer": "ANGLE (AMD, AMD Radeon RX 580 2048SP - GLnG4b1z2km95SAI (0x00006FDF) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 20
+  },
+  {
+   "vendor": "NVIDIA",
+   "model": "NVIDIA GeForce RTX 3060 Laptop GPU",
+   "deviceId": "0x00002560",
+   "glVendor": "Google Inc. (NVIDIA)",
+   "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Laptop GPU (0x00002560) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "weight": 20
+  }
+ ],
+ "screens": [
+  {
+   "width": 1920,
+   "height": 1080,
+   "availWidth": 1920,
+   "availHeight": 1032,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 6981
+  },
+  {
+   "width": 1920,
+   "height": 1080,
+   "availWidth": 1920,
+   "availHeight": 1040,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 4481
+  },
+  {
+   "width": 1536,
+   "height": 864,
+   "availWidth": 1536,
+   "availHeight": 816,
+   "dpr": 1.25,
+   "colorDepth": 32,
+   "weight": 2885
+  },
+  {
+   "width": 1920,
+   "height": 1080,
+   "availWidth": 1920,
+   "availHeight": 1080,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 2734
+  },
+  {
+   "width": 1366,
+   "height": 768,
+   "availWidth": 1366,
+   "availHeight": 728,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 1823
+  },
+  {
+   "width": 1920,
+   "height": 1080,
+   "availWidth": 1920,
+   "availHeight": 1040,
+   "dpr": 1,
+   "colorDepth": 24,
+   "weight": 1346
+  },
+  {
+   "width": 1920,
+   "height": 1080,
+   "availWidth": 1920,
+   "availHeight": 1032,
+   "dpr": 1,
+   "colorDepth": 24,
+   "weight": 1292
+  },
+  {
+   "width": 1280,
+   "height": 800,
+   "availWidth": 1280,
+   "availHeight": 800,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 1223
+  },
+  {
+   "width": 1366,
+   "height": 768,
+   "availWidth": 1366,
+   "availHeight": 768,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 1095
+  },
+  {
+   "width": 1366,
+   "height": 768,
+   "availWidth": 1366,
+   "availHeight": 720,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 1079
+  },
+  {
+   "width": 1920,
+   "height": 1080,
+   "availWidth": 1920,
+   "availHeight": 1080,
+   "dpr": 1,
+   "colorDepth": 24,
+   "weight": 935
+  },
+  {
+   "width": 2560,
+   "height": 1440,
+   "availWidth": 2560,
+   "availHeight": 1392,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 838
+  },
+  {
+   "width": 1536,
+   "height": 864,
+   "availWidth": 1536,
+   "availHeight": 864,
+   "dpr": 1.25,
+   "colorDepth": 32,
+   "weight": 583
+  },
+  {
+   "width": 2000,
+   "height": 2000,
+   "availWidth": 2000,
+   "availHeight": 2000,
+   "dpr": 1,
+   "colorDepth": 24,
+   "weight": 553
+  },
+  {
+   "width": 1366,
+   "height": 768,
+   "availWidth": 1366,
+   "availHeight": 728,
+   "dpr": 1,
+   "colorDepth": 24,
+   "weight": 547
+  },
+  {
+   "width": 2560,
+   "height": 1440,
+   "availWidth": 2560,
+   "availHeight": 1440,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 516
+  },
+  {
+   "width": 1920,
+   "height": 1080,
+   "availWidth": 1920,
+   "availHeight": 1050,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 504
+  },
+  {
+   "width": 1280,
+   "height": 720,
+   "availWidth": 1280,
+   "availHeight": 672,
+   "dpr": 1.5,
+   "colorDepth": 32,
+   "weight": 501
+  },
+  {
+   "width": 1536,
+   "height": 864,
+   "availWidth": 1536,
+   "availHeight": 824,
+   "dpr": 1.25,
+   "colorDepth": 32,
+   "weight": 494
+  },
+  {
+   "width": 1680,
+   "height": 1050,
+   "availWidth": 1680,
+   "availHeight": 1050,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 461
+  },
+  {
+   "width": 1680,
+   "height": 1050,
+   "availWidth": 1680,
+   "availHeight": 1050,
+   "dpr": 1.25,
+   "colorDepth": 32,
+   "weight": 423
+  },
+  {
+   "width": 1366,
+   "height": 768,
+   "availWidth": 1366,
+   "availHeight": 768,
+   "dpr": 1,
+   "colorDepth": 24,
+   "weight": 421
+  },
+  {
+   "width": 1600,
+   "height": 900,
+   "availWidth": 1600,
+   "availHeight": 860,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 421
+  },
+  {
+   "width": 1536,
+   "height": 864,
+   "availWidth": 1536,
+   "availHeight": 816,
+   "dpr": 1.25,
+   "colorDepth": 24,
+   "weight": 370
+  },
+  {
+   "width": 1536,
+   "height": 960,
+   "availWidth": 1536,
+   "availHeight": 912,
+   "dpr": 1.25,
+   "colorDepth": 32,
+   "weight": 341
+  },
+  {
+   "width": 1280,
+   "height": 800,
+   "availWidth": 1280,
+   "availHeight": 800,
+   "dpr": 1.25,
+   "colorDepth": 32,
+   "weight": 322
+  },
+  {
+   "width": 1366,
+   "height": 768,
+   "availWidth": 1366,
+   "availHeight": 738,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 284
+  },
+  {
+   "width": 1920,
+   "height": 1080,
+   "availWidth": 1920,
+   "availHeight": 1032,
+   "dpr": 0.800000011920929,
+   "colorDepth": 32,
+   "weight": 282
+  },
+  {
+   "width": 1366,
+   "height": 768,
+   "availWidth": 1366,
+   "availHeight": 728,
+   "dpr": 0.75,
+   "colorDepth": 32,
+   "weight": 255
+  },
+  {
+   "width": 2560,
+   "height": 1440,
+   "availWidth": 2560,
+   "availHeight": 1400,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 254
+  },
+  {
+   "width": 2560,
+   "height": 1440,
+   "availWidth": 2560,
+   "availHeight": 1392,
+   "dpr": 1,
+   "colorDepth": 24,
+   "weight": 251
+  },
+  {
+   "width": 1440,
+   "height": 900,
+   "availWidth": 1440,
+   "availHeight": 900,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 250
+  },
+  {
+   "width": 1440,
+   "height": 900,
+   "availWidth": 1440,
+   "availHeight": 852,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 229
+  },
+  {
+   "width": 1536,
+   "height": 864,
+   "availWidth": 1536,
+   "availHeight": 816,
+   "dpr": 0.8333333730697632,
+   "colorDepth": 32,
+   "weight": 228
+  },
+  {
+   "width": 1440,
+   "height": 900,
+   "availWidth": 1440,
+   "availHeight": 860,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 224
+  },
+  {
+   "width": 1280,
+   "height": 720,
+   "availWidth": 1280,
+   "availHeight": 680,
+   "dpr": 1.5,
+   "colorDepth": 32,
+   "weight": 211
+  },
+  {
+   "width": 1366,
+   "height": 768,
+   "availWidth": 1366,
+   "availHeight": 720,
+   "dpr": 1,
+   "colorDepth": 24,
+   "weight": 196
+  },
+  {
+   "width": 1920,
+   "height": 1080,
+   "availWidth": 1920,
+   "availHeight": 1032,
+   "dpr": 0.75,
+   "colorDepth": 32,
+   "weight": 180
+  },
+  {
+   "width": 1707,
+   "height": 1067,
+   "availWidth": 1707,
+   "availHeight": 1019,
+   "dpr": 1.5,
+   "colorDepth": 32,
+   "weight": 171
+  },
+  {
+   "width": 1600,
+   "height": 900,
+   "availWidth": 1600,
+   "availHeight": 852,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 163
+  },
+  {
+   "width": 1366,
+   "height": 768,
+   "availWidth": 1366,
+   "availHeight": 728,
+   "dpr": 0.8999999761581421,
+   "colorDepth": 32,
+   "weight": 163
+  },
+  {
+   "width": 1360,
+   "height": 768,
+   "availWidth": 1360,
+   "availHeight": 728,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 161
+  },
+  {
+   "width": 1440,
+   "height": 900,
+   "availWidth": 1440,
+   "availHeight": 860,
+   "dpr": 1,
+   "colorDepth": 24,
+   "weight": 151
+  },
+  {
+   "width": 1280,
+   "height": 800,
+   "availWidth": 1280,
+   "availHeight": 752,
+   "dpr": 1.5,
+   "colorDepth": 32,
+   "weight": 143
+  },
+  {
+   "width": 1400,
+   "height": 900,
+   "availWidth": 1400,
+   "availHeight": 900,
+   "dpr": 2,
+   "colorDepth": 24,
+   "weight": 142
+  },
+  {
+   "width": 1536,
+   "height": 864,
+   "availWidth": 1536,
+   "availHeight": 824,
+   "dpr": 1,
+   "colorDepth": 24,
+   "weight": 141
+  },
+  {
+   "width": 1280,
+   "height": 1024,
+   "availWidth": 1280,
+   "availHeight": 984,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 137
+  },
+  {
+   "width": 1920,
+   "height": 1080,
+   "availWidth": 1920,
+   "availHeight": 1032,
+   "dpr": 0.8999999761581421,
+   "colorDepth": 32,
+   "weight": 137
+  },
+  {
+   "width": 1920,
+   "height": 1080,
+   "availWidth": 1920,
+   "availHeight": 1050,
+   "dpr": 1,
+   "colorDepth": 24,
+   "weight": 129
+  },
+  {
+   "width": 1536,
+   "height": 864,
+   "availWidth": 1536,
+   "availHeight": 824,
+   "dpr": 1.25,
+   "colorDepth": 24,
+   "weight": 127
+  },
+  {
+   "width": 1024,
+   "height": 768,
+   "availWidth": 1024,
+   "availHeight": 728,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 117
+  },
+  {
+   "width": 1280,
+   "height": 720,
+   "availWidth": 1280,
+   "availHeight": 720,
+   "dpr": 1.5,
+   "colorDepth": 32,
+   "weight": 114
+  },
+  {
+   "width": 1800,
+   "height": 900,
+   "availWidth": 1800,
+   "availHeight": 900,
+   "dpr": 2,
+   "colorDepth": 24,
+   "weight": 112
+  },
+  {
+   "width": 1280,
+   "height": 800,
+   "availWidth": 1280,
+   "availHeight": 800,
+   "dpr": 1,
+   "colorDepth": 24,
+   "weight": 111
+  },
+  {
+   "width": 2048,
+   "height": 1152,
+   "availWidth": 2048,
+   "availHeight": 1104,
+   "dpr": 1.25,
+   "colorDepth": 32,
+   "weight": 106
+  },
+  {
+   "width": 1600,
+   "height": 900,
+   "availWidth": 1600,
+   "availHeight": 860,
+   "dpr": 1,
+   "colorDepth": 24,
+   "weight": 105
+  },
+  {
+   "width": 3440,
+   "height": 1440,
+   "availWidth": 3440,
+   "availHeight": 1392,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 105
+  },
+  {
+   "width": 1366,
+   "height": 768,
+   "availWidth": 1366,
+   "availHeight": 728,
+   "dpr": 0.800000011920929,
+   "colorDepth": 32,
+   "weight": 103
+  },
+  {
+   "width": 2560,
+   "height": 1440,
+   "availWidth": 2560,
+   "availHeight": 1400,
+   "dpr": 1,
+   "colorDepth": 24,
+   "weight": 102
+  },
+  {
+   "width": 1536,
+   "height": 864,
+   "availWidth": 1536,
+   "availHeight": 816,
+   "dpr": 1.125,
+   "colorDepth": 32,
+   "weight": 94
+  },
+  {
+   "width": 1100,
+   "height": 1080,
+   "availWidth": 1100,
+   "availHeight": 1040,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 93
+  },
+  {
+   "width": 1600,
+   "height": 900,
+   "availWidth": 1600,
+   "availHeight": 900,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 92
+  },
+  {
+   "width": 1680,
+   "height": 1050,
+   "availWidth": 1680,
+   "availHeight": 1002,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 91
+  },
+  {
+   "width": 1280,
+   "height": 1024,
+   "availWidth": 1280,
+   "availHeight": 976,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 90
+  },
+  {
+   "width": 1280,
+   "height": 800,
+   "availWidth": 1280,
+   "availHeight": 800,
+   "dpr": 1.5,
+   "colorDepth": 32,
+   "weight": 89
+  },
+  {
+   "width": 1800,
+   "height": 800,
+   "availWidth": 1800,
+   "availHeight": 800,
+   "dpr": 2,
+   "colorDepth": 24,
+   "weight": 88
+  },
+  {
+   "width": 1280,
+   "height": 720,
+   "availWidth": 1280,
+   "availHeight": 672,
+   "dpr": 1.5,
+   "colorDepth": 24,
+   "weight": 87
+  },
+  {
+   "width": 1680,
+   "height": 1050,
+   "availWidth": 1680,
+   "availHeight": 1010,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 86
+  },
+  {
+   "width": 1600,
+   "height": 900,
+   "availWidth": 1600,
+   "availHeight": 852,
+   "dpr": 0.800000011920929,
+   "colorDepth": 32,
+   "weight": 86
+  },
+  {
+   "width": 1536,
+   "height": 864,
+   "availWidth": 1536,
+   "availHeight": 834,
+   "dpr": 1.25,
+   "colorDepth": 32,
+   "weight": 85
+  },
+  {
+   "width": 2048,
+   "height": 1152,
+   "availWidth": 2048,
+   "availHeight": 1104,
+   "dpr": 1.25,
+   "colorDepth": 24,
+   "weight": 85
+  },
+  {
+   "width": 1920,
+   "height": 1080,
+   "availWidth": 1920,
+   "availHeight": 1040,
+   "dpr": 0.8999999761581421,
+   "colorDepth": 32,
+   "weight": 82
+  },
+  {
+   "width": 1536,
+   "height": 864,
+   "availWidth": 1536,
+   "availHeight": 816,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 81
+  },
+  {
+   "width": 1280,
+   "height": 720,
+   "availWidth": 1280,
+   "availHeight": 672,
+   "dpr": 3,
+   "colorDepth": 32,
+   "weight": 80
+  },
+  {
+   "width": 1366,
+   "height": 768,
+   "availWidth": 1366,
+   "availHeight": 728,
+   "dpr": 0.6666666865348816,
+   "colorDepth": 32,
+   "weight": 76
+  },
+  {
+   "width": 1920,
+   "height": 1080,
+   "availWidth": 1872,
+   "availHeight": 1080,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 74
+  },
+  {
+   "width": 1920,
+   "height": 1080,
+   "availWidth": 1920,
+   "availHeight": 1032,
+   "dpr": 1,
+   "colorDepth": 30,
+   "weight": 74
+  },
+  {
+   "width": 1280,
+   "height": 720,
+   "availWidth": 1280,
+   "availHeight": 680,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 73
+  },
+  {
+   "width": 1366,
+   "height": 768,
+   "availWidth": 1366,
+   "availHeight": 768,
+   "dpr": 0.8999999761581421,
+   "colorDepth": 32,
+   "weight": 70
+  },
+  {
+   "width": 1440,
+   "height": 1080,
+   "availWidth": 1440,
+   "availHeight": 1032,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 69
+  },
+  {
+   "width": 1920,
+   "height": 1080,
+   "availWidth": 1920,
+   "availHeight": 937,
+   "dpr": 1,
+   "colorDepth": 24,
+   "weight": 69
+  },
+  {
+   "width": 1440,
+   "height": 900,
+   "availWidth": 1440,
+   "availHeight": 852,
+   "dpr": 2,
+   "colorDepth": 32,
+   "weight": 69
+  },
+  {
+   "width": 1920,
+   "height": 1080,
+   "availWidth": 1920,
+   "availHeight": 1032,
+   "dpr": 1.100000023841858,
+   "colorDepth": 32,
+   "weight": 68
+  },
+  {
+   "width": 1440,
+   "height": 900,
+   "availWidth": 1440,
+   "availHeight": 900,
+   "dpr": 1.25,
+   "colorDepth": 32,
+   "weight": 67
+  },
+  {
+   "width": 1366,
+   "height": 768,
+   "availWidth": 1366,
+   "availHeight": 728,
+   "dpr": 0.5,
+   "colorDepth": 32,
+   "weight": 66
+  },
+  {
+   "width": 1280,
+   "height": 720,
+   "availWidth": 1280,
+   "availHeight": 672,
+   "dpr": 1.125,
+   "colorDepth": 32,
+   "weight": 66
+  },
+  {
+   "width": 1600,
+   "height": 900,
+   "availWidth": 1600,
+   "availHeight": 757,
+   "dpr": 1,
+   "colorDepth": 24,
+   "weight": 65
+  },
+  {
+   "width": 2560,
+   "height": 1440,
+   "availWidth": 2560,
+   "availHeight": 1410,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 61
+  },
+  {
+   "width": 1600,
+   "height": 900,
+   "availWidth": 1600,
+   "availHeight": 900,
+   "dpr": 1,
+   "colorDepth": 24,
+   "weight": 61
+  },
+  {
+   "width": 1920,
+   "height": 1080,
+   "availWidth": 1920,
+   "availHeight": 1032,
+   "dpr": 0.6666666865348816,
+   "colorDepth": 32,
+   "weight": 60
+  },
+  {
+   "width": 2560,
+   "height": 1440,
+   "availWidth": 2560,
+   "availHeight": 1392,
+   "dpr": 1,
+   "colorDepth": 30,
+   "weight": 58
+  },
+  {
+   "width": 1920,
+   "height": 1200,
+   "availWidth": 1920,
+   "availHeight": 1152,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 58
+  },
+  {
+   "width": 1680,
+   "height": 1050,
+   "availWidth": 1680,
+   "availHeight": 1050,
+   "dpr": 1,
+   "colorDepth": 24,
+   "weight": 57
+  },
+  {
+   "width": 1707,
+   "height": 960,
+   "availWidth": 1707,
+   "availHeight": 912,
+   "dpr": 1.5,
+   "colorDepth": 32,
+   "weight": 56
+  },
+  {
+   "width": 1600,
+   "height": 900,
+   "availWidth": 1600,
+   "availHeight": 757,
+   "dpr": 0.3499999940395355,
+   "colorDepth": 24,
+   "weight": 56
+  },
+  {
+   "width": 1536,
+   "height": 960,
+   "availWidth": 1536,
+   "availHeight": 960,
+   "dpr": 1.25,
+   "colorDepth": 32,
+   "weight": 55
+  },
+  {
+   "width": 1024,
+   "height": 768,
+   "availWidth": 1024,
+   "availHeight": 720,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 55
+  },
+  {
+   "width": 1720,
+   "height": 1080,
+   "availWidth": 1720,
+   "availHeight": 1032,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 54
+  },
+  {
+   "width": 1280,
+   "height": 720,
+   "availWidth": 1280,
+   "availHeight": 680,
+   "dpr": 1.3499999046325684,
+   "colorDepth": 32,
+   "weight": 54
+  },
+  {
+   "width": 1720,
+   "height": 1080,
+   "availWidth": 1720,
+   "availHeight": 1035,
+   "dpr": 1,
+   "colorDepth": 32,
+   "weight": 53
+  },
+  {
+   "width": 1536,
+   "height": 960,
+   "availWidth": 1536,
+   "availHeight": 912,
+   "dpr": 1.25,
+   "colorDepth": 24,
+   "weight": 52
+  },
+  {
+   "width": 1920,
+   "height": 1200,
+   "availWidth": 1920,
+   "availHeight": 1152,
+   "dpr": 1,
+   "colorDepth": 24,
+   "weight": 50
+  },
+  {
+   "width": 12800,
+   "height": 7200,
+   "availWidth": 6400,
+   "availHeight": 3467,
+   "dpr": 0.30000001192092896,
+   "colorDepth": 24,
+   "weight": 50
+  },
+  {
+   "width": 1536,
+   "height": 864,
+   "availWidth": 1536,
+   "availHeight": 864,
+   "dpr": 1.25,
+   "colorDepth": 24,
+   "weight": 50
+  },
+  {
+   "width": 1366,
+   "height": 768,
+   "availWidth": 1366,
+   "availHeight": 625,
+   "dpr": 1,
+   "colorDepth": 24,
+   "weight": 50
+  }
+ ],
+ "cores": [
+  {
+   "value": 12,
+   "weight": 11945
+  },
+  {
+   "value": 4,
+   "weight": 10735
+  },
+  {
+   "value": 8,
+   "weight": 8188
+  },
+  {
+   "value": 16,
+   "weight": 6136
+  },
+  {
+   "value": 2,
+   "weight": 2780
+  },
+  {
+   "value": 6,
+   "weight": 1861
+  },
+  {
+   "value": 20,
+   "weight": 1134
+  },
+  {
+   "value": 24,
+   "weight": 1129
+  },
+  {
+   "value": 3,
+   "weight": 1058
+  },
+  {
+   "value": 32,
+   "weight": 807
+  },
+  {
+   "value": 10,
+   "weight": 415
+  },
+  {
+   "value": 14,
+   "weight": 286
+  },
+  {
+   "value": 28,
+   "weight": 246
+  }
+ ],
+ "memory": [
+  {
+   "value": 8,
+   "weight": 21887
+  },
+  {
+   "value": 16,
+   "weight": 12708
+  },
+  {
+   "value": 4,
+   "weight": 5200
+  },
+  {
+   "value": 32,
+   "weight": 4987
+  }
+ ],
+ "network": [
+  {
+   "downlink": 10,
+   "rtt": 50,
+   "saveData": false,
+   "weight": 8979
+  },
+  {
+   "downlink": 10,
+   "rtt": 100,
+   "saveData": false,
+   "weight": 4721
+  },
+  {
+   "downlink": 10,
+   "rtt": 150,
+   "saveData": false,
+   "weight": 2127
+  },
+  {
+   "downlink": 10,
+   "rtt": 200,
+   "saveData": false,
+   "weight": 905
+  },
+  {
+   "downlink": 10,
+   "rtt": 250,
+   "saveData": false,
+   "weight": 483
+  },
+  {
+   "downlink": 1.45,
+   "rtt": 100,
+   "saveData": false,
+   "weight": 386
+  },
+  {
+   "downlink": 1.55,
+   "rtt": 100,
+   "saveData": false,
+   "weight": 367
+  },
+  {
+   "downlink": 1.5,
+   "rtt": 100,
+   "saveData": false,
+   "weight": 271
+  },
+  {
+   "downlink": 1.6,
+   "rtt": 100,
+   "saveData": false,
+   "weight": 256
+  },
+  {
+   "downlink": 1.4,
+   "rtt": 100,
+   "saveData": false,
+   "weight": 251
+  },
+  {
+   "downlink": 1.35,
+   "rtt": 100,
+   "saveData": false,
+   "weight": 241
+  },
+  {
+   "downlink": 1.35,
+   "rtt": 300,
+   "saveData": false,
+   "weight": 210
+  },
+  {
+   "downlink": 1.45,
+   "rtt": 50,
+   "saveData": false,
+   "weight": 205
+  },
+  {
+   "downlink": 1.5,
+   "rtt": 50,
+   "saveData": false,
+   "weight": 196
+  },
+  {
+   "downlink": 1.45,
+   "rtt": 300,
+   "saveData": false,
+   "weight": 195
+  },
+  {
+   "downlink": 1.75,
+   "rtt": 50,
+   "saveData": false,
+   "weight": 181
+  },
+  {
+   "downlink": 1.5,
+   "rtt": 150,
+   "saveData": false,
+   "weight": 180
+  },
+  {
+   "downlink": 1.3,
+   "rtt": 100,
+   "saveData": false,
+   "weight": 173
+  },
+  {
+   "downlink": 1.7,
+   "rtt": 50,
+   "saveData": false,
+   "weight": 171
+  },
+  {
+   "downlink": 1.55,
+   "rtt": 50,
+   "saveData": false,
+   "weight": 169
+  },
+  {
+   "downlink": 1.6,
+   "rtt": 50,
+   "saveData": false,
+   "weight": 166
+  },
+  {
+   "downlink": 1.5,
+   "rtt": 300,
+   "saveData": false,
+   "weight": 155
+  },
+  {
+   "downlink": 1.55,
+   "rtt": 150,
+   "saveData": false,
+   "weight": 154
+  },
+  {
+   "downlink": 1.4,
+   "rtt": 300,
+   "saveData": false,
+   "weight": 153
+  },
+  {
+   "downlink": 1.45,
+   "rtt": 150,
+   "saveData": false,
+   "weight": 142
+  },
+  {
+   "downlink": 1.75,
+   "rtt": 200,
+   "saveData": false,
+   "weight": 124
+  },
+  {
+   "downlink": 1.7,
+   "rtt": 200,
+   "saveData": false,
+   "weight": 123
+  },
+  {
+   "downlink": 1.35,
+   "rtt": 250,
+   "saveData": false,
+   "weight": 121
+  },
+  {
+   "downlink": 1.3,
+   "rtt": 250,
+   "saveData": false,
+   "weight": 121
+  },
+  {
+   "downlink": 1.65,
+   "rtt": 50,
+   "saveData": false,
+   "weight": 116
+  },
+  {
+   "downlink": 1.45,
+   "rtt": 350,
+   "saveData": false,
+   "weight": 108
+  },
+  {
+   "downlink": 1.7,
+   "rtt": 100,
+   "saveData": false,
+   "weight": 102
+  },
+  {
+   "downlink": 10,
+   "rtt": 300,
+   "saveData": false,
+   "weight": 102
+  },
+  {
+   "downlink": 1.5,
+   "rtt": 350,
+   "saveData": false,
+   "weight": 100
+  },
+  {
+   "downlink": 1.3,
+   "rtt": 300,
+   "saveData": false,
+   "weight": 99
+  },
+  {
+   "downlink": 1.25,
+   "rtt": 300,
+   "saveData": false,
+   "weight": 97
+  },
+  {
+   "downlink": 1.75,
+   "rtt": 100,
+   "saveData": false,
+   "weight": 94
+  },
+  {
+   "downlink": 1.35,
+   "rtt": 350,
+   "saveData": false,
+   "weight": 94
+  },
+  {
+   "downlink": 1.45,
+   "rtt": 400,
+   "saveData": false,
+   "weight": 94
+  },
+  {
+   "downlink": 1.6,
+   "rtt": 200,
+   "saveData": false,
+   "weight": 92
+  },
+  {
+   "downlink": 1.35,
+   "rtt": 400,
+   "saveData": false,
+   "weight": 92
+  },
+  {
+   "downlink": 1.3,
+   "rtt": 350,
+   "saveData": false,
+   "weight": 88
+  },
+  {
+   "downlink": 1.25,
+   "rtt": 250,
+   "saveData": false,
+   "weight": 87
+  },
+  {
+   "downlink": 1.55,
+   "rtt": 300,
+   "saveData": false,
+   "weight": 87
+  },
+  {
+   "downlink": 1.65,
+   "rtt": 200,
+   "saveData": false,
+   "weight": 85
+  },
+  {
+   "downlink": 1.5,
+   "rtt": 400,
+   "saveData": false,
+   "weight": 84
+  },
+  {
+   "downlink": 1.6,
+   "rtt": 150,
+   "saveData": false,
+   "weight": 79
+  },
+  {
+   "downlink": 1.4,
+   "rtt": 350,
+   "saveData": false,
+   "weight": 76
+  },
+  {
+   "downlink": 1.7,
+   "rtt": 150,
+   "saveData": false,
+   "weight": 74
+  },
+  {
+   "downlink": 1.65,
+   "rtt": 100,
+   "saveData": false,
+   "weight": 74
+  },
+  {
+   "downlink": 1.25,
+   "rtt": 350,
+   "saveData": false,
+   "weight": 72
+  },
+  {
+   "downlink": 1.45,
+   "rtt": 450,
+   "saveData": false,
+   "weight": 66
+  },
+  {
+   "downlink": 1.35,
+   "rtt": 450,
+   "saveData": false,
+   "weight": 62
+  },
+  {
+   "downlink": 1.55,
+   "rtt": 350,
+   "saveData": false,
+   "weight": 61
+  },
+  {
+   "downlink": 0.4,
+   "rtt": 150,
+   "saveData": false,
+   "weight": 59
+  },
+  {
+   "downlink": 1.4,
+   "rtt": 400,
+   "saveData": false,
+   "weight": 59
+  },
+  {
+   "downlink": 0.4,
+   "rtt": 200,
+   "saveData": false,
+   "weight": 58
+  },
+  {
+   "downlink": 1.3,
+   "rtt": 400,
+   "saveData": false,
+   "weight": 57
+  },
+  {
+   "downlink": 1.35,
+   "rtt": 500,
+   "saveData": false,
+   "weight": 54
+  },
+  {
+   "downlink": 1.5,
+   "rtt": 500,
+   "saveData": false,
+   "weight": 53
+  },
+  {
+   "downlink": 1.4,
+   "rtt": 450,
+   "saveData": false,
+   "weight": 52
+  },
+  {
+   "downlink": 1.3,
+   "rtt": 450,
+   "saveData": false,
+   "weight": 51
+  }
+ ],
+ "base": {
+  "screen": {
+   "width": 1920,
+   "height": 1080,
+   "availWidth": 1920,
+   "availHeight": 1032,
+   "colorDepth": 24,
+   "pixelDepth": 24
+  },
+  "devicePixelRatio": 1,
+  "innerWidth": 958,
+  "innerHeight": 937,
+  "outerWidth": 974,
+  "outerHeight": 1032,
+  "connection": {
+   "effectiveType": "4g",
+   "downlink": 10,
+   "rtt": 200,
+   "saveData": false
+  },
+  "glVendor": "Google Inc. (Intel)",
+  "glRenderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00004626) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+ }
+}

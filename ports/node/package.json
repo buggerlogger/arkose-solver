@@ -1,0 +1,41 @@
+{
+  "name": "arkose-solver",
+  "version": "1.1.0",
+  "description": "Arkose Labs / FunCaptcha solver producing sup=1 suppressed tokens, with the site RSA key derived per solve",
+  "main": "src/index.js",
+  "files": [
+    "src/",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node test/conformance.js"
+  },
+  "keywords": [
+    "arkose",
+    "arkoselabs",
+    "funcaptcha",
+    "captcha",
+    "captcha-solver",
+    "bda",
+    "token",
+    "anti-bot",
+    "reverse-engineering",
+    "tls-fingerprint"
+  ],
+  "author": "buggerlogger",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buggerlogger/arkose-solver.git"
+  },
+  "homepage": "https://github.com/buggerlogger/arkose-solver#readme",
+  "bugs": {
+    "url": "https://github.com/buggerlogger/arkose-solver/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "optionalDependencies": {
+    "node-tls-client": "^2.1.0"
+  }
+}
