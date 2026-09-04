@@ -1,25 +1,29 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "arkose-solver"
-version = "1.1.0"
+version = "1.2.0"
 description = "Pure-Python Arkose Labs / FunCaptcha solver producing sup=1 suppressed tokens, with the site RSA key derived per solve"
 readme = "README.md"
-requires-python = ">=3.8"
-license = { text = "MIT" }
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [{ name = "buggerlogger" }]
 keywords = ["arkose", "arkoselabs", "funcaptcha", "captcha", "captcha-solver", "bda", "token", "anti-bot", "reverse-engineering"]
 classifiers = [
   "Development Status :: 4 - Beta",
   "Intended Audience :: Developers",
-  "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
   "Topic :: Security",
   "Topic :: Software Development :: Testing",
 ]
-dependencies = ["cryptography>=41", "curl_cffi>=0.6"]
+dependencies = ["cryptography>=41", "curl_cffi>=0.7"]
 
 [project.urls]
 Homepage = "https://github.com/buggerlogger/arkose-solver"

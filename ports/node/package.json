@@ -1,11 +1,12 @@
 {
   "name": "arkose-solver",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Arkose Labs / FunCaptcha solver producing sup=1 suppressed tokens, with the site RSA key derived per solve",
   "main": "src/index.js",
   "files": [
     "src/",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "test": "node test/conformance.js"

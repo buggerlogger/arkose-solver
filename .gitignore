@@ -18,3 +18,8 @@ __pycache__/
 # node
 node_modules/
 *.tgz
+
+# python build artifacts
+ports/python/dist/
+ports/python/build/
+*.egg-info/

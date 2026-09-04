@@ -28,7 +28,7 @@ from .solver import Solver, SolveResult, solve
 from .vmkey import extract_rsa_key
 from .webgl import build_webgl_fields, compute_rtt_type, compute_webgl_hash
 
-__version__ = "1.1.0"
+__version__ = "1.2.0"
 
 __all__ = [
     "Solver", "SolveResult", "solve",
