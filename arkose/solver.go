@@ -321,13 +321,14 @@ func (s *Solver) getCAPI() (version, vmKey, buildID string, err error) {
 		buildID = m[1]
 	}
 
-	vmKeyRe := regexp.MustCompile("[\"'`]([A-Za-z0-9+/]{200,}={0,2})[\"'`]")
-	for _, m := range vmKeyRe.FindAllStringSubmatch(content, -1) {
-		if dec, e := base64.StdEncoding.DecodeString(m[1]); e == nil && len(dec) >= 2 && dec[0] == 0x30 && dec[1] == 0x82 {
-			vmKey = m[1]
-			break
+	if m := regexp.MustCompile(`(\d+\.\d+\.\d+)/enforcement\.([0-9a-f]{32})\.html`).FindStringSubmatch(content); len(m) > 2 {
+		s.cfg.EnforcementHash = m[2]
+		if version == "" {
+			version = m[1]
 		}
 	}
+
+	vmKey = ExtractRSAKey(content)
 
 	capiCacheMu.Lock()
 	capiCache[pk] = &capiCacheEntry{Version: version, VMKey: vmKey, BuildID: buildID, FetchedAt: time.Now()}

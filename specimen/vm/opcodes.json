@@ -1,0 +1,314 @@
+[
+ {
+  "tag": "bb47b",
+  "mnemonic": "LOAD_NAME",
+  "operandFormat": "name",
+  "category": "var",
+  "count": 180,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "b1539",
+  "mnemonic": "PUSH_NAME",
+  "operandFormat": "str [deref]",
+  "category": "literal",
+  "count": 141,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "b89af",
+  "mnemonic": "GET_MEMBER",
+  "operandFormat": "depth",
+  "category": "stack",
+  "count": 98,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "e5b15",
+  "mnemonic": "DECL",
+  "operandFormat": "name",
+  "category": "var",
+  "count": 69,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "c1888",
+  "mnemonic": "PUSH_LIT",
+  "operandFormat": "val type",
+  "category": "literal",
+  "count": 64,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "b0280",
+  "mnemonic": "LABEL",
+  "operandFormat": "label",
+  "category": "branch",
+  "count": 56,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "e73a3",
+  "mnemonic": "CALL",
+  "operandFormat": "argc (async)",
+  "category": "call",
+  "count": 42,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "e776b",
+  "mnemonic": "SET_PROP",
+  "operandFormat": "key",
+  "category": "stack",
+  "count": 27,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "a0cd9",
+  "mnemonic": "RETURN",
+  "operandFormat": "-",
+  "category": "fn",
+  "count": 26,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "cea87",
+  "mnemonic": "STORE",
+  "operandFormat": "name",
+  "category": "var",
+  "count": 25,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "d0c9a",
+  "mnemonic": "JMP_FALSE",
+  "operandFormat": "label",
+  "category": "branch",
+  "count": 23,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "c923e",
+  "mnemonic": "JMP",
+  "operandFormat": "label",
+  "category": "branch",
+  "count": 23,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "ae498",
+  "mnemonic": "BINOP",
+  "operandFormat": "op",
+  "category": "op",
+  "count": 22,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "a5772",
+  "mnemonic": "CALL_NAME",
+  "operandFormat": "name argc",
+  "category": "call",
+  "count": 18,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "a82bc",
+  "mnemonic": "DEFUN",
+  "operandFormat": "name",
+  "category": "fn",
+  "count": 17,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "b17bd",
+  "mnemonic": "ENDFUN",
+  "operandFormat": "name",
+  "category": "fn",
+  "count": 17,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "a2b49",
+  "mnemonic": "NEW_OBJECT",
+  "operandFormat": "-",
+  "category": "stack",
+  "count": 14,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "aac6f",
+  "mnemonic": "DELETE",
+  "operandFormat": "name",
+  "category": "var",
+  "count": 13,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "b5558",
+  "mnemonic": "UNARY",
+  "operandFormat": "op",
+  "category": "op",
+  "count": 12,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "c2b6b",
+  "mnemonic": "PUSH_LIT2",
+  "operandFormat": "val type",
+  "category": "literal",
+  "count": 11,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "e9293",
+  "mnemonic": "JMP_LOGICAL",
+  "operandFormat": "op label",
+  "category": "branch",
+  "count": 10,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "b0d77",
+  "mnemonic": "LOGIC",
+  "operandFormat": "op",
+  "category": "op",
+  "count": 10,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "ddde1",
+  "mnemonic": "POP",
+  "operandFormat": "-",
+  "category": "stack",
+  "count": 9,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "e262e",
+  "mnemonic": "SET_PATH",
+  "operandFormat": "-",
+  "category": "stack",
+  "count": 8,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "e8265",
+  "mnemonic": "NEW_ARRAY",
+  "operandFormat": "n",
+  "category": "stack",
+  "count": 7,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "b404d",
+  "mnemonic": "NEW",
+  "operandFormat": "argc ctor",
+  "category": "call",
+  "count": 6,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "ac4e4",
+  "mnemonic": "AWAIT",
+  "operandFormat": "-",
+  "category": "call",
+  "count": 6,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "e186f",
+  "mnemonic": "PUSH_RAW",
+  "operandFormat": "val",
+  "category": "literal",
+  "count": 0,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "b1724",
+  "mnemonic": "INDEX_GET",
+  "operandFormat": "-",
+  "category": "stack",
+  "count": 0,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "b34bd",
+  "mnemonic": "PUSH_HOLE",
+  "operandFormat": "-",
+  "category": "stack",
+  "count": 0,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "ee884",
+  "mnemonic": "ARR_APPEND",
+  "operandFormat": "-",
+  "category": "stack",
+  "count": 0,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "f70a4",
+  "mnemonic": "ARR_SPREAD",
+  "operandFormat": "-",
+  "category": "stack",
+  "count": 0,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "e547b",
+  "mnemonic": "OBJ_ASSIGN",
+  "operandFormat": "-",
+  "category": "stack",
+  "count": 0,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "ab1ed",
+  "mnemonic": "SET_ERRNAME",
+  "operandFormat": "name",
+  "category": "var",
+  "count": 0,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "c9353",
+  "mnemonic": "UPDATE",
+  "operandFormat": "op name deref",
+  "category": "op",
+  "count": 0,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "d1f65",
+  "mnemonic": "TRY_BEGIN",
+  "operandFormat": "label",
+  "category": "try",
+  "count": 0,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "b5da0",
+  "mnemonic": "TRY_END",
+  "operandFormat": "label",
+  "category": "try",
+  "count": 0,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "fe342",
+  "mnemonic": "THROW",
+  "operandFormat": "-",
+  "category": "try",
+  "count": 0,
+  "confidence": "confirmed"
+ },
+ {
+  "tag": "bec34",
+  "mnemonic": "UNSUPPORTED",
+  "operandFormat": "op",
+  "category": "misc",
+  "count": 0,
+  "confidence": "confirmed"
+ }
+]

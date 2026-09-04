@@ -2,6 +2,7 @@ package arkose
 
 import (
 	"math/rand"
+	"strings"
 )
 
 const (
@@ -92,11 +93,10 @@ func init() {
 		chromeVersions[i].Hash29s83ih9 = ukHash29s83ih9
 		chromeVersions[i].AudioCodecsExtHash = ukAudioCodecsExtHash
 		chromeVersions[i].VideoCodecsExtHash = ukVideoCodecsExtHash
-		chromeVersions[i].UAData = ukUserAgentDataBrands
 	}
 }
 
-func PickChromeVersion() chromeVersion {
+func pickChromeVersion() chromeVersion {
 	r := rand.Intn(100)
 	switch {
 	case r < 20:
@@ -112,52 +112,8 @@ func PickChromeVersion() chromeVersion {
 	}
 }
 
-type screenSize struct {
-	OuterWidth  int
-	OuterHeight int
-	InnerWidth  int
-	InnerHeight int
-	Weight      int
-}
-
-var screenPool = []screenSize{
-	{OuterWidth: 1920, OuterHeight: 1032, InnerWidth: 1552, InnerHeight: 945, Weight: 35},
-	{OuterWidth: 1366, OuterHeight: 728, InnerWidth: 1150, InnerHeight: 620, Weight: 20},
-	{OuterWidth: 1536, OuterHeight: 824, InnerWidth: 1280, InnerHeight: 720, Weight: 15},
-	{OuterWidth: 1440, OuterHeight: 872, InnerWidth: 1200, InnerHeight: 780, Weight: 8},
-	{OuterWidth: 2560, OuterHeight: 1392, InnerWidth: 2100, InnerHeight: 1240, Weight: 12},
-	{OuterWidth: 3840, OuterHeight: 2072, InnerWidth: 3120, InnerHeight: 1880, Weight: 3},
-	{OuterWidth: 1600, OuterHeight: 872, InnerWidth: 1320, InnerHeight: 780, Weight: 7},
-}
-
-func PickScreen() screenSize {
-	total := 0
-	for _, s := range screenPool {
-		total += s.Weight
-	}
-	pick := rand.Intn(total)
-	for _, s := range screenPool {
-		pick -= s.Weight
-		if pick < 0 {
-			return s
-		}
-	}
-	return screenPool[0]
-}
-
-func PickDeviceMemory() int {
-
-	switch r := rand.Intn(100); {
-	case r < 75:
-		return 8
-	case r < 95:
-		return 4
-	default:
-		return 2
-	}
-}
-
 var audioFingerprints = []string{
+	"124.04347776696522",
 	"124.04347527516074",
 	"124.04347527840094",
 	"124.04347541281574",
@@ -173,32 +129,29 @@ func PickAudioFingerprint() string {
 	return audioFingerprints[rand.Intn(len(audioFingerprints))]
 }
 
-var languageSets = []struct {
-	value  string
-	weight int
-}{
-	{"en-US,en", 60},
-	{"en-GB,en", 12},
-	{"en", 8},
-	{"es-ES,es", 4},
-	{"pt-BR,pt", 4},
-	{"de-DE,de", 4},
-	{"fr-FR,fr", 4},
-	{"it-IT,it", 2},
-	{"ru-RU,ru", 2},
+const (
+	defaultEnforcementHash = "2d1c8a89671586563cb793ae2399b954"
+
+	defaultDocumentReferrer = "https://www.google.com/"
+)
+
+func shuffledBrands(c chromeVersion) string {
+	brands := []string{"Chromium", "Google Chrome", greaseBrand(c.SecCHUAVersion)}
+	rand.Shuffle(len(brands), func(i, j int) { brands[i], brands[j] = brands[j], brands[i] })
+	return strings.Join(brands, ",")
 }
 
-func PickLanguages() string {
-	total := 0
-	for _, l := range languageSets {
-		total += l.weight
+func greaseBrand(major int) string {
+	switch major {
+	case 152:
+		return "Not?A_Brand"
+	case 151:
+		return "Not_A Brand"
+	case 150:
+		return "Not)A;Brand"
+	case 149:
+		return "Not-A.Brand"
+	default:
+		return "Not/A)Brand"
 	}
-	pick := rand.Intn(total)
-	for _, l := range languageSets {
-		pick -= l.weight
-		if pick < 0 {
-			return l.value
-		}
-	}
-	return "en-US,en"
 }

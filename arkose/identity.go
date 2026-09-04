@@ -21,20 +21,23 @@ type DeviceIdentity struct {
 	Hash83eb055        string
 	Hash1f220c9        string
 
-	NavConnectionDownlink     float64
 	NavConnectionDownlink_Max interface{}
-	NetworkInfoRTT            int
-	ScreenPixelDepth          int
-	ColorDepth                int
 
 	TreeStructure string
 
 	CFP         int32
 	TZOffset    int
 	LanguageTag string
-	Languages   string
-	FontList    string
+
+	SpeechDefaultVoice string
+	SpeechVoicesHash   string
+	Languages          string
+	FontList           string
 }
+
+const (
+	screenPixelDepthFactor = 3
+)
 
 func randHexBytes(n int) string {
 	b := make([]byte, n)
@@ -49,9 +52,6 @@ func hashField(salt, field string) string {
 
 func NewSession() *DeviceIdentity {
 	salt := randHexBytes(16)
-
-	downlinkPool := []float64{1.5, 2.5, 5, 10, 10, 10}
-	rttPool := []int{50, 100, 150, 200, 250, 300}
 
 	treeStructures := []string{
 		"[[[],[]],[[]],[],[]]",
@@ -125,29 +125,41 @@ func NewSession() *DeviceIdentity {
 		Hash05d3d24:               hashField(salt, "05d3d24"),
 		Hash83eb055:               hashField(salt, "83eb055"),
 		Hash1f220c9:               hashField(salt, "1f220c9"),
-		NavConnectionDownlink:     downlinkPool[rand.Intn(len(downlinkPool))],
 		NavConnectionDownlink_Max: nil,
-		NetworkInfoRTT:            rttPool[rand.Intn(len(rttPool))],
 
-		ScreenPixelDepth: ukScreenPixelDepth,
-		ColorDepth:       24,
-		TreeStructure:    treeStructures[rand.Intn(len(treeStructures))],
+		TreeStructure: treeStructures[rand.Intn(len(treeStructures))],
 
-		CFP:         cfp,
-		TZOffset:    tzPool[rand.Intn(len(tzPool))],
+		CFP:                cfp,
+		TZOffset:           tzPool[rand.Intn(len(tzPool))],
+		SpeechDefaultVoice: defaultVoiceFor(langTag),
+		SpeechVoicesHash:   hashField(salt, "speech_voices"),
+
 		LanguageTag: langTag,
 		Languages:   langFull,
 		FontList:    fontSets[rand.Intn(len(fontSets))],
 	}
 }
 
-func (d *DeviceIdentity) Pick1f220c9() interface{} {
-	if rand.Intn(2) == 0 {
-		return nil
-	}
-	return d.Hash1f220c9
-}
-
 func (d *DeviceIdentity) String() string {
 	return fmt.Sprintf("device[salt=%s…]", d.Salt[:8])
+}
+
+func defaultVoiceFor(langTag string) string {
+	voices := map[string]string{
+		"en-US": "Microsoft David - English (United States)",
+		"en-GB": "Microsoft George - English (United Kingdom)",
+		"en":    "Microsoft David - English (United States)",
+		"es-ES": "Microsoft Helena - Spanish (Spain)",
+		"pt-BR": "Microsoft Daniel - Portuguese (Brazil)",
+		"de-DE": "Microsoft Hedda - German (Germany)",
+		"fr-FR": "Microsoft Hortense - French (France)",
+		"it-IT": "Microsoft Elsa - Italian (Italy)",
+		"ru-RU": "Microsoft Irina - Russian (Russia)",
+		"tr-TR": "Microsoft Tolga - Turkish (Turkiye)",
+	}
+	name, ok := voices[langTag]
+	if !ok {
+		name, langTag = voices["en-US"], "en-US"
+	}
+	return name + " || " + langTag
 }

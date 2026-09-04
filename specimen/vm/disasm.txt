@@ -1,0 +1,1014 @@
+; Arkose api.js stack VM  -  static disassembly
+; 954 instructions, 27 distinct opcodes used
+; operands decrypted (XOR keys name=922 pushname=829 prop=757 lit=5)
+
+   0  DEFUN       b5eec                                      ; a82bc b5eec
+   1  LOAD_NAME   window                                     ; bb47b N[\]]E
+   2  PUSH_NAME   "navigation"                               ; b1539 'VSOQUXL[VV' false
+   3  GET_MEMBER  1                                          ; b89af 1
+   4  JMP_FALSE   L0                                         ; d0c9a L0
+   5  LOAD_NAME   window                                     ; bb47b N[\]]E
+   6  PUSH_NAME   "navigation"                               ; b1539 'VSOQUXL[VV' false
+   7  PUSH_NAME   "entries"                                  ; b1539 ']\MJ[\K' false
+   8  GET_MEMBER  2                                          ; b89af 2
+   9  JMP_FALSE   L2                                         ; d0c9a L2
+  10  LOAD_NAME   window                                     ; bb47b N[\]]E
+  11  PUSH_NAME   "navigation"                               ; b1539 'VSOQUXL[VV' false
+  12  PUSH_NAME   "entries"                                  ; b1539 ']\MJ[\K' false
+  13  GET_MEMBER  2                                          ; b89af 2
+  14  CALL        0                                          ; e73a3 0
+  15  DECL        a37db                                      ; e5b15 a37db
+  16  LOAD_NAME   a37db                                      ; bb47b a37db
+  17  PUSH_NAME   "length"                                   ; b1539 'TWW_FQ' false
+  18  GET_MEMBER  1                                          ; b89af 1
+  19  RETURN                                                 ; a0cd9
+  20  JMP         L3                                         ; c923e L3
+L2:
+  21  LABEL       L2                                         ; b0280 L2
+L3:
+  22  LABEL       L3                                         ; b0280 L3
+  23  JMP         L1                                         ; c923e L1
+L0:
+  24  LABEL       L0                                         ; b0280 L0
+L1:
+  25  LABEL       L1                                         ; b0280 L1
+  26  PUSH_LIT    null                                       ; c1888 null object
+  27  RETURN                                                 ; a0cd9
+  28  ENDFUN      b5eec                                      ; b17bd b5eec
+  29  DECL        eb5be                                      ; e5b15 eb5be
+  30  DECL        eb5be                                      ; e5b15 eb5be
+  31  DEFUN       c57d6                                      ; a82bc c57d6
+  32  LOAD_NAME   window                                     ; bb47b N[\]]E
+  33  PUSH_NAME   "performance"                              ; b1539 'HWK^]KUSW[W' false
+  34  GET_MEMBER  1                                          ; b89af 1
+  35  DECL        fe168                                      ; e5b15 fe168
+  36  LOAD_NAME   fe168                                      ; bb47b fe168
+  37  UNARY       !                                          ; b5558 !
+  38  JMP_FALSE   L4                                         ; d0c9a L4
+  39  PUSH_LIT    1:number                                   ; c1888 1 number
+  40  PUSH_LIT    null                                       ; c1888 null object
+  41  NEW_ARRAY   2                                          ; e8265 2
+  42  RETURN                                                 ; a0cd9
+  43  JMP         L5                                         ; c923e L5
+L4:
+  44  LABEL       L4                                         ; b0280 L4
+L5:
+  45  LABEL       L5                                         ; b0280 L5
+  46  LOAD_NAME   fe168                                      ; bb47b fe168
+  47  PUSH_NAME   "memory"                                   ; b1539 'UWTW@@' false
+  48  GET_MEMBER  1                                          ; b89af 1
+  49  DECL        f0a60                                      ; e5b15 f0a60
+  50  LOAD_NAME   f0a60                                      ; bb47b f0a60
+  51  UNARY       !                                          ; b5558 !
+  52  JMP_FALSE   L6                                         ; d0c9a L6
+  53  PUSH_LIT    2:number                                   ; c1888 2 number
+  54  PUSH_LIT    null                                       ; c1888 null object
+  55  NEW_ARRAY   2                                          ; e8265 2
+  56  RETURN                                                 ; a0cd9
+  57  JMP         L7                                         ; c923e L7
+L6:
+  58  LABEL       L6                                         ; b0280 L6
+L7:
+  59  LABEL       L7                                         ; b0280 L7
+  60  LOAD_NAME   f0a60                                      ; bb47b f0a60
+  61  PUSH_NAME   "jsHeapSizeLimit"                          ; b1539 'RAq]SIk[C]~PU[M' false
+  62  GET_MEMBER  1                                          ; b89af 1
+  63  DECL        a6d5d                                      ; e5b15 a6d5d
+  64  LOAD_NAME   a6d5d                                      ; bb47b a6d5d
+  65  UNARY       !                                          ; b5558 !
+  66  JMP_FALSE   L8                                         ; d0c9a L8
+  67  PUSH_LIT    3:number                                   ; c1888 3 number
+  68  PUSH_LIT    null                                       ; c1888 null object
+  69  NEW_ARRAY   2                                          ; e8265 2
+  70  RETURN                                                 ; a0cd9
+  71  JMP         L9                                         ; c923e L9
+L8:
+  72  LABEL       L8                                         ; b0280 L8
+L9:
+  73  LABEL       L9                                         ; b0280 L9
+  74  PUSH_LIT    0:number                                   ; c1888 0 number
+  75  LOAD_NAME   a6d5d                                      ; bb47b a6d5d
+  76  NEW_ARRAY   2                                          ; e8265 2
+  77  RETURN                                                 ; a0cd9
+  78  ENDFUN      c57d6                                      ; b17bd c57d6
+  79  DECL        a0c9f                                      ; e5b15 a0c9f
+  80  DECL        a0c9f                                      ; e5b15 a0c9f
+  81  DEFUN       a3b1e                                      ; a82bc a3b1e
+  82  STORE       f2bf6                                      ; cea87 f2bf6
+  83  LOAD_NAME   f2bf6                                      ; bb47b f2bf6
+  84  PUSH_LIT2   4:number                                   ; c2b6b 4 number
+  85  GET_MEMBER  1                                          ; b89af 1
+  86  UNARY       !                                          ; b5558 !
+  87  JMP_LOGICAL || L12                                     ; e9293 || L12
+  88  LOAD_NAME   f2bf6                                      ; bb47b f2bf6
+  89  PUSH_LIT2   4:number                                   ; c2b6b 4 number
+  90  PUSH_NAME   "value"                                    ; b1539 'NSUMW' false
+  91  GET_MEMBER  2                                          ; b89af 2
+  92  UNARY       !                                          ; b5558 !
+  93  LOGIC       ||                                         ; b0d77 ||
+L12:
+  94  LABEL       L12                                        ; b0280 L12
+  95  JMP_FALSE   L10                                        ; d0c9a L10
+  96  RETURN                                                 ; a0cd9
+  97  JMP         L11                                        ; c923e L11
+L10:
+  98  LABEL       L10                                        ; b0280 L10
+L11:
+  99  LABEL       L11                                        ; b0280 L11
+ 100  LOAD_NAME   f2bf6                                      ; bb47b f2bf6
+ 101  PUSH_LIT2   4:number                                   ; c2b6b 4 number
+ 102  GET_MEMBER  1                                          ; b89af 1
+ 103  DECL        a14a1                                      ; e5b15 a14a1
+ 104  CALL_NAME   b5eec 0                                    ; a5772 b5eec 0
+ 105  DECL        b1762                                      ; e5b15 b1762
+ 106  CALL_NAME   c57d6 0                                    ; a5772 c57d6 0
+ 107  DECL        d173c                                      ; e5b15 d173c
+ 108  NEW_OBJECT                                             ; a2b49
+ 109  PUSH_LIT    "vsadsa"                                   ; c1888 'CFTQFT' string
+ 110  SET_PROP    "key"                                      ; e776b \PN
+ 111  LOAD_NAME   b1762                                      ; bb47b b1762
+ 112  SET_PROP    "value"                                    ; e776b AT[BP
+ 113  LOAD_NAME   a14a1                                      ; bb47b a14a1
+ 114  PUSH_NAME   "value"                                    ; b1539 'NSUMW' false
+ 115  PUSH_NAME   "push"                                     ; b1539 'HGJP' false
+ 116  GET_MEMBER  2                                          ; b89af 2
+ 117  CALL        1                                          ; e73a3 1
+ 118  POP                                                    ; ddde1
+ 119  NEW_OBJECT                                             ; a2b49
+ 120  PUSH_LIT    "basfas"                                   ; c1888 'WTFSTF' string
+ 121  SET_PROP    "key"                                      ; e776b \PN
+ 122  LOAD_NAME   d173c                                      ; bb47b d173c
+ 123  SET_PROP    "value"                                    ; e776b AT[BP
+ 124  LOAD_NAME   a14a1                                      ; bb47b a14a1
+ 125  PUSH_NAME   "value"                                    ; b1539 'NSUMW' false
+ 126  PUSH_NAME   "push"                                     ; b1539 'HGJP' false
+ 127  GET_MEMBER  2                                          ; b89af 2
+ 128  CALL        1                                          ; e73a3 1
+ 129  POP                                                    ; ddde1
+ 130  NEW_OBJECT                                             ; a2b49
+ 131  PUSH_LIT    "lfasdgs"                                  ; c1888 'YSTFQRF' string
+ 132  SET_PROP    "key"                                      ; e776b \PN
+ 133  LOAD_NAME   window                                     ; bb47b N[\]]E
+ 134  PUSH_NAME   "arkl"                                     ; b1539 'Y@RT' false
+ 135  PUSH_NAME   "cbid"                                     ; b1539 '[PP\' false
+ 136  GET_MEMBER  2                                          ; b89af 2
+ 137  SET_PROP    "value"                                    ; e776b AT[BP
+ 138  LOAD_NAME   a14a1                                      ; bb47b a14a1
+ 139  PUSH_NAME   "value"                                    ; b1539 'NSUMW' false
+ 140  PUSH_NAME   "push"                                     ; b1539 'HGJP' false
+ 141  GET_MEMBER  2                                          ; b89af 2
+ 142  CALL        1                                          ; e73a3 1
+ 143  POP                                                    ; ddde1
+ 144  LOAD_NAME   a14a1                                      ; bb47b a14a1
+ 145  PUSH_NAME   "value"                                    ; b1539 'NSUMW' false
+ 146  PUSH_LIT2   25:number                                  ; c2b6b 25 number
+ 147  GET_MEMBER  2                                          ; b89af 2
+ 148  DECL        e3df4                                      ; e5b15 e3df4
+ 149  LOAD_NAME   a14a1                                      ; bb47b a14a1
+ 150  PUSH_NAME   "value"                                    ; b1539 'NSUMW' false
+ 151  PUSH_LIT2   1:number                                   ; c2b6b 1 number
+ 152  GET_MEMBER  2                                          ; b89af 2
+ 153  DECL        ee667                                      ; e5b15 ee667
+ 154  LOAD_NAME   a14a1                                      ; bb47b a14a1
+ 155  PUSH_NAME   "value"                                    ; b1539 'NSUMW' false
+ 156  PUSH_LIT2   18:number                                  ; c2b6b 18 number
+ 157  GET_MEMBER  2                                          ; b89af 2
+ 158  DECL        c7431                                      ; e5b15 c7431
+ 159  LOAD_NAME   e3df4                                      ; bb47b e3df4
+ 160  JMP_LOGICAL && L16                                     ; e9293 && L16
+ 161  LOAD_NAME   ee667                                      ; bb47b ee667
+ 162  LOGIC       &&                                         ; b0d77 &&
+L16:
+ 163  LABEL       L16                                        ; b0280 L16
+ 164  JMP_LOGICAL && L15                                     ; e9293 && L15
+ 165  LOAD_NAME   c7431                                      ; bb47b c7431
+ 166  LOGIC       &&                                         ; b0d77 &&
+L15:
+ 167  LABEL       L15                                        ; b0280 L15
+ 168  JMP_FALSE   L13                                        ; d0c9a L13
+ 169  LOAD_NAME   ee667                                      ; bb47b ee667
+ 170  PUSH_NAME   "value"                                    ; b1539 'NSUMW' false
+ 171  GET_MEMBER  1                                          ; b89af 1
+ 172  JMP_LOGICAL && L21                                     ; e9293 && L21
+ 173  LOAD_NAME   ee667                                      ; bb47b ee667
+ 174  PUSH_NAME   "value"                                    ; b1539 'NSUMW' false
+ 175  PUSH_NAME   "length"                                   ; b1539 'TWW_FQ' false
+ 176  GET_MEMBER  2                                          ; b89af 2
+ 177  PUSH_LIT    12:number                                  ; c1888 12 number
+ 178  BINOP       >                                          ; ae498 >
+ 179  LOGIC       &&                                         ; b0d77 &&
+L21:
+ 180  LABEL       L21                                        ; b0280 L21
+ 181  JMP_LOGICAL && L20                                     ; e9293 && L20
+ 182  LOAD_NAME   c7431                                      ; bb47b c7431
+ 183  PUSH_NAME   "value"                                    ; b1539 'NSUMW' false
+ 184  GET_MEMBER  1                                          ; b89af 1
+ 185  LOGIC       &&                                         ; b0d77 &&
+L20:
+ 186  LABEL       L20                                        ; b0280 L20
+ 187  JMP_LOGICAL && L19                                     ; e9293 && L19
+ 188  LOAD_NAME   c7431                                      ; bb47b c7431
+ 189  PUSH_NAME   "value"                                    ; b1539 'NSUMW' false
+ 190  PUSH_NAME   "length"                                   ; b1539 'TWW_FQ' false
+ 191  GET_MEMBER  2                                          ; b89af 2
+ 192  PUSH_LIT    12:number                                  ; c1888 12 number
+ 193  BINOP       >                                          ; ae498 >
+ 194  LOGIC       &&                                         ; b0d77 &&
+L19:
+ 195  LABEL       L19                                        ; b0280 L19
+ 196  JMP_FALSE   L17                                        ; d0c9a L17
+ 197  NEW_OBJECT                                             ; a2b49
+ 198  LOAD_NAME   e3df4                                      ; bb47b e3df4
+ 199  PUSH_NAME   "key"                                      ; b1539 'SW@' false
+ 200  GET_MEMBER  1                                          ; b89af 1
+ 201  SET_PROP    "key"                                      ; e776b \PN
+ 202  PUSH_LIT    0:number                                   ; c1888 0 number
+ 203  PUSH_LIT    3:number                                   ; c1888 3 number
+ 204  LOAD_NAME   ee667                                      ; bb47b ee667
+ 205  PUSH_NAME   "value"                                    ; b1539 'NSUMW' false
+ 206  PUSH_NAME   "slice"                                    ; b1539 'K^P[W' false
+ 207  GET_MEMBER  2                                          ; b89af 2
+ 208  CALL        2                                          ; e73a3 2
+ 209  PUSH_LIT    0:number                                   ; c1888 0 number
+ 210  PUSH_LIT    3:number                                   ; c1888 3 number
+ 211  LOAD_NAME   c7431                                      ; bb47b c7431
+ 212  PUSH_NAME   "value"                                    ; b1539 'NSUMW' false
+ 213  PUSH_NAME   "slice"                                    ; b1539 'K^P[W' false
+ 214  GET_MEMBER  2                                          ; b89af 2
+ 215  CALL        2                                          ; e73a3 2
+ 216  BINOP       +                                          ; ae498 +
+ 217  SET_PROP    "value"                                    ; e776b AT[BP
+ 218  LOAD_NAME   a14a1                                      ; bb47b a14a1
+ 219  PUSH_NAME   "value"                                    ; b1539 'NSUMW' false
+ 220  PUSH_LIT2   25:number                                  ; c2b6b 25 number
+ 221  GET_MEMBER  2                                          ; b89af 2
+ 222  SET_PATH                                               ; e262e
+ 223  DELETE      undefined                                  ; aac6f undefined
+ 224  JMP         L18                                        ; c923e L18
+L17:
+ 225  LABEL       L17                                        ; b0280 L17
+ 226  NEW_OBJECT                                             ; a2b49
+ 227  LOAD_NAME   e3df4                                      ; bb47b e3df4
+ 228  PUSH_NAME   "key"                                      ; b1539 'SW@' false
+ 229  GET_MEMBER  1                                          ; b89af 1
+ 230  SET_PROP    "key"                                      ; e776b \PN
+ 231  PUSH_LIT    "abcdef"                                   ; c1888 'TWVQPS' string
+ 232  SET_PROP    "value"                                    ; e776b AT[BP
+ 233  LOAD_NAME   a14a1                                      ; bb47b a14a1
+ 234  PUSH_NAME   "value"                                    ; b1539 'NSUMW' false
+ 235  PUSH_LIT2   25:number                                  ; c2b6b 25 number
+ 236  GET_MEMBER  2                                          ; b89af 2
+ 237  SET_PATH                                               ; e262e
+ 238  DELETE      undefined                                  ; aac6f undefined
+L18:
+ 239  LABEL       L18                                        ; b0280 L18
+ 240  JMP         L14                                        ; c923e L14
+L13:
+ 241  LABEL       L13                                        ; b0280 L13
+L14:
+ 242  LABEL       L14                                        ; b0280 L14
+ 243  LOAD_NAME   a14a1                                      ; bb47b a14a1
+ 244  PUSH_NAME   "value"                                    ; b1539 'NSUMW' false
+ 245  PUSH_LIT2   26:number                                  ; c2b6b 26 number
+ 246  GET_MEMBER  2                                          ; b89af 2
+ 247  DECL        cef22                                      ; e5b15 cef22
+ 248  LOAD_NAME   cef22                                      ; bb47b cef22
+ 249  JMP_FALSE   L22                                        ; d0c9a L22
+ 250  LOAD_NAME   cef22                                      ; bb47b cef22
+ 251  PUSH_NAME   "value"                                    ; b1539 'NSUMW' false
+ 252  GET_MEMBER  1                                          ; b89af 1
+ 253  JMP_FALSE   L24                                        ; d0c9a L24
+ 254  NEW_OBJECT                                             ; a2b49
+ 255  LOAD_NAME   cef22                                      ; bb47b cef22
+ 256  PUSH_NAME   "key"                                      ; b1539 'SW@' false
+ 257  GET_MEMBER  1                                          ; b89af 1
+ 258  SET_PROP    "key"                                      ; e776b \PN
+ 259  LOAD_NAME   cef22                                      ; bb47b cef22
+ 260  PUSH_NAME   "value"                                    ; b1539 'NSUMW' false
+ 261  GET_MEMBER  1                                          ; b89af 1
+ 262  PUSH_LIT    3:number                                   ; c1888 3 number
+ 263  BINOP       *                                          ; ae498 *
+ 264  SET_PROP    "value"                                    ; e776b AT[BP
+ 265  LOAD_NAME   a14a1                                      ; bb47b a14a1
+ 266  PUSH_NAME   "value"                                    ; b1539 'NSUMW' false
+ 267  PUSH_LIT2   26:number                                  ; c2b6b 26 number
+ 268  GET_MEMBER  2                                          ; b89af 2
+ 269  SET_PATH                                               ; e262e
+ 270  DELETE      undefined                                  ; aac6f undefined
+ 271  JMP         L25                                        ; c923e L25
+L24:
+ 272  LABEL       L24                                        ; b0280 L24
+L25:
+ 273  LABEL       L25                                        ; b0280 L25
+ 274  JMP         L23                                        ; c923e L23
+L22:
+ 275  LABEL       L22                                        ; b0280 L22
+L23:
+ 276  LABEL       L23                                        ; b0280 L23
+ 277  LOAD_NAME   a14a1                                      ; bb47b a14a1
+ 278  PUSH_NAME   "value"                                    ; b1539 'NSUMW' false
+ 279  PUSH_LIT2   63:number                                  ; c2b6b 63 number
+ 280  GET_MEMBER  2                                          ; b89af 2
+ 281  DECL        f5428                                      ; e5b15 f5428
+ 282  LOAD_NAME   f5428                                      ; bb47b f5428
+ 283  JMP_LOGICAL && L31                                     ; e9293 && L31
+ 284  LOAD_NAME   f5428                                      ; bb47b f5428
+ 285  PUSH_NAME   "value"                                    ; b1539 'NSUMW' false
+ 286  GET_MEMBER  1                                          ; b89af 1
+ 287  LOGIC       &&                                         ; b0d77 &&
+L31:
+ 288  LABEL       L31                                        ; b0280 L31
+ 289  JMP_LOGICAL && L30                                     ; e9293 && L30
+ 290  LOAD_NAME   f5428                                      ; bb47b f5428
+ 291  PUSH_NAME   "key"                                      ; b1539 'SW@' false
+ 292  GET_MEMBER  1                                          ; b89af 1
+ 293  PUSH_LIT    "z87b89t5"                                 ; c1888 'O\x0d\x02W\x0d\x0cA\x00' string
+ 294  BINOP       ===                                        ; ae498 ===
+ 295  LOGIC       &&                                         ; b0d77 &&
+L30:
+ 296  LABEL       L30                                        ; b0280 L30
+ 297  JMP_LOGICAL && L29                                     ; e9293 && L29
+ 298  LOAD_NAME   f5428                                      ; bb47b f5428
+ 299  PUSH_NAME   "value"                                    ; b1539 'NSUMW' false
+ 300  GET_MEMBER  1                                          ; b89af 1
+ 301  PUSH_LIT    100301:number                              ; c1888 100301 number
+ 302  BINOP       >                                          ; ae498 >
+ 303  LOGIC       &&                                         ; b0d77 &&
+L29:
+ 304  LABEL       L29                                        ; b0280 L29
+ 305  JMP_LOGICAL && L28                                     ; e9293 && L28
+ 306  LOAD_NAME   f5428                                      ; bb47b f5428
+ 307  PUSH_NAME   "value"                                    ; b1539 'NSUMW' false
+ 308  GET_MEMBER  1                                          ; b89af 1
+ 309  PUSH_LIT    100303:number                              ; c1888 100303 number
+ 310  BINOP       <                                          ; ae498 <
+ 311  LOGIC       &&                                         ; b0d77 &&
+L28:
+ 312  LABEL       L28                                        ; b0280 L28
+ 313  JMP_FALSE   L26                                        ; d0c9a L26
+ 314  PUSH_LIT    "mobile_sdk__dataRequestTimedOut"          ; c1888 'XZW\YPjFQ^jjQTATgPD@PFAa\XPQz@A' string
+ 315  LOAD_NAME   f5428                                      ; bb47b f5428
+ 316  PUSH_NAME   "key"                                      ; b1539 'SW@' false
+ 317  GET_MEMBER  1                                          ; b89af 1
+ 318  SET_PATH                                               ; e262e
+ 319  DELETE      undefined                                  ; aac6f undefined
+ 320  PUSH_LIT    1:number                                   ; c1888 1 number
+ 321  LOAD_NAME   f5428                                      ; bb47b f5428
+ 322  PUSH_NAME   "value"                                    ; b1539 'NSUMW' false
+ 323  GET_MEMBER  1                                          ; b89af 1
+ 324  SET_PATH                                               ; e262e
+ 325  DELETE      undefined                                  ; aac6f undefined
+ 326  JMP         L27                                        ; c923e L27
+L26:
+ 327  LABEL       L26                                        ; b0280 L26
+L27:
+ 328  LABEL       L27                                        ; b0280 L27
+ 329  ENDFUN      a3b1e                                      ; b17bd a3b1e
+ 330  DECL        f34c0                                      ; e5b15 f34c0
+ 331  DECL        f34c0                                      ; e5b15 f34c0
+ 332  DEFUN       f0f8d                                      ; a82bc f0f8d
+ 333  STORE       e38f0                                      ; cea87 e38f0
+ 334  STORE       d81df                                      ; cea87 d81df
+ 335  STORE       f2bf6                                      ; cea87 f2bf6
+ 336  DEFUN       ad63c                                      ; a82bc ad63c
+ 337  PUSH_LIT    32:number                                  ; c1888 32 number
+ 338  NEW         1 Uint8Array                               ; b404d 1 Uint8Array
+ 339  LOAD_NAME   e38f0                                      ; bb47b e38f0
+ 340  PUSH_NAME   "getRandomValues"                          ; b1539 '_WMjSW\]TnSUMWJ' false
+ 341  GET_MEMBER  1                                          ; b89af 1
+ 342  CALL        1                                          ; e73a3 1
+ 343  RETURN                                                 ; a0cd9
+ 344  ENDFUN      ad63c                                      ; b17bd ad63c
+ 345  DEFUN       b14af                                      ; a82bc b14af
+ 346  STORE       ddcd9                                      ; cea87 ddcd9
+ 347  PUSH_LIT    "raw"                                      ; c1888 'GTB' string
+ 348  LOAD_NAME   ddcd9                                      ; bb47b ddcd9
+ 349  NEW_OBJECT                                             ; a2b49
+ 350  PUSH_LIT    "AES-GCM"                                  ; c1888 'tpf\x18rvx' string
+ 351  SET_PROP    "name"                                     ; e776b YTZR
+ 352  PUSH_LIT    false                                      ; c1888 false boolean
+ 353  PUSH_LIT    "encrypt"                                  ; c1888 'P[VGLEA' string
+ 354  NEW_ARRAY   1                                          ; e8265 1
+ 355  LOAD_NAME   e38f0                                      ; bb47b e38f0
+ 356  PUSH_NAME   "subtle"                                   ; b1539 'KG[L^\' false
+ 357  PUSH_NAME   "importKey"                                ; b1539 'Q_IW@MsW@' false
+ 358  GET_MEMBER  2                                          ; b89af 2
+ 359  CALL        5                                          ; e73a3 5
+ 360  RETURN                                                 ; a0cd9
+ 361  ENDFUN      b14af                                      ; b17bd b14af
+ 362  DEFUN       da75c                                      ; a82bc da75c
+ 363  PUSH_LIT    12:number                                  ; c1888 12 number
+ 364  NEW         1 Uint8Array                               ; b404d 1 Uint8Array
+ 365  LOAD_NAME   e38f0                                      ; bb47b e38f0
+ 366  PUSH_NAME   "getRandomValues"                          ; b1539 '_WMjSW\]TnSUMWJ' false
+ 367  GET_MEMBER  1                                          ; b89af 1
+ 368  CALL        1                                          ; e73a3 1
+ 369  RETURN                                                 ; a0cd9
+ 370  ENDFUN      da75c                                      ; b17bd da75c
+ 371  DEFUN       cf74c                                      ; a82bc cf74c
+ 372  STORE       ceba8                                      ; cea87 ceba8
+ 373  STORE       e1fdc                                      ; cea87 e1fdc
+ 374  STORE       ea4b4                                      ; cea87 ea4b4
+ 375  LOAD_NAME   ceba8                                      ; bb47b ceba8
+ 376  LOAD_NAME   window                                     ; bb47b N[\]]E
+ 377  PUSH_NAME   "arkl"                                     ; b1539 'Y@RT' false
+ 378  PUSH_NAME   "aagesg"                                   ; b1539 'YS^]A^' false
+ 379  GET_MEMBER  2                                          ; b89af 2
+ 380  CALL        1                                          ; e73a3 1
+ 381  DECL        c4a91                                      ; e5b15 c4a91
+ 382  NEW_OBJECT                                             ; a2b49
+ 383  PUSH_LIT    "AES-GCM"                                  ; c1888 'tpf\x18rvx' string
+ 384  SET_PROP    "name"                                     ; e776b YTZR
+ 385  PUSH_LIT    128:number                                 ; c1888 128 number
+ 386  SET_PROP    "tagLength"                                ; e776b CTP{PYPA_
+ 387  LOAD_NAME   e1fdc                                      ; bb47b e1fdc
+ 388  SET_PROP    "iv"                                       ; e776b ^C
+ 389  LOAD_NAME   ea4b4                                      ; bb47b ea4b4
+ 390  LOAD_NAME   c4a91                                      ; bb47b c4a91
+ 391  LOAD_NAME   e38f0                                      ; bb47b e38f0
+ 392  PUSH_NAME   "subtle"                                   ; b1539 'KG[L^\' false
+ 393  PUSH_NAME   "encrypt"                                  ; b1539 ']\ZJKIL' false
+ 394  GET_MEMBER  2                                          ; b89af 2
+ 395  CALL        3                                          ; e73a3 3
+ 396  RETURN                                                 ; a0cd9
+ 397  ENDFUN      cf74c                                      ; b17bd cf74c
+ 398  DEFUN       edf4c                                      ; a82bc edf4c
+ 399  STORE       b9750                                      ; cea87 b9750
+ 400  LOAD_NAME   b9750                                      ; bb47b b9750
+ 401  NEW         1 Uint8Array                               ; b404d 1 Uint8Array
+ 402  DECL        a7b32                                      ; e5b15 a7b32
+ 403  PUSH_LIT    16:number                                  ; c1888 16 number
+ 404  DECL        fe65a                                      ; e5b15 fe65a
+ 405  PUSH_LIT    0:number                                   ; c1888 0 number
+ 406  LOAD_NAME   a7b32                                      ; bb47b a7b32
+ 407  PUSH_NAME   "length"                                   ; b1539 'TWW_FQ' false
+ 408  GET_MEMBER  1                                          ; b89af 1
+ 409  LOAD_NAME   fe65a                                      ; bb47b fe65a
+ 410  BINOP       -                                          ; ae498 -
+ 411  LOAD_NAME   a7b32                                      ; bb47b a7b32
+ 412  PUSH_NAME   "subarray"                                 ; b1539 'KG[Y@KYK' false
+ 413  GET_MEMBER  1                                          ; b89af 1
+ 414  CALL        2                                          ; e73a3 2
+ 415  NEW         1 Uint8Array                               ; b404d 1 Uint8Array
+ 416  DECL        ab959                                      ; e5b15 ab959
+ 417  LOAD_NAME   a7b32                                      ; bb47b a7b32
+ 418  PUSH_NAME   "length"                                   ; b1539 'TWW_FQ' false
+ 419  GET_MEMBER  1                                          ; b89af 1
+ 420  LOAD_NAME   fe65a                                      ; bb47b fe65a
+ 421  BINOP       -                                          ; ae498 -
+ 422  LOAD_NAME   a7b32                                      ; bb47b a7b32
+ 423  PUSH_NAME   "subarray"                                 ; b1539 'KG[Y@KYK' false
+ 424  GET_MEMBER  1                                          ; b89af 1
+ 425  CALL        1                                          ; e73a3 1
+ 426  NEW         1 Uint8Array                               ; b404d 1 Uint8Array
+ 427  DECL        e952d                                      ; e5b15 e952d
+ 428  NEW_OBJECT                                             ; a2b49
+ 429  LOAD_NAME   ab959                                      ; bb47b ab959
+ 430  PUSH_NAME   "buffer"                                   ; b1539 'ZG_^WK' false
+ 431  GET_MEMBER  1                                          ; b89af 1
+ 432  SET_PROP    "ciphertextBuffer"                         ; e776b T\G_PECPOCwBQSRE
+ 433  LOAD_NAME   e952d                                      ; bb47b e952d
+ 434  PUSH_NAME   "buffer"                                   ; b1539 'ZG_^WK' false
+ 435  GET_MEMBER  1                                          ; b89af 1
+ 436  SET_PROP    "tagBuffer"                                ; e776b CTPu@QQPE
+ 437  RETURN                                                 ; a0cd9
+ 438  ENDFUN      edf4c                                      ; b17bd edf4c
+ 439  DEFUN       e06ca                                      ; a82bc e06ca
+ 440  STORE       e7eca                                      ; cea87 e7eca
+ 441  STORE       ddcd9                                      ; cea87 ddcd9
+ 442  LOAD_NAME   e7eca                                      ; bb47b e7eca
+ 443  LOAD_NAME   window                                     ; bb47b N[\]]E
+ 444  PUSH_NAME   "arkl"                                     ; b1539 'Y@RT' false
+ 445  PUSH_NAME   "basdga"                                   ; b1539 'ZSJ\UX' false
+ 446  GET_MEMBER  2                                          ; b89af 2
+ 447  CALL        1                                          ; e73a3 1
+ 448  DECL        fe97d                                      ; e5b15 fe97d
+ 449  PUSH_LIT    "spki"                                     ; c1888 'FE^\' string
+ 450  LOAD_NAME   fe97d                                      ; bb47b fe97d
+ 451  NEW_OBJECT                                             ; a2b49
+ 452  PUSH_LIT    "RSA-OAEP"                                 ; c1888 'gft\x18ztpe' string
+ 453  SET_PROP    "name"                                     ; e776b YTZR
+ 454  PUSH_LIT    "SHA-256"                                  ; c1888 'f}t\x18\x07\x00\x03' string
+ 455  SET_PROP    "hash"                                     ; e776b _TD_
+ 456  PUSH_LIT    false                                      ; c1888 false boolean
+ 457  PUSH_LIT    "encrypt"                                  ; c1888 'P[VGLEA' string
+ 458  NEW_ARRAY   1                                          ; e8265 1
+ 459  LOAD_NAME   e38f0                                      ; bb47b e38f0
+ 460  PUSH_NAME   "subtle"                                   ; b1539 'KG[L^\' false
+ 461  PUSH_NAME   "importKey"                                ; b1539 'Q_IW@MsW@' false
+ 462  GET_MEMBER  2                                          ; b89af 2
+ 463  CALL        5                                          ; e73a3 5
+ 464  AWAIT                                                  ; ac4e4
+ 465  DECL        b81dc                                      ; e5b15 b81dc
+ 466  NEW_OBJECT                                             ; a2b49
+ 467  PUSH_LIT    "RSA-OAEP"                                 ; c1888 'gft\x18ztpe' string
+ 468  SET_PROP    "name"                                     ; e776b YTZR
+ 469  PUSH_LIT    "SHA-256"                                  ; c1888 'f}t\x18\x07\x00\x03' string
+ 470  SET_PROP    "hash"                                     ; e776b _TD_
+ 471  LOAD_NAME   b81dc                                      ; bb47b b81dc
+ 472  LOAD_NAME   ddcd9                                      ; bb47b ddcd9
+ 473  LOAD_NAME   e38f0                                      ; bb47b e38f0
+ 474  PUSH_NAME   "subtle"                                   ; b1539 'KG[L^\' false
+ 475  PUSH_NAME   "encrypt"                                  ; b1539 ']\ZJKIL' false
+ 476  GET_MEMBER  2                                          ; b89af 2
+ 477  CALL        3                                          ; e73a3 3
+ 478  RETURN                                                 ; a0cd9
+ 479  ENDFUN      e06ca                                      ; b17bd e06ca
+ 480  LOAD_NAME   f2bf6                                      ; bb47b f2bf6
+ 481  UNARY       !                                          ; b5558 !
+ 482  JMP_FALSE   L32                                        ; d0c9a L32
+ 483  PUSH_LIT    null                                       ; c1888 null object
+ 484  RETURN                                                 ; a0cd9
+ 485  JMP         L33                                        ; c923e L33
+L32:
+ 486  LABEL       L32                                        ; b0280 L32
+L33:
+ 487  LABEL       L33                                        ; b0280 L33
+ 488  LOAD_NAME   d81df                                      ; bb47b d81df
+ 489  UNARY       !                                          ; b5558 !
+ 490  JMP_FALSE   L34                                        ; d0c9a L34
+ 491  PUSH_LIT    null                                       ; c1888 null object
+ 492  RETURN                                                 ; a0cd9
+ 493  JMP         L35                                        ; c923e L35
+L34:
+ 494  LABEL       L34                                        ; b0280 L34
+L35:
+ 495  LABEL       L35                                        ; b0280 L35
+ 496  LOAD_NAME   f2bf6                                      ; bb47b f2bf6
+ 497  LOAD_NAME   JSON                                       ; bb47b sa}w
+ 498  PUSH_NAME   "stringify"                                ; b1539 'KFKQ\^QT@' false
+ 499  GET_MEMBER  1                                          ; b89af 1
+ 500  CALL        1                                          ; e73a3 1
+ 501  DECL        a2b51                                      ; e5b15 a2b51
+ 502  CALL_NAME   ad63c 0                                    ; a5772 ad63c 0
+ 503  DECL        c5ba1                                      ; e5b15 c5ba1
+ 504  LOAD_NAME   c5ba1                                      ; bb47b c5ba1
+ 505  CALL_NAME   b14af 1                                    ; a5772 b14af 1
+ 506  AWAIT                                                  ; ac4e4
+ 507  DECL        cae5d                                      ; e5b15 cae5d
+ 508  LOAD_NAME   c5ba1                                      ; bb47b c5ba1
+ 509  LOAD_NAME   d81df                                      ; bb47b d81df
+ 510  CALL_NAME   e06ca 2                                    ; a5772 e06ca 2
+ 511  AWAIT                                                  ; ac4e4
+ 512  DECL        c81cd                                      ; e5b15 c81cd
+ 513  PUSH_LIT    0:number                                   ; c1888 0 number
+ 514  DECL        c3bee                                      ; e5b15 c3bee
+L36:
+ 515  LABEL       L36                                        ; b0280 L36
+ 516  LOAD_NAME   c3bee                                      ; bb47b c3bee
+ 517  LOAD_NAME   c5ba1                                      ; bb47b c5ba1
+ 518  PUSH_NAME   "length"                                   ; b1539 'TWW_FQ' false
+ 519  GET_MEMBER  1                                          ; b89af 1
+ 520  BINOP       <                                          ; ae498 <
+ 521  JMP_FALSE   L37                                        ; d0c9a L37
+ 522  PUSH_LIT    0:number                                   ; c1888 0 number
+ 523  LOAD_NAME   c5ba1                                      ; bb47b c5ba1
+ 524  PUSH_NAME   deref "i"                                  ; b1539 'Q' true
+ 525  GET_MEMBER  1                                          ; b89af 1
+ 526  SET_PATH                                               ; e262e
+ 527  DELETE      undefined                                  ; aac6f undefined
+ 528  LOAD_NAME   c3bee                                      ; bb47b c3bee
+ 529  PUSH_LIT    1:number                                   ; c1888 1 number
+ 530  BINOP       +                                          ; ae498 +
+ 531  DECL        c3bee                                      ; e5b15 c3bee
+ 532  DELETE      i                                          ; aac6f i
+ 533  JMP         L36                                        ; c923e L36
+L37:
+ 534  LABEL       L37                                        ; b0280 L37
+ 535  CALL_NAME   da75c 0                                    ; a5772 da75c 0
+ 536  DECL        c28fe                                      ; e5b15 c28fe
+ 537  LOAD_NAME   cae5d                                      ; bb47b cae5d
+ 538  LOAD_NAME   c28fe                                      ; bb47b c28fe
+ 539  LOAD_NAME   a2b51                                      ; bb47b a2b51
+ 540  CALL_NAME   cf74c 3                                    ; a5772 cf74c 3
+ 541  AWAIT                                                  ; ac4e4
+ 542  DECL        bdb46                                      ; e5b15 bdb46
+ 543  LOAD_NAME   bdb46                                      ; bb47b bdb46
+ 544  CALL_NAME   edf4c 1                                    ; a5772 edf4c 1
+ 545  DECL        b1d50                                      ; e5b15 b1d50
+ 546  LOAD_NAME   b1d50                                      ; bb47b b1d50
+ 547  PUSH_NAME   "ciphertextBuffer"                         ; b1539 '[[IPWKLWALpL^T\J' false
+ 548  GET_MEMBER  1                                          ; b89af 1
+ 549  DECL        e5a90                                      ; e5b15 e5a90
+ 550  LOAD_NAME   b1d50                                      ; bb47b b1d50
+ 551  PUSH_NAME   "tagBuffer"                                ; b1539 'LS^zG_^WK' false
+ 552  GET_MEMBER  1                                          ; b89af 1
+ 553  DECL        af824                                      ; e5b15 af824
+ 554  LOAD_NAME   e5a90                                      ; bb47b e5a90
+ 555  LOAD_NAME   window                                     ; bb47b N[\]]E
+ 556  PUSH_NAME   "arkl"                                     ; b1539 'Y@RT' false
+ 557  PUSH_NAME   "caasgs"                                   ; b1539 '[SXKUJ' false
+ 558  GET_MEMBER  2                                          ; b89af 2
+ 559  CALL        1                                          ; e73a3 1
+ 560  DECL        f6d5d                                      ; e5b15 f6d5d
+ 561  LOAD_NAME   af824                                      ; bb47b af824
+ 562  LOAD_NAME   window                                     ; bb47b N[\]]E
+ 563  PUSH_NAME   "arkl"                                     ; b1539 'Y@RT' false
+ 564  PUSH_NAME   "caasgs"                                   ; b1539 '[SXKUJ' false
+ 565  GET_MEMBER  2                                          ; b89af 2
+ 566  CALL        1                                          ; e73a3 1
+ 567  DECL        cfc0a                                      ; e5b15 cfc0a
+ 568  LOAD_NAME   c28fe                                      ; bb47b c28fe
+ 569  PUSH_NAME   "buffer"                                   ; b1539 'ZG_^WK' false
+ 570  GET_MEMBER  1                                          ; b89af 1
+ 571  LOAD_NAME   window                                     ; bb47b N[\]]E
+ 572  PUSH_NAME   "arkl"                                     ; b1539 'Y@RT' false
+ 573  PUSH_NAME   "caasgs"                                   ; b1539 '[SXKUJ' false
+ 574  GET_MEMBER  2                                          ; b89af 2
+ 575  CALL        1                                          ; e73a3 1
+ 576  DECL        c2275                                      ; e5b15 c2275
+ 577  LOAD_NAME   c81cd                                      ; bb47b c81cd
+ 578  LOAD_NAME   window                                     ; bb47b N[\]]E
+ 579  PUSH_NAME   "arkl"                                     ; b1539 'Y@RT' false
+ 580  PUSH_NAME   "caasgs"                                   ; b1539 '[SXKUJ' false
+ 581  GET_MEMBER  2                                          ; b89af 2
+ 582  CALL        1                                          ; e73a3 1
+ 583  DECL        a64cb                                      ; e5b15 a64cb
+ 584  LOAD_NAME   c2275                                      ; bb47b c2275
+ 585  LOAD_NAME   cfc0a                                      ; bb47b cfc0a
+ 586  BINOP       +                                          ; ae498 +
+ 587  LOAD_NAME   a64cb                                      ; bb47b a64cb
+ 588  BINOP       +                                          ; ae498 +
+ 589  LOAD_NAME   f6d5d                                      ; bb47b f6d5d
+ 590  BINOP       +                                          ; ae498 +
+ 591  RETURN                                                 ; a0cd9
+ 592  ENDFUN      f0f8d                                      ; b17bd f0f8d
+ 593  DECL        f3d8c                                      ; e5b15 f3d8c
+ 594  DECL        f3d8c                                      ; e5b15 f3d8c
+ 595  DEFUN       f37ee                                      ; a82bc f37ee
+ 596  STORE       e38f0                                      ; cea87 e38f0
+ 597  STORE       d81df                                      ; cea87 d81df
+ 598  STORE       f2bf6                                      ; cea87 f2bf6
+ 599  DEFUN       df781                                      ; a82bc df781
+ 600  STORE       b8f0f                                      ; cea87 b8f0f
+ 601  NEW_ARRAY   0                                          ; e8265 0
+ 602  DECL        ce00c                                      ; e5b15 ce00c
+ 603  PUSH_LIT    0:number                                   ; c1888 0 number
+ 604  DECL        c3bee                                      ; e5b15 c3bee
+L38:
+ 605  LABEL       L38                                        ; b0280 L38
+ 606  LOAD_NAME   c3bee                                      ; bb47b c3bee
+ 607  LOAD_NAME   b8f0f                                      ; bb47b b8f0f
+ 608  PUSH_NAME   "length"                                   ; b1539 'TWW_FQ' false
+ 609  GET_MEMBER  1                                          ; b89af 1
+ 610  BINOP       <                                          ; ae498 <
+ 611  JMP_FALSE   L39                                        ; d0c9a L39
+ 612  LOAD_NAME   b8f0f                                      ; bb47b b8f0f
+ 613  PUSH_NAME   deref "i"                                  ; b1539 'Q' true
+ 614  GET_MEMBER  1                                          ; b89af 1
+ 615  LOAD_NAME   ce00c                                      ; bb47b ce00c
+ 616  PUSH_NAME   deref "i"                                  ; b1539 'Q' true
+ 617  GET_MEMBER  1                                          ; b89af 1
+ 618  SET_PATH                                               ; e262e
+ 619  DELETE      undefined                                  ; aac6f undefined
+ 620  LOAD_NAME   c3bee                                      ; bb47b c3bee
+ 621  PUSH_LIT    1:number                                   ; c1888 1 number
+ 622  BINOP       +                                          ; ae498 +
+ 623  DECL        c3bee                                      ; e5b15 c3bee
+ 624  DELETE      i                                          ; aac6f i
+ 625  JMP         L38                                        ; c923e L38
+L39:
+ 626  LABEL       L39                                        ; b0280 L39
+ 627  LOAD_NAME   ce00c                                      ; bb47b ce00c
+ 628  LOAD_NAME   e38f0                                      ; bb47b e38f0
+ 629  PUSH_NAME   "initPrng"                                 ; b1539 'Q\PLbKVU' false
+ 630  GET_MEMBER  1                                          ; b89af 1
+ 631  CALL        1                                          ; e73a3 1
+ 632  POP                                                    ; ddde1
+ 633  ENDFUN      df781                                      ; b17bd df781
+ 634  PUSH_LIT    48:number                                  ; c1888 48 number
+ 635  NEW         1 Uint8Array                               ; b404d 1 Uint8Array
+ 636  LOAD_NAME   window                                     ; bb47b N[\]]E
+ 637  PUSH_NAME   "msCrypto"                                 ; b1539 'UAzJKIL]' false
+ 638  PUSH_NAME   "getRandomValues"                          ; b1539 '_WMjSW\]TnSUMWJ' false
+ 639  GET_MEMBER  2                                          ; b89af 2
+ 640  CALL        1                                          ; e73a3 1
+ 641  DECL        eddf0                                      ; e5b15 eddf0
+ 642  LOAD_NAME   eddf0                                      ; bb47b eddf0
+ 643  CALL_NAME   df781 1                                    ; a5772 df781 1
+ 644  POP                                                    ; ddde1
+ 645  LOAD_NAME   f2bf6                                      ; bb47b f2bf6
+ 646  LOAD_NAME   d81df                                      ; bb47b d81df
+ 647  LOAD_NAME   e38f0                                      ; bb47b e38f0
+ 648  CALL_NAME   f0f8d 3                                    ; a5772 f0f8d 3
+ 649  AWAIT                                                  ; ac4e4
+ 650  RETURN                                                 ; a0cd9
+ 651  ENDFUN      f37ee                                      ; b17bd f37ee
+ 652  DECL        ca142                                      ; e5b15 ca142
+ 653  DECL        ca142                                      ; e5b15 ca142
+ 654  DEFUN       acd94                                      ; a82bc acd94
+ 655  STORE       da4fd                                      ; cea87 da4fd
+ 656  STORE       f42af                                      ; cea87 f42af
+ 657  LOAD_NAME   f42af                                      ; bb47b f42af
+ 658  LOAD_NAME   da4fd                                      ; bb47b da4fd
+ 659  PUSH_NAME   "util"                                     ; b1539 'MFPT' false
+ 660  PUSH_NAME   "decode64"                                 ; b1539 '\WZWV\\x0e\x06' false
+ 661  GET_MEMBER  2                                          ; b89af 2
+ 662  CALL        1                                          ; e73a3 1
+ 663  DECL        dd189                                      ; e5b15 dd189
+ 664  LOAD_NAME   dd189                                      ; bb47b dd189
+ 665  LOAD_NAME   da4fd                                      ; bb47b da4fd
+ 666  PUSH_NAME   "asn1"                                     ; b1539 'YAW\x09' false
+ 667  PUSH_NAME   "fromDer"                                  ; b1539 '^@VUv\J' false
+ 668  GET_MEMBER  2                                          ; b89af 2
+ 669  CALL        1                                          ; e73a3 1
+ 670  DECL        a9fac                                      ; e5b15 a9fac
+ 671  LOAD_NAME   a9fac                                      ; bb47b a9fac
+ 672  LOAD_NAME   da4fd                                      ; bb47b da4fd
+ 673  PUSH_NAME   "pki"                                      ; b1539 'HYP' false
+ 674  PUSH_NAME   "publicKeyFromAsn1"                        ; b1539 'HG[T[ZsW@~@VUsJV\x03' false
+ 675  GET_MEMBER  2                                          ; b89af 2
+ 676  CALL        1                                          ; e73a3 1
+ 677  RETURN                                                 ; a0cd9
+ 678  ENDFUN      acd94                                      ; b17bd acd94
+ 679  DEFUN       b36a3                                      ; a82bc b36a3
+ 680  STORE       da4fd                                      ; cea87 da4fd
+ 681  PUSH_LIT    12:number                                  ; c1888 12 number
+ 682  LOAD_NAME   da4fd                                      ; bb47b da4fd
+ 683  PUSH_NAME   "random"                                   ; b1539 'JSW\]T' false
+ 684  PUSH_NAME   "getBytesSync"                             ; b1539 '_WMzKM]AjA\Z' false
+ 685  GET_MEMBER  2                                          ; b89af 2
+ 686  CALL        1                                          ; e73a3 1
+ 687  RETURN                                                 ; a0cd9
+ 688  ENDFUN      b36a3                                      ; b17bd b36a3
+ 689  DEFUN       f71fd                                      ; a82bc f71fd
+ 690  STORE       da4fd                                      ; cea87 da4fd
+ 691  STORE       d81df                                      ; cea87 d81df
+ 692  STORE       abac2                                      ; cea87 abac2
+ 693  STORE       a2b51                                      ; cea87 a2b51
+ 694  PUSH_LIT    32:number                                  ; c1888 32 number
+ 695  LOAD_NAME   da4fd                                      ; bb47b da4fd
+ 696  PUSH_NAME   "random"                                   ; b1539 'JSW\]T' false
+ 697  PUSH_NAME   "getBytesSync"                             ; b1539 '_WMzKM]AjA\Z' false
+ 698  GET_MEMBER  2                                          ; b89af 2
+ 699  CALL        1                                          ; e73a3 1
+ 700  DECL        c1030                                      ; e5b15 c1030
+ 701  PUSH_LIT    "AES-GCM"                                  ; c1888 'tpf\x18rvx' string
+ 702  LOAD_NAME   c1030                                      ; bb47b c1030
+ 703  LOAD_NAME   da4fd                                      ; bb47b da4fd
+ 704  PUSH_NAME   "cipher"                                   ; b1539 '[[IPWK' false
+ 705  PUSH_NAME   "createCipher"                             ; b1539 '[@\YF\{[IPWK' false
+ 706  GET_MEMBER  2                                          ; b89af 2
+ 707  CALL        2                                          ; e73a3 2
+ 708  DECL        cc61f                                      ; e5b15 cc61f
+ 709  NEW_OBJECT                                             ; a2b49
+ 710  LOAD_NAME   abac2                                      ; bb47b abac2
+ 711  SET_PROP    "iv"                                       ; e776b ^C
+ 712  LOAD_NAME   cc61f                                      ; bb47b cc61f
+ 713  PUSH_NAME   "start"                                    ; b1539 'KFXJF' false
+ 714  GET_MEMBER  1                                          ; b89af 1
+ 715  CALL        1                                          ; e73a3 1
+ 716  POP                                                    ; ddde1
+ 717  LOAD_NAME   a2b51                                      ; bb47b a2b51
+ 718  PUSH_LIT    "utf8"                                     ; c1888 '@AS\x0d' string
+ 719  LOAD_NAME   da4fd                                      ; bb47b da4fd
+ 720  PUSH_NAME   "util"                                     ; b1539 'MFPT' false
+ 721  PUSH_NAME   "createBuffer"                             ; b1539 '[@\YF\zG_^WK' false
+ 722  GET_MEMBER  2                                          ; b89af 2
+ 723  CALL        2                                          ; e73a3 2
+ 724  LOAD_NAME   cc61f                                      ; bb47b cc61f
+ 725  PUSH_NAME   "update"                                   ; b1539 'MB]YF\' false
+ 726  GET_MEMBER  1                                          ; b89af 1
+ 727  CALL        1                                          ; e73a3 1
+ 728  POP                                                    ; ddde1
+ 729  LOAD_NAME   cc61f                                      ; bb47b cc61f
+ 730  PUSH_NAME   "finish"                                   ; b1539 '^[WQAQ' false
+ 731  GET_MEMBER  1                                          ; b89af 1
+ 732  CALL        0                                          ; e73a3 0
+ 733  UNARY       !                                          ; b5558 !
+ 734  JMP_FALSE   L40                                        ; d0c9a L40
+ 735  PUSH_LIT    null                                       ; c1888 null object
+ 736  RETURN                                                 ; a0cd9
+ 737  JMP         L41                                        ; c923e L41
+L40:
+ 738  LABEL       L40                                        ; b0280 L40
+L41:
+ 739  LABEL       L41                                        ; b0280 L41
+ 740  LOAD_NAME   d81df                                      ; bb47b d81df
+ 741  LOAD_NAME   da4fd                                      ; bb47b da4fd
+ 742  CALL_NAME   acd94 2                                    ; a5772 acd94 2
+ 743  DECL        b81dc                                      ; e5b15 b81dc
+ 744  LOAD_NAME   da4fd                                      ; bb47b da4fd
+ 745  PUSH_NAME   "md"                                       ; b1539 'UV' false
+ 746  PUSH_NAME   "sha256"                                   ; b1539 'KZX\x0a\x07\x0f' false
+ 747  PUSH_NAME   "create"                                   ; b1539 '[@\YF\' false
+ 748  GET_MEMBER  3                                          ; b89af 3
+ 749  CALL        0                                          ; e73a3 0
+ 750  DECL        c05f5                                      ; e5b15 c05f5
+ 751  LOAD_NAME   c1030                                      ; bb47b c1030
+ 752  PUSH_LIT    "RSA-OAEP"                                 ; c1888 'gft\x18ztpe' string
+ 753  NEW_OBJECT                                             ; a2b49
+ 754  LOAD_NAME   c05f5                                      ; bb47b c05f5
+ 755  SET_PROP    "md"                                       ; e776b ZQ
+ 756  LOAD_NAME   b81dc                                      ; bb47b b81dc
+ 757  PUSH_NAME   "encrypt"                                  ; b1539 ']\ZJKIL' false
+ 758  GET_MEMBER  1                                          ; b89af 1
+ 759  CALL        3                                          ; e73a3 3
+ 760  DECL        f5db5                                      ; e5b15 f5db5
+ 761  NEW_OBJECT                                             ; a2b49
+ 762  LOAD_NAME   cc61f                                      ; bb47b cc61f
+ 763  PUSH_NAME   "output"                                   ; b1539 'WGMHGM' false
+ 764  PUSH_NAME   "getBytes"                                 ; b1539 '_WMzKM]A' false
+ 765  GET_MEMBER  2                                          ; b89af 2
+ 766  CALL        0                                          ; e73a3 0
+ 767  SET_PROP    "ciphertext"                               ; e776b T\G_PECPOC
+ 768  LOAD_NAME   cc61f                                      ; bb47b cc61f
+ 769  PUSH_NAME   "mode"                                     ; b1539 'U]]]' false
+ 770  PUSH_NAME   "tag"                                      ; b1539 'LS^' false
+ 771  PUSH_NAME   "getBytes"                                 ; b1539 '_WMzKM]A' false
+ 772  GET_MEMBER  3                                          ; b89af 3
+ 773  CALL        0                                          ; e73a3 0
+ 774  SET_PROP    "tag"                                      ; e776b CTP
+ 775  LOAD_NAME   f5db5                                      ; bb47b f5db5
+ 776  SET_PROP    "encryptedSymmetricKey"                    ; e776b R[TELGCPSdLZZPCE\T|PN
+ 777  RETURN                                                 ; a0cd9
+ 778  ENDFUN      f71fd                                      ; b17bd f71fd
+ 779  DEFUN       cd729                                      ; a82bc cd729
+ 780  STORE       da4fd                                      ; cea87 da4fd
+ 781  STORE       d81df                                      ; cea87 d81df
+ 782  STORE       f2bf6                                      ; cea87 f2bf6
+ 783  LOAD_NAME   f2bf6                                      ; bb47b f2bf6
+ 784  UNARY       !                                          ; b5558 !
+ 785  JMP_FALSE   L42                                        ; d0c9a L42
+ 786  PUSH_LIT    null                                       ; c1888 null object
+ 787  RETURN                                                 ; a0cd9
+ 788  JMP         L43                                        ; c923e L43
+L42:
+ 789  LABEL       L42                                        ; b0280 L42
+L43:
+ 790  LABEL       L43                                        ; b0280 L43
+ 791  LOAD_NAME   da4fd                                      ; bb47b da4fd
+ 792  UNARY       !                                          ; b5558 !
+ 793  JMP_FALSE   L44                                        ; d0c9a L44
+ 794  PUSH_LIT    null                                       ; c1888 null object
+ 795  RETURN                                                 ; a0cd9
+ 796  JMP         L45                                        ; c923e L45
+L44:
+ 797  LABEL       L44                                        ; b0280 L44
+L45:
+ 798  LABEL       L45                                        ; b0280 L45
+ 799  LOAD_NAME   d81df                                      ; bb47b d81df
+ 800  UNARY       !                                          ; b5558 !
+ 801  JMP_FALSE   L46                                        ; d0c9a L46
+ 802  PUSH_LIT    null                                       ; c1888 null object
+ 803  RETURN                                                 ; a0cd9
+ 804  JMP         L47                                        ; c923e L47
+L46:
+ 805  LABEL       L46                                        ; b0280 L46
+L47:
+ 806  LABEL       L47                                        ; b0280 L47
+ 807  LOAD_NAME   da4fd                                      ; bb47b da4fd
+ 808  CALL_NAME   b36a3 1                                    ; a5772 b36a3 1
+ 809  DECL        abac2                                      ; e5b15 abac2
+ 810  LOAD_NAME   f2bf6                                      ; bb47b f2bf6
+ 811  LOAD_NAME   JSON                                       ; bb47b sa}w
+ 812  PUSH_NAME   "stringify"                                ; b1539 'KFKQ\^QT@' false
+ 813  GET_MEMBER  1                                          ; b89af 1
+ 814  CALL        1                                          ; e73a3 1
+ 815  LOAD_NAME   abac2                                      ; bb47b abac2
+ 816  LOAD_NAME   d81df                                      ; bb47b d81df
+ 817  LOAD_NAME   da4fd                                      ; bb47b da4fd
+ 818  CALL_NAME   f71fd 4                                    ; a5772 f71fd 4
+ 819  DECL        e9083                                      ; e5b15 e9083
+ 820  LOAD_NAME   e9083                                      ; bb47b e9083
+ 821  UNARY       !                                          ; b5558 !
+ 822  JMP_FALSE   L48                                        ; d0c9a L48
+ 823  PUSH_LIT    null                                       ; c1888 null object
+ 824  RETURN                                                 ; a0cd9
+ 825  JMP         L49                                        ; c923e L49
+L48:
+ 826  LABEL       L48                                        ; b0280 L48
+L49:
+ 827  LABEL       L49                                        ; b0280 L49
+ 828  LOAD_NAME   e9083                                      ; bb47b e9083
+ 829  PUSH_NAME   "ciphertext"                               ; b1539 '[[IPWKLWAL' false
+ 830  GET_MEMBER  1                                          ; b89af 1
+ 831  LOAD_NAME   da4fd                                      ; bb47b da4fd
+ 832  PUSH_NAME   "util"                                     ; b1539 'MFPT' false
+ 833  PUSH_NAME   "encode64"                                 ; b1539 ']\ZWV\\x0e\x06' false
+ 834  GET_MEMBER  2                                          ; b89af 2
+ 835  CALL        1                                          ; e73a3 1
+ 836  DECL        f6d5d                                      ; e5b15 f6d5d
+ 837  LOAD_NAME   e9083                                      ; bb47b e9083
+ 838  PUSH_NAME   "tag"                                      ; b1539 'LS^' false
+ 839  GET_MEMBER  1                                          ; b89af 1
+ 840  LOAD_NAME   da4fd                                      ; bb47b da4fd
+ 841  PUSH_NAME   "util"                                     ; b1539 'MFPT' false
+ 842  PUSH_NAME   "encode64"                                 ; b1539 ']\ZWV\\x0e\x06' false
+ 843  GET_MEMBER  2                                          ; b89af 2
+ 844  CALL        1                                          ; e73a3 1
+ 845  DECL        cfc0a                                      ; e5b15 cfc0a
+ 846  LOAD_NAME   abac2                                      ; bb47b abac2
+ 847  LOAD_NAME   da4fd                                      ; bb47b da4fd
+ 848  PUSH_NAME   "util"                                     ; b1539 'MFPT' false
+ 849  PUSH_NAME   "encode64"                                 ; b1539 ']\ZWV\\x0e\x06' false
+ 850  GET_MEMBER  2                                          ; b89af 2
+ 851  CALL        1                                          ; e73a3 1
+ 852  DECL        c2275                                      ; e5b15 c2275
+ 853  LOAD_NAME   e9083                                      ; bb47b e9083
+ 854  PUSH_NAME   "encryptedSymmetricKey"                    ; b1539 ']\ZJKILW]kKTUWMJ[ZsW@' false
+ 855  GET_MEMBER  1                                          ; b89af 1
+ 856  LOAD_NAME   da4fd                                      ; bb47b da4fd
+ 857  PUSH_NAME   "util"                                     ; b1539 'MFPT' false
+ 858  PUSH_NAME   "encode64"                                 ; b1539 ']\ZWV\\x0e\x06' false
+ 859  GET_MEMBER  2                                          ; b89af 2
+ 860  CALL        1                                          ; e73a3 1
+ 861  DECL        a64cb                                      ; e5b15 a64cb
+ 862  LOAD_NAME   c2275                                      ; bb47b c2275
+ 863  LOAD_NAME   cfc0a                                      ; bb47b cfc0a
+ 864  BINOP       +                                          ; ae498 +
+ 865  LOAD_NAME   a64cb                                      ; bb47b a64cb
+ 866  BINOP       +                                          ; ae498 +
+ 867  LOAD_NAME   f6d5d                                      ; bb47b f6d5d
+ 868  BINOP       +                                          ; ae498 +
+ 869  RETURN                                                 ; a0cd9
+ 870  ENDFUN      cd729                                      ; b17bd cd729
+ 871  DECL        a2561                                      ; e5b15 a2561
+ 872  DECL        a2561                                      ; e5b15 a2561
+ 873  DEFUN       fe02d                                      ; a82bc fe02d
+ 874  PUSH_LIT    undefined:                                 ; c1888 undefined
+ 875  DECL        e9083                                      ; e5b15 e9083
+ 876  LOAD_NAME   window                                     ; bb47b N[\]]E
+ 877  PUSH_NAME   "arkl"                                     ; b1539 'Y@RT' false
+ 878  PUSH_NAME   "pl"                                       ; b1539 'H^' false
+ 879  GET_MEMBER  2                                          ; b89af 2
+ 880  DECL        f2bf6                                      ; e5b15 f2bf6
+ 881  PUSH_LIT    "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAn7u+bMTvxBDr655ISKaHd2XvuwHNRei5qz0UZhRCigkAETlf79zgRP7BJkAv8hSPmWiLNIASnFG9RuitQlt5eD6y2USMGXB4Ac0wcjF2O99ZCypYPm/YtEYClNN9KewcFe8rSFHv30V9e+U7xIFOSnkbcE8Q9XeC3r7c4MBZeQOkvfNb3nwQ6ctwNX8Jhws06IwQdMSU+WR2FeC6mIFM+//UYfUx9G1pSVNnBw2VWrbb9DJUaeBE1TKi/Sn1wX5qKCmG3qmBzp9yeu24gOjzr9Gya14MLxYv9+fstcWBmyWT9/up0ky6CQ7Jzml3TWIqXPpAnDiZ4CXjviEtq3P2qQIDAQAB" ; c1888 'x||w|_t{wR^D]^\r\x0cB\x05wtdpsttzvtd\x0dtx||wvR~vtdpt[\x02@\x1eWxaCMwqG\x03\x00\x00|f~T}Q\x07mC@B}{gP\\x00DO\x05`o]gv\R^tpaYS\x02\x0cORge\x02w\x7f^tC\x0d]feXb\y{|tf[sr\x0cg@\AdYA\x00Pq\x03L\x07`fxrmw\x01tV\x05BV_s\x07z\x0c\x0covLEleX\x1alAplvY{{\x0c~PBVsP\x0dGfs}C\x06\x05c\x0cP\x1e`\x02M|szf[^WVp\x0dd\x0cmPv\x06G\x02V\x01xwoPdz^CS{W\x06[Bd\x03VAB{m\x0d\x7f]BF\x05\x03|BdQxf`\x1ebg\x07sPv\x03X|sx\x1e\x1a\x1a`lS`M\x0cr\x04Efc{[wB\x07cbGWW\x0cq\x7f`TPwp\x04a~\\x1af[\x04Bm\x00D~vXr\x06DXwOE\x0cLP@\x07\x01Rz_OG\x0crLT\x04\x01xyMlC\x0c\x1eSFAVbwXLba\x0c\x1a@E\x05^L\x03vd\x02\x7fOXY\x06ab|DmeEt[q\o\x01vm_C\pAD\x06e\x07Dd|qtdtw' string
+ 882  DECL        d81df                                      ; e5b15 d81df
+ 883  LOAD_NAME   f2bf6                                      ; bb47b f2bf6
+ 884  CALL_NAME   a3b1e 1                                    ; a5772 a3b1e 1
+ 885  POP                                                    ; ddde1
+ 886  LOAD_NAME   window                                     ; bb47b N[\]]E
+ 887  PUSH_NAME   "arkl"                                     ; b1539 'Y@RT' false
+ 888  PUSH_NAME   "cryptoType"                               ; b1539 '[@@HFVlKI]' false
+ 889  GET_MEMBER  2                                          ; b89af 2
+ 890  PUSH_LIT    "crypto"                                   ; c1888 'VGLEAZ' string
+ 891  BINOP       ===                                        ; ae498 ===
+ 892  JMP_FALSE   L50                                        ; d0c9a L50
+ 893  LOAD_NAME   f2bf6                                      ; bb47b f2bf6
+ 894  LOAD_NAME   d81df                                      ; bb47b d81df
+ 895  LOAD_NAME   window                                     ; bb47b N[\]]E
+ 896  PUSH_NAME   "arkl"                                     ; b1539 'Y@RT' false
+ 897  PUSH_NAME   "crypto"                                   ; b1539 '[@@HFV' false
+ 898  GET_MEMBER  2                                          ; b89af 2
+ 899  CALL_NAME   f0f8d 3                                    ; a5772 f0f8d 3
+ 900  AWAIT                                                  ; ac4e4
+ 901  DECL        e9083                                      ; e5b15 e9083
+ 902  DELETE      result                                     ; aac6f result
+ 903  JMP         L51                                        ; c923e L51
+L50:
+ 904  LABEL       L50                                        ; b0280 L50
+ 905  LOAD_NAME   window                                     ; bb47b N[\]]E
+ 906  PUSH_NAME   "arkl"                                     ; b1539 'Y@RT' false
+ 907  PUSH_NAME   "cryptoType"                               ; b1539 '[@@HFVlKI]' false
+ 908  GET_MEMBER  2                                          ; b89af 2
+ 909  PUSH_LIT    "msr"                                      ; c1888 'XFG' string
+ 910  BINOP       ===                                        ; ae498 ===
+ 911  JMP_FALSE   L52                                        ; d0c9a L52
+ 912  LOAD_NAME   f2bf6                                      ; bb47b f2bf6
+ 913  LOAD_NAME   d81df                                      ; bb47b d81df
+ 914  LOAD_NAME   window                                     ; bb47b N[\]]E
+ 915  PUSH_NAME   "arkl"                                     ; b1539 'Y@RT' false
+ 916  PUSH_NAME   "msrCrypto"                                ; b1539 'UAK{@@HFV' false
+ 917  GET_MEMBER  2                                          ; b89af 2
+ 918  CALL_NAME   f37ee 3                                    ; a5772 f37ee 3
+ 919  DECL        e9083                                      ; e5b15 e9083
+ 920  DELETE      result                                     ; aac6f result
+ 921  JMP         L53                                        ; c923e L53
+L52:
+ 922  LABEL       L52                                        ; b0280 L52
+ 923  LOAD_NAME   window                                     ; bb47b N[\]]E
+ 924  PUSH_NAME   "arkl"                                     ; b1539 'Y@RT' false
+ 925  PUSH_NAME   "cryptoType"                               ; b1539 '[@@HFVlKI]' false
+ 926  GET_MEMBER  2                                          ; b89af 2
+ 927  PUSH_LIT    "forge"                                    ; c1888 'SZGRP' string
+ 928  BINOP       ===                                        ; ae498 ===
+ 929  JMP_FALSE   L54                                        ; d0c9a L54
+ 930  LOAD_NAME   f2bf6                                      ; bb47b f2bf6
+ 931  LOAD_NAME   d81df                                      ; bb47b d81df
+ 932  LOAD_NAME   window                                     ; bb47b N[\]]E
+ 933  PUSH_NAME   "arkl"                                     ; b1539 'Y@RT' false
+ 934  PUSH_NAME   "forge"                                    ; b1539 '^]K_W' false
+ 935  GET_MEMBER  2                                          ; b89af 2
+ 936  CALL_NAME   cd729 3                                    ; a5772 cd729 3
+ 937  DECL        e9083                                      ; e5b15 e9083
+ 938  DELETE      result                                     ; aac6f result
+ 939  JMP         L55                                        ; c923e L55
+L54:
+ 940  LABEL       L54                                        ; b0280 L54
+L55:
+ 941  LABEL       L55                                        ; b0280 L55
+L53:
+ 942  LABEL       L53                                        ; b0280 L53
+L51:
+ 943  LABEL       L51                                        ; b0280 L51
+ 944  LOAD_NAME   e9083                                      ; bb47b e9083
+ 945  LOAD_NAME   window                                     ; bb47b N[\]]E
+ 946  PUSH_NAME   "arkl"                                     ; b1539 'Y@RT' false
+ 947  PUSH_NAME   "rs"                                       ; b1539 'JA' false
+ 948  GET_MEMBER  2                                          ; b89af 2
+ 949  SET_PATH                                               ; e262e
+ 950  DELETE      undefined                                  ; aac6f undefined
+ 951  ENDFUN      fe02d                                      ; b17bd fe02d
+ 952  CALL_NAME   fe02d 0                                    ; a5772 fe02d 0
+ 953  POP                                                    ; ddde1

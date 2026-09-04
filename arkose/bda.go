@@ -7,7 +7,9 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	"math"
 	"math/rand"
+	"strconv"
 	"strings"
 	"time"
 
@@ -28,17 +30,15 @@ type HDRInfo struct {
 
 func buildFE(preset *Config, device DeviceProfile, identity *DeviceIdentity) ([]string, string) {
 
-	screenW := device.OuterWidth
-	screenH := device.OuterHeight + 48
-	availW := device.OuterWidth
-	availH := device.OuterHeight
+	screenW, screenH := device.ScreenWidth, device.ScreenHeight
+	availW, availH := device.AvailWidth, device.AvailHeight
 
 	fe := []string{
 		"DNT:unknown",
 		"L:" + identity.LanguageTag,
 
-		fmt.Sprintf("D:%d", identity.ColorDepth),
-		"PR:1",
+		fmt.Sprintf("D:%d", device.ColorDepth),
+		fmt.Sprintf("PR:%s", formatDPR(device.DevicePixelRatio)),
 		fmt.Sprintf("S:%d,%d", screenW, screenH),
 		fmt.Sprintf("AS:%d,%d", availW, availH),
 		fmt.Sprintf("TO:%d", identity.TZOffset),
@@ -60,8 +60,7 @@ func buildFE(preset *Config, device DeviceProfile, identity *DeviceIdentity) ([]
 		"SWF:false",
 	}
 
-	f := "2d03456242a080304cde661cdb1853a8"
-	return fe, f
+	return fe, computeF(fe)
 }
 
 func firstNonEmpty(a, b string) string {
@@ -95,7 +94,8 @@ func generateBDA(preset *Config, buildID string) []Item {
 	whVal := strings.ReplaceAll(uuid.New().String(), "-", "") + "|" + identity.MachineHash
 
 	feArr, fHash := buildFE(preset, device, identity)
-	ifeHash := ukIfeHash
+
+	ifeHash := computeIfeHash(feArr)
 
 	fp := []Item{
 		{Key: "api_type", Value: "js"},
@@ -103,20 +103,36 @@ func generateBDA(preset *Config, buildID string) []Item {
 		{Key: "n", Value: nVal},
 		{Key: "wh", Value: whVal},
 		{Key: "enhanced_fp", Value: enhanced},
-		{Key: "fe", Value: feArr},
-		{Key: "ife_hash", Value: ifeHash},
-		{Key: "jsbd", Value: buildJsbd(preset)},
-
-		{Key: "c", Value: "Copyright (c) 2026 Arkose Labs. All Rights Reserved."},
 	}
+
+	if feFlagSet(feArr, "FOS") || feFlagSet(feArr, "FB") || feFlagSet(feArr, "FR") {
+		fp = append(fp, Item{Key: "fb", Value: 1})
+	}
+
+	fp = append(fp,
+		Item{Key: "fe", Value: feArr},
+		Item{Key: "ife_hash", Value: ifeHash},
+		Item{Key: "jsbd", Value: buildJsbd(preset)},
+		Item{Key: "c", Value: "Copyright (c) 2026 Arkose Labs. All Rights Reserved."},
+	)
 	return fp
+}
+
+func feFlagSet(fe []string, key string) bool {
+	prefix := key + ":"
+	for _, s := range fe {
+		if strings.HasPrefix(s, prefix) {
+			return s[len(prefix):] != "false"
+		}
+	}
+	return false
 }
 
 func buildEnhancedFP(preset *Config, identity *DeviceIdentity, device DeviceProfile, buildID string) []Item {
 
 	gpu := device.WebGL()
 
-	chrome := PickChromeVersion()
+	chrome := pickChromeVersion()
 
 	ancestorOrigins := preset.WindowAncestorOrigins
 	if ancestorOrigins == nil {
@@ -141,8 +157,6 @@ func buildEnhancedFP(preset *Config, identity *DeviceIdentity, device DeviceProf
 	surl := preset.Surl
 	c8480Hex := md5Hex(surl)
 
-	val1f220c9 := identity.Pick1f220c9()
-
 	if treeStructure == "" {
 		treeStructure = identity.TreeStructure
 	}
@@ -151,34 +165,21 @@ func buildEnhancedFP(preset *Config, identity *DeviceIdentity, device DeviceProf
 
 	innerW, innerH := device.Inner()
 
-	return []Item{
-		{Key: "webgl_extensions", Value: "ANGLE_instanced_arrays;EXT_blend_minmax;EXT_clip_control;EXT_color_buffer_half_float;EXT_depth_clamp;EXT_disjoint_timer_query;EXT_float_blend;EXT_frag_depth;EXT_polygon_offset_clamp;EXT_shader_texture_lod;EXT_texture_compression_bptc;EXT_texture_compression_rgtc;EXT_texture_filter_anisotropic;EXT_texture_mirror_clamp_to_edge;EXT_sRGB;KHR_parallel_shader_compile;OES_element_index_uint;OES_fbo_render_mipmap;OES_standard_derivatives;OES_texture_float;OES_texture_float_linear;OES_texture_half_float;OES_texture_half_float_linear;OES_vertex_array_object;WEBGL_blend_func_extended;WEBGL_color_buffer_float;WEBGL_compressed_texture_s3tc;WEBGL_compressed_texture_s3tc_srgb;WEBGL_debug_renderer_info;WEBGL_debug_shaders;WEBGL_depth_texture;WEBGL_draw_buffers;WEBGL_lose_context;WEBGL_multi_draw;WEBGL_polygon_mode"},
-		{Key: "webgl_extensions_hash", Value: chrome.WebGLExtensionsHash},
-		{Key: "webgl_renderer", Value: "WebKit WebGL"},
-		{Key: "webgl_vendor", Value: "WebKit"},
-		{Key: "webgl_version", Value: chrome.WebGLVersion},
-		{Key: "webgl_shading_language_version", Value: chrome.WebGLShadingLanguage},
-		{Key: "webgl_aliased_line_width_range", Value: "[1, 1]"},
-		{Key: "webgl_aliased_point_size_range", Value: "[1, 1024]"},
-		{Key: "webgl_antialiasing", Value: "yes"},
-		{Key: "webgl_bits", Value: "8,8,24,8,8,0"},
-		{Key: "webgl_max_params", Value: "16,32,16384,1024,16384,16,16384,30,16,16,4096"},
-		{Key: "webgl_max_viewport_dims", Value: "[32767, 32767]"},
-		{Key: "webgl_unmasked_vendor", Value: gpu.UnmaskedVendor},
-		{Key: "webgl_unmasked_renderer", Value: gpu.UnmaskedRenderer},
-		{Key: "webgl_vsf_params", Value: "23,127,127,23,127,127,23,127,127"},
-		{Key: "webgl_vsi_params", Value: "0,31,30,0,31,30,0,31,30"},
-		{Key: "webgl_fsf_params", Value: "23,127,127,23,127,127,23,127,127"},
-		{Key: "webgl_fsi_params", Value: "0,31,30,0,31,30,0,31,30"},
-		{Key: "webgl_hash_webgl", Value: gpu.HashWebGL},
-		{Key: "user_agent_data_brands", Value: chrome.UAData},
+	webglFields := buildWebGLFields(gpu, chrome)
+
+	webglHash := computeWebGLHash(webglFields)
+	rttType := computeRTTType(chrome.WebGLExtensionsHash, webglHash)
+
+	return append(append([]Item{}, webglFields...), []Item{
+		{Key: "webgl_hash_webgl", Value: webglHash},
+		{Key: "user_agent_data_brands", Value: shuffledBrands(chrome)},
 		{Key: "user_agent_data_mobile", Value: false},
-		{Key: "navigator_connection_downlink", Value: identity.NavConnectionDownlink},
+		{Key: "navigator_connection_downlink", Value: device.Downlink},
 		{Key: "navigator_connection_downlink_max", Value: identity.NavConnectionDownlink_Max},
-		{Key: "network_info_rtt", Value: identity.NetworkInfoRTT},
-		{Key: "network_info_save_data", Value: false},
-		{Key: "network_info_rtt_type", Value: "730442"},
-		{Key: "screen_pixel_depth", Value: identity.ScreenPixelDepth},
+		{Key: "network_info_rtt", Value: device.RTT},
+		{Key: "network_info_save_data", Value: device.SaveData},
+		{Key: "network_info_rtt_type", Value: rttType},
+		{Key: "screen_pixel_depth", Value: device.ColorDepth * screenPixelDepthFactor},
 		{Key: "navigator_device_memory", Value: device.DeviceMemory},
 		{Key: "navigator_languages", Value: identity.Languages},
 		{Key: "window_inner_width", Value: innerW},
@@ -204,7 +205,7 @@ func buildEnhancedFP(preset *Config, identity *DeviceIdentity, device DeviceProf
 		{Key: "headless_browser_nightmare_js", Value: false},
 		{Key: "862f2c1", Value: 4},
 		{Key: "1l2l5234ar2", Value: fmt.Sprintf("%d⁣", nowMs)},
-		{Key: "document__referrer", Value: "https://www.google.com/"},
+		{Key: "document__referrer", Value: firstNonEmpty(preset.DocumentReferrer, defaultDocumentReferrer)},
 		{Key: "window__ancestor_origins", Value: ancestorOrigins},
 		{Key: "window__tree_index", Value: treeIndex},
 		{Key: "window__tree_structure", Value: treeStructure},
@@ -220,14 +221,14 @@ func buildEnhancedFP(preset *Config, identity *DeviceIdentity, device DeviceProf
 		{Key: "audio_fingerprint", Value: PickAudioFingerprint()},
 		{Key: "navigator_battery_charging", Value: true},
 
-		{Key: "7541c2s", Value: nil},
-		{Key: "1f220c9", Value: val1f220c9},
+		{Key: "7541c2s", Value: identity.Hash7541c2s},
+		{Key: "1f220c9", Value: identity.Hash1f220c9},
 		{Key: "math_fingerprint", Value: identity.MathFingerprint},
 		{Key: "supported_math_functions", Value: identity.SupportedMathFuncs},
 		{Key: "3f76dd27", Value: "landscape-primary"},
 		{Key: "5dd48ca0", Value: 5},
 		{Key: "4b4b269e68", Value: uuid.New().String()},
-		{Key: "6a62b2a558", Value: identity.Hash6a62b2a558},
+		{Key: "6a62b2a558", Value: firstNonEmpty(preset.EnforcementHash, defaultEnforcementHash)},
 		{Key: "is_keyless", Value: false},
 		{Key: "client_config__wait_for_settings", Value: false},
 		{Key: "c2d2015", Value: identity.Hashc2d2015},
@@ -237,18 +238,19 @@ func buildEnhancedFP(preset *Config, identity *DeviceIdentity, device DeviceProf
 		{Key: "3ea7194", Value: HDRInfo{Supported: true, Formats: []string{"HDR10", "HLG"}, IsHDR: false}},
 		{Key: "05d3d24", Value: identity.Hash05d3d24},
 
-		{Key: "speech_default_voice", Value: nil},
-		{Key: "speech_voices_hash", Value: nil},
+		{Key: "speech_default_voice", Value: identity.SpeechDefaultVoice},
+		{Key: "speech_voices_hash", Value: identity.SpeechVoicesHash},
 		{Key: "83eb055", Value: identity.Hash83eb055},
 
 		{Key: "4ca87df3d1", Value: "Ow=="},
 		{Key: "867e25e5d4", Value: "Ow=="},
 		{Key: "d4a306884c", Value: "Ow=="},
-		{Key: "vsadsa", Value: 1},
-		{Key: "basfas", Value: []int64{0, randInt64(1_000_000_000, 4_294_967_295)}},
+
+		{Key: "vsadsa", Value: 9 + rand.Intn(2)},
+		{Key: "basfas", Value: []int64{0, jsHeapSizeLimit(device.DeviceMemory)}},
 
 		{Key: "lfasdgs", Value: firstNonEmpty(buildID, uuid.New().String())},
-	}
+	}...)
 }
 
 func murmur3Hex(data string, seed uint32) string {
@@ -323,4 +325,11 @@ func decodeRune(b []byte) (rune, int) {
 		return (rune(b0&0x07) << 18) | (rune(b[1]&0x3F) << 12) | (rune(b[2]&0x3F) << 6) | rune(b[3]&0x3F), 4
 	}
 	return rune(b0), 1
+}
+
+func formatDPR(v float64) string {
+	if v == math.Trunc(v) {
+		return strconv.FormatInt(int64(v), 10)
+	}
+	return strconv.FormatFloat(v, 'f', -1, 64)
 }

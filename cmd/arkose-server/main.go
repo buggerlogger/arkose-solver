@@ -16,7 +16,7 @@ var (
 	flagAddr    = flag.String("addr", "127.0.0.1:8100", "listen address")
 	flagSurl    = flag.String("surl", "", "Arkose verify host, e.g. https://verify.example.com (required)")
 	flagPK      = flag.String("pk", "", "Arkose site key / public_key UUID (required)")
-	flagRSA     = flag.String("rsa", "", "RSA public key (SPKI base64) — required for sup=1 tokens")
+	flagRSA     = flag.String("rsa", "", "RSA public key (SPKI base64) — optional; auto-extracted from api.js when unset")
 	flagSite    = flag.String("site", "", "origin the widget runs on, e.g. https://www.example.com")
 	flagProxy   = flag.String("proxy", "", "default egress proxy (any form)")
 	flagUA      = flag.String("ua", "", "override User-Agent")
@@ -73,10 +73,7 @@ func writeJSON(w http.ResponseWriter, code int, v interface{}) {
 func main() {
 	flag.Parse()
 	if *flagSurl == "" || *flagPK == "" {
-		log.Fatal("required: -surl and -pk (and -rsa for sup=1 tokens). Run with -h for help.")
-	}
-	if *flagRSA == "" {
-		log.Println("WARNING: no -rsa key set; tokens will NOT be suppressed (sup=1). See README to capture it.")
+		log.Fatal("required: -surl and -pk. Run with -h for help.")
 	}
 
 	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {

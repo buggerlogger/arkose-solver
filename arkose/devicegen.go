@@ -6,77 +6,80 @@ import (
 )
 
 func GenerateDevice() DeviceProfile {
-	var g GPU
-	integrated := false
-	switch r := rand.Intn(100); {
-	case r < 48:
-		g = intelGPUs[rand.Intn(len(intelGPUs))]
-		integrated = !containsFold(g.Name, "arc")
-	case r < 80:
-		g = pickNvidia()
-	default:
-		g = amdGPUs[rand.Intn(len(amdGPUs))]
-		integrated = containsFold(g.Name, "(tm) graphics") || containsFold(g.Name, "vega")
-	}
+	g := pickGPUFromPool()
+	s := pickScreenFromPool()
+	n := pickNetworkFromPool()
 
-	screenW, screenH := genScreen(integrated)
+	outerW, outerH := windowOn(s)
+
 	return DeviceProfile{
-		Name:      "generated",
-		Vendor:    g.Vendor,
-		GPUID:     g.ID,
-		GPUName:   g.Name,
-		WebGLHash: randHexBytes(16),
+		Name:       g.Model,
+		Vendor:     vendorFromName(g.Vendor),
+		GPUID:      strings.TrimPrefix(strings.TrimPrefix(g.DeviceID, "0x"), "0000"),
+		GPUName:    g.Model,
+		GLVendor:   g.GLVendor,
+		GLRenderer: g.GLRenderer,
 
-		OuterWidth:          screenW,
-		OuterHeight:         screenH - 48,
-		DeviceMemory:        genMemory(integrated),
-		HardwareConcurrency: genCores(integrated),
-		Weight:              0,
+		ScreenWidth:  s.Width,
+		ScreenHeight: s.Height,
+		AvailWidth:   s.AvailWidth,
+		AvailHeight:  s.AvailHeight,
+
+		ColorDepth:       chromeColorDepth,
+		DevicePixelRatio: s.DPR,
+
+		OuterWidth:  outerW,
+		OuterHeight: outerH,
+
+		DeviceMemory:        pickMemoryFromPool(),
+		HardwareConcurrency: pickCoresFromPool(),
+
+		Downlink: n.Downlink,
+		RTT:      n.RTT,
+		SaveData: n.SaveData,
 	}
 }
 
-func containsFold(s, sub string) bool { return strings.Contains(strings.ToLower(s), sub) }
+const chromeColorDepth = 24
 
-func weightedIndex(weights []int) int {
-	total := 0
-	for _, w := range weights {
-		total += w
+func windowOn(s poolScreen) (w, h int) {
+	availW, availH := s.AvailWidth, s.AvailHeight
+	if availW <= 0 {
+		availW = s.Width
 	}
-	r := rand.Intn(total)
-	for i, w := range weights {
-		if r -= w; r < 0 {
-			return i
-		}
+	if availH <= 0 {
+		availH = s.Height
 	}
-	return 0
+
+	if rand.Intn(100) < 35 {
+		return availW, availH
+	}
+	w = scaleBetween(availW, 60, 100)
+	h = scaleBetween(availH, 60, 100)
+
+	if w < innerWidthInset+200 {
+		w = innerWidthInset + 200
+	}
+	if h < innerHeightInset+200 {
+		h = innerHeightInset + 200
+	}
+	return w, h
 }
 
-func genScreen(integrated bool) (int, int) {
-	type res struct{ w, h, wt int }
-	var pool []res
-	if integrated {
-		pool = []res{{1920, 1080, 42}, {1366, 768, 24}, {1536, 864, 18}, {1600, 900, 10}, {2560, 1440, 6}}
-	} else {
-		pool = []res{{1920, 1080, 44}, {2560, 1440, 26}, {3840, 2160, 8}, {3440, 1440, 7}, {1680, 1050, 8}, {1440, 900, 7}}
+func scaleBetween(v, loPct, hiPct int) int {
+	if hiPct <= loPct {
+		return v * loPct / 100
 	}
-	wts := make([]int, len(pool))
-	for i, p := range pool {
-		wts[i] = p.wt
-	}
-	p := pool[weightedIndex(wts)]
-	return p.w, p.h
+	return v * (loPct + rand.Intn(hiPct-loPct+1)) / 100
 }
 
-func genMemory(integrated bool) int {
-	if integrated {
-		return []int{8, 16, 4}[weightedIndex([]int{50, 30, 20})]
+func vendorFromName(name string) Vendor {
+	switch strings.ToUpper(name) {
+	case "INTEL":
+		return VendorIntel
+	case "AMD":
+		return VendorAMD
+	default:
+		return VendorNvidia
 	}
-	return []int{16, 8, 4}[weightedIndex([]int{45, 40, 15})]
-}
-
-func genCores(integrated bool) int {
-	if integrated {
-		return []int{8, 4, 6, 12, 16, 10}[weightedIndex([]int{30, 20, 15, 15, 15, 5})]
-	}
-	return []int{8, 12, 16, 6, 20, 24}[weightedIndex([]int{20, 22, 25, 10, 13, 10})]
 }

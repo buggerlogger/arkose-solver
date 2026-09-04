@@ -17,10 +17,12 @@ type Config struct {
 	DataExchangeRegex string
 
 	CapiVersion string
-	CapiMode    string
-	StyleTheme  string
-	Language    string
-	Title       string
+
+	EnforcementHash string
+	CapiMode        string
+	StyleTheme      string
+	Language        string
+	Title           string
 
 	UserAgent string
 	Proxy     string
@@ -69,7 +71,7 @@ func (c *Config) applyDefaults() {
 		c.UserAgent = defaultUA
 	}
 	if c.CapiVersion == "" {
-		c.CapiVersion = "4.4.3"
+		c.CapiVersion = "4.4.5"
 	}
 	if c.CapiMode == "" {
 		c.CapiMode = "lightbox"
