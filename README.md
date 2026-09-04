@@ -110,6 +110,23 @@ Find your `public_key` in the page's Arkose script URL `…/v2/<PUBLIC_KEY>/api.
 
 ---
 
+---
+
+## Reverse-engineering notes
+
+[`specimen/`](specimen/) contains the deobfuscated bundle and the full analysis of
+the stack VM that `api.js` embeds — the fingerprint probes, the RSA key and the
+entire crypto envelope live there as bytecode, which is why `RSA-OAEP`, `AES-GCM`,
+`spki` and `importKey` appear nowhere in the source.
+
+* [`specimen/api_clean.js`](specimen/api_clean.js) — fully deobfuscated `api.js`
+* [`specimen/vm/disasm.txt`](specimen/vm/disasm.txt) — 954-instruction disassembly, every operand decrypted
+* [`specimen/vm/decompiled.js`](specimen/vm/decompiled.js) — the program lifted to readable JavaScript
+* [`specimen/vm/opcodes.json`](specimen/vm/opcodes.json) — all 39 opcodes
+* [`specimen/tools/`](specimen/tools/) — the deobfuscation + disassembly pipeline
+
+---
+
 ## The RSA key is derived, not captured
 
 The envelope wraps the AES content key with the site's RSA public key. That key is
@@ -175,23 +192,6 @@ payload holds `72` and e.g. `"730442"`.
 every derived field recomputed for that device. Measured: 100 distinct `f` per 100
 solves. Window geometry is sampled independently of the screen; always emitting a
 maximised window is a fleet tell.
-
----
-
-## Reverse-engineering notes
-
-[`specimen/`](specimen/) contains the deobfuscated bundle and the full analysis of
-the stack VM that `api.js` embeds — the fingerprint probes, the RSA key and the
-entire crypto envelope live there as bytecode, which is why `RSA-OAEP`, `AES-GCM`,
-`spki` and `importKey` appear nowhere in the source.
-
-* [`specimen/api_clean.js`](specimen/api_clean.js) — fully deobfuscated `api.js`
-* [`specimen/vm/disasm.txt`](specimen/vm/disasm.txt) — 954-instruction disassembly, every operand decrypted
-* [`specimen/vm/decompiled.js`](specimen/vm/decompiled.js) — the program lifted to readable JavaScript
-* [`specimen/vm/opcodes.json`](specimen/vm/opcodes.json) — all 39 opcodes
-* [`specimen/tools/`](specimen/tools/) — the deobfuscation + disassembly pipeline
-
----
 
 ## Notes & legality
 
