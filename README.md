@@ -20,7 +20,7 @@ the site's RSA public key — is derived from the served `api.js` on every solve
 go get github.com/buggerlogger/arkose-solver/arkose
 ```
 
-Requires Go 1.24+.
+Requires Go 1.25+.
 
 ## Library
 
