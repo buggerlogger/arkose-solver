@@ -10,3 +10,7 @@
 *.local
 keys.txt
 proxies.txt
+
+# python
+__pycache__/
+*.py[cod]

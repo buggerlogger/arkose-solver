@@ -24,10 +24,10 @@ func feValues(fe []string) []string {
 	return out
 }
 
-func computeF(fe []string) string {
+func ComputeF(fe []string) string {
 	return KHash(strings.Join(feValues(fe), ";"), 0)
 }
 
-func computeIfeHash(fe []string) string {
+func ComputeIfeHash(fe []string) string {
 	return KHash(strings.Join(fe, ", "), 38)
 }

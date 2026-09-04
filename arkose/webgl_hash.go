@@ -2,7 +2,7 @@ package arkose
 
 import "strings"
 
-func webglHashInput(fields []Item) string {
+func WebGLHashInput(fields []Item) string {
 	var b strings.Builder
 	for _, it := range fields {
 		b.WriteString(it.Key)
@@ -17,11 +17,11 @@ func webglHashInput(fields []Item) string {
 	return b.String()
 }
 
-func computeWebGLHash(fields []Item) string {
-	return KHash(webglHashInput(fields), 0)
+func ComputeWebGLHash(fields []Item) string {
+	return KHash(WebGLHashInput(fields), 0)
 }
 
-func computeRTTType(extensionsHash, webglHash string) string {
+func ComputeRTTType(extensionsHash, webglHash string) string {
 	if len(extensionsHash) > 12 && len(webglHash) > 12 {
 		return extensionsHash[:3] + webglHash[:3]
 	}

@@ -60,7 +60,7 @@ func buildFE(preset *Config, device DeviceProfile, identity *DeviceIdentity) ([]
 		"SWF:false",
 	}
 
-	return fe, computeF(fe)
+	return fe, ComputeF(fe)
 }
 
 func firstNonEmpty(a, b string) string {
@@ -95,7 +95,7 @@ func generateBDA(preset *Config, buildID string) []Item {
 
 	feArr, fHash := buildFE(preset, device, identity)
 
-	ifeHash := computeIfeHash(feArr)
+	ifeHash := ComputeIfeHash(feArr)
 
 	fp := []Item{
 		{Key: "api_type", Value: "js"},
@@ -165,10 +165,10 @@ func buildEnhancedFP(preset *Config, identity *DeviceIdentity, device DeviceProf
 
 	innerW, innerH := device.Inner()
 
-	webglFields := buildWebGLFields(gpu, chrome)
+	webglFields := buildWebGLFieldsInternal(gpu, chrome)
 
-	webglHash := computeWebGLHash(webglFields)
-	rttType := computeRTTType(chrome.WebGLExtensionsHash, webglHash)
+	webglHash := ComputeWebGLHash(webglFields)
+	rttType := ComputeRTTType(ComputeWebGLExtensionsHash(WebGLExtensions), webglHash)
 
 	return append(append([]Item{}, webglFields...), []Item{
 		{Key: "webgl_hash_webgl", Value: webglHash},
@@ -191,13 +191,13 @@ func buildEnhancedFP(preset *Config, identity *DeviceIdentity, device DeviceProf
 		{Key: "9f41a2c", Value: false},
 		{Key: "5c273b3", Value: false},
 		{Key: "ce4046e", Value: false},
-		{Key: "f58835f", Value: chrome.F58835f},
-		{Key: "browser_object_checks", Value: chrome.BrowserObjectChecks},
-		{Key: "29s83ih9", Value: chrome.Hash29s83ih9 + "⁣"},
+		{Key: "f58835f", Value: ComputeF58835f(chromeWindowsFeatures)},
+		{Key: "browser_object_checks", Value: ComputeBrowserObjectChecks([]string{"chrome"})},
+		{Key: "29s83ih9", Value: md5Str("false") + "⁣"},
 		{Key: "audio_codecs", Value: `{"ogg":"probably","mp3":"probably","wav":"probably","m4a":"maybe","aac":"probably"}`},
-		{Key: "audio_codecs_extended_hash", Value: chrome.AudioCodecsExtHash},
+		{Key: "audio_codecs_extended_hash", Value: AudioCodecsExtendedHash()},
 		{Key: "video_codecs", Value: `{"ogg":"","h264":"probably","webm":"probably","mpeg4v":"","mpeg4a":"","theora":""}`},
-		{Key: "video_codecs_extended_hash", Value: chrome.VideoCodecsExtHash},
+		{Key: "video_codecs_extended_hash", Value: VideoCodecsExtendedHash()},
 		{Key: "media_query_dark_mode", Value: false},
 		{Key: "f9bf2db", Value: `{"pc":"no-preference","ah":"hover","ap":"fine","p":"fine","h":"hover","u":"fast","prm":"no-preference","prt":"no-preference","s":"enabled","fc":"none"}`},
 		{Key: "headless_browser_phantom", Value: false},

@@ -178,8 +178,22 @@ emitted as `hex(h1)||hex(h2)`.
 | `network_info_rtt_type` | `webgl_extensions_hash[:3] + webgl_hash_webgl[:3]` (both >12 chars, else `"abcdef"`) |
 | `screen_pixel_depth` | `3 × colorDepth` |
 | `basfas` | `[0, performance.memory.jsHeapSizeLimit]` |
+| `webgl_extensions_hash` | `K(webgl_extensions)` |
+| `f58835f` | `md5(JSON.stringify([13 feature-probe strings]))` |
+| `browser_object_checks` | `md5` of the browser globals present, sorted and comma-joined |
+| `29s83ih9` | `md5("false")` — the Node/`process` detection result |
+| `speech_default_voice` / `speech_voices_hash` | both from one voice list: `md5(pairs.join(","))` over `[name,lang]` |
+| `audio_codecs_extended_hash` / `video_codecs_extended_hash` | `md5(JSON.stringify({mime:{canPlay,mediaSource}}))` over the embedded codec tables |
 | `6a62b2a558` | the enforcement build hash, scraped from `api.js` |
 | `x-ark-esync-value` | `floor(now/21600)*21600` |
+
+Only three values stay pinned, and deliberately: `math_fingerprint` and
+`supported_math_functions` are V8/platform constants that are identical on every
+Chrome-Windows machine (both verified against a live mint — making them vary
+would itself be a tell), and `defaultEnforcementHash` is only a fallback for
+when the scrape fails. The codec tables in `arkose/codecs.json` were captured
+from Chrome 152; regenerate them if you target a Chrome major with different
+codec support.
 
 `screen_pixel_depth` and `network_info_rtt_type` are rewritten by the VM at
 serialization time — the collected object holds `24` and `null`, the transmitted

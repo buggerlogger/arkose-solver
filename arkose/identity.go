@@ -113,6 +113,8 @@ func NewSession() *DeviceIdentity {
 		"Arial,Arial Black,Bahnschrift,Calibri,Cambria,Cambria Math,Candara,Comic Sans MS,Consolas,Constantia,Corbel,Courier New,Ebrima,Franklin Gothic Medium,Gadugi,Georgia,Impact,Ink Free,Javanese Text,Leelawadee UI,Lucida Console,Lucida Sans Unicode,MS Gothic,MS PGothic,MV Boli,Malgun Gothic,Marlett,Microsoft Himalaya,Microsoft JhengHei,Microsoft New Tai Lue,Microsoft PhagsPa,Microsoft Sans Serif,Microsoft Tai Le,Microsoft YaHei,Microsoft Yi Baiti,MingLiU-ExtB,PMingLiU-ExtB,MS Sans Serif,MS Serif,Nirmala UI,Palatino Linotype,Segoe MDL2 Assets,Segoe Print,Segoe Script,Segoe UI,Segoe UI Emoji,Segoe UI Historic,Segoe UI Symbol,SimSun,Sitka Small,Sylfaen,Tahoma,Times New Roman,Trebuchet MS,Verdana,Webdings,Wingdings,Yu Gothic",
 	}
 
+	speechVoice, speechHash := ComputeSpeech(pickVoiceSet(langTag))
+
 	return &DeviceIdentity{
 		Salt:        salt,
 		MachineHash: hashField(salt, "machine_hash"),
@@ -131,8 +133,8 @@ func NewSession() *DeviceIdentity {
 
 		CFP:                cfp,
 		TZOffset:           tzPool[rand.Intn(len(tzPool))],
-		SpeechDefaultVoice: defaultVoiceFor(langTag),
-		SpeechVoicesHash:   hashField(salt, "speech_voices"),
+		SpeechDefaultVoice: speechVoice,
+		SpeechVoicesHash:   speechHash,
 
 		LanguageTag: langTag,
 		Languages:   langFull,
@@ -142,24 +144,4 @@ func NewSession() *DeviceIdentity {
 
 func (d *DeviceIdentity) String() string {
 	return fmt.Sprintf("device[salt=%s…]", d.Salt[:8])
-}
-
-func defaultVoiceFor(langTag string) string {
-	voices := map[string]string{
-		"en-US": "Microsoft David - English (United States)",
-		"en-GB": "Microsoft George - English (United Kingdom)",
-		"en":    "Microsoft David - English (United States)",
-		"es-ES": "Microsoft Helena - Spanish (Spain)",
-		"pt-BR": "Microsoft Daniel - Portuguese (Brazil)",
-		"de-DE": "Microsoft Hedda - German (Germany)",
-		"fr-FR": "Microsoft Hortense - French (France)",
-		"it-IT": "Microsoft Elsa - Italian (Italy)",
-		"ru-RU": "Microsoft Irina - Russian (Russia)",
-		"tr-TR": "Microsoft Tolga - Turkish (Turkiye)",
-	}
-	name, ok := voices[langTag]
-	if !ok {
-		name, langTag = voices["en-US"], "en-US"
-	}
-	return name + " || " + langTag
 }

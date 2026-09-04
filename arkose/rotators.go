@@ -6,17 +6,8 @@ import (
 )
 
 const (
-	ukWebGLExtensionsHash = "7300c23f4e6fa34e534fc99c1b628588"
-	ukAudioCodecsExtHash  = "805036349642e2569ec299baed02315b"
-	ukVideoCodecsExtHash  = "5648501a58d24ea22ce3773cc234e563"
-	ukBrowserObjectChecks = "554838a8451ac36cb977e719e9d6623c"
-	ukF58835f             = "6681f2144d3d1ceb383fe87f7aad9600"
-	ukHash29s83ih9        = "68934a3e9455fa72420237eb05902327"
-	ukUserAgentDataBrands = "Not;A=Brand,Chromium,Google Chrome"
-	ukMathFingerprint     = "e00752d866abf7fdf93bd4111bcfeb7b"
-	ukSupportedMathFuncs  = "3f7aaba900fde542f258166cd2b71ef5"
-	ukIfeHash             = "786ec34211e1dec0baf6a24da71c01d5"
-	ukScreenPixelDepth    = 72
+	ukMathFingerprint    = "e00752d866abf7fdf93bd4111bcfeb7b"
+	ukSupportedMathFuncs = "3f7aaba900fde542f258166cd2b71ef5"
 )
 
 type chromeVersion struct {
@@ -27,13 +18,6 @@ type chromeVersion struct {
 	SecCHUAFullVersion     string
 	SecCHUAPlatformVersion string
 	SecCHUAVersion         int
-
-	WebGLExtensionsHash string
-	BrowserObjectChecks string
-	F58835f             string
-	Hash29s83ih9        string
-	AudioCodecsExtHash  string
-	VideoCodecsExtHash  string
 }
 
 var chromeVersions = []chromeVersion{
@@ -82,18 +66,6 @@ var chromeVersions = []chromeVersion{
 		SecCHUAPlatformVersion: "10.0.0",
 		SecCHUAVersion:         152,
 	},
-}
-
-func init() {
-
-	for i := range chromeVersions {
-		chromeVersions[i].WebGLExtensionsHash = ukWebGLExtensionsHash
-		chromeVersions[i].BrowserObjectChecks = ukBrowserObjectChecks
-		chromeVersions[i].F58835f = ukF58835f
-		chromeVersions[i].Hash29s83ih9 = ukHash29s83ih9
-		chromeVersions[i].AudioCodecsExtHash = ukAudioCodecsExtHash
-		chromeVersions[i].VideoCodecsExtHash = ukVideoCodecsExtHash
-	}
 }
 
 func pickChromeVersion() chromeVersion {
