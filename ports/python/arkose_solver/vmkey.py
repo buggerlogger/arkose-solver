@@ -22,10 +22,14 @@ SPKI_PREFIX = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA"
 MAX_XOR_KEY_LEN = 16
 
 _PLAIN_KEY_RE = re.compile(r"""["'`]([A-Za-z0-9+/]{300,}={0,2})["'`]""")
-_TABLE_RE = re.compile(r"function\s+(\w+)\(\)\s*\{\s*var\s+\w+\s*=\s*\[")
-_TERM = r'(?:\w+\(\d+\)|"(?:[^"\\]|\\.)*")'
+# CAPI 4.5.0 uses a '$'-bearing identifier for the key's string table.
+_JS_IDENT = r"[A-Za-z_$][\w$]*"
+_TABLE_RE = re.compile(
+    r"function\s+(" + _JS_IDENT + r")\(\)\s*\{\s*var\s+" +
+    _JS_IDENT + r"\s*=\s*\[")
+_TERM = r'(?:' + _JS_IDENT + r'\(\d+\)|"(?:[^"\\]|\\.)*")'
 _CHAIN_RE = re.compile(r"(?:" + _TERM + r"\s*\+\s*){30,}" + _TERM)
-_CALL_RE = re.compile(r"^(\w+)\((\d+)\)$")
+_CALL_RE = re.compile(r"^(" + _JS_IDENT + r")\((\d+)\)$")
 _B64_RE = re.compile(r"^[A-Za-z0-9+/]+={0,2}$")
 
 _ESCAPES = {"n": "\n", "t": "\t", "r": "\r", "b": "\b", "f": "\f", "v": "\v", "0": "\0"}
