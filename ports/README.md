@@ -31,7 +31,7 @@ npm install arkose-solver node-tls-client
 |---|---|---|
 | package | [PyPI](https://pypi.org/project/arkose-solver/) | [npm](https://www.npmjs.com/package/arkose-solver) |
 | requires | 3.10+ | 18+ |
-| conformance | 162 checks pass | 163 checks pass |
+| conformance | 163 checks pass | 164 checks pass |
 | live solve | `sup=1` | `sup=1` |
 | key extraction | ~0.12 s | ~0.03 s |
 | transport | `curl_cffi` | `node-tls-client` |

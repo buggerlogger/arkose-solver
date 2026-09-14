@@ -6,9 +6,13 @@ against captured ground truth before writing them.
     python tests/conformance.py
 """
 
+import base64
 import json
 import os
 import sys
+
+from cryptography.hazmat.primitives.asymmetric import rsa
+from cryptography.hazmat.primitives.serialization import Encoding, PublicFormat
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 
@@ -40,6 +44,24 @@ for t in v["khash"]:
 
 check("compute_f", A.compute_f(v["fe"]), v["wantF"])
 check("compute_ife_hash", A.compute_ife_hash(v["fe"]), v["wantIfeHash"])
+
+
+def synthetic_dollar_table_bundle():
+    private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
+    want = base64.b64encode(private_key.public_key().public_bytes(
+        Encoding.DER, PublicFormat.SubjectPublicKeyInfo)).decode("ascii")
+    xor_key = "70"
+    encrypted = "".join(chr(ord(ch) ^ ord(xor_key[i % len(xor_key)]))
+                        for i, ch in enumerate(want))
+    instruction = "f9c78 '" + encrypted + "' string"
+    chunks = [instruction[i:i + 8] for i in range(0, len(instruction), 8)]
+    table = ",".join(json.dumps(chunk) for chunk in chunks)
+    chain = "+".join("de(%d)" % i for i in range(len(chunks)))
+    return "function $e(){var $t=[%s];return $t;}var ye=[%s];" % (table, chain), want
+
+
+dollar_bundle, dollar_key = synthetic_dollar_table_bundle()
+check("extract_rsa_key dollar identifiers", A.extract_rsa_key(dollar_bundle), dollar_key)
 
 for w in v["webgl"]:
     fields = A.build_webgl_fields(w["vendor"], w["renderer"])

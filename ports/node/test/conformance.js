@@ -5,6 +5,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 const A = require('../src/index.js');
 
@@ -29,6 +30,28 @@ for (const t of v.khash) {
 
 check('computeF', A.computeF(v.fe), v.wantF);
 check('computeIfeHash', A.computeIfeHash(v.fe), v.wantIfeHash);
+
+function syntheticDollarTableBundle() {
+  const { publicKey } = crypto.generateKeyPairSync('rsa', {
+    modulusLength: 2048,
+    publicExponent: 0x10001,
+  });
+  const want = publicKey.export({ format: 'der', type: 'spki' }).toString('base64');
+  const xorKey = '70';
+  let encrypted = '';
+  for (let i = 0; i < want.length; i++) {
+    encrypted += String.fromCharCode(want.charCodeAt(i) ^ xorKey.charCodeAt(i % xorKey.length));
+  }
+  const instruction = `f9c78 '${encrypted}' string`;
+  const chunks = [];
+  for (let i = 0; i < instruction.length; i += 8) chunks.push(instruction.slice(i, i + 8));
+  const table = chunks.map((chunk) => JSON.stringify(chunk)).join(',');
+  const chain = chunks.map((_, i) => `de(${i})`).join('+');
+  return [`function $e(){var $t=[${table}];return $t;}var ye=[${chain}];`, want];
+}
+
+const [dollarBundle, dollarKey] = syntheticDollarTableBundle();
+check('extractRsaKey dollar identifiers', A.extractRsaKey(dollarBundle), dollarKey);
 
 for (const w of v.webgl) {
   const fields = A.buildWebglFields(w.vendor, w.renderer);

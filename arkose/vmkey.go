@@ -13,12 +13,16 @@ const spkiPrefix = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA"
 
 const maxXORKeyLen = 16
 
+// JavaScript identifiers may contain '$'; CAPI 4.5.0 uses one for the
+// key-bearing string table.
+const jsIdentPattern = `[A-Za-z_$][\w$]*`
+
 var (
 	plainKeyRe = regexp.MustCompile("[\"'`]([A-Za-z0-9+/]{300,}={0,2})[\"'`]")
-	tableRe    = regexp.MustCompile(`function\s+(\w+)\(\)\s*\{\s*var\s+\w+\s*=\s*\[`)
-	termPat    = `(?:\w+\(\d+\)|"(?:[^"\\]|\\.)*")`
+	tableRe    = regexp.MustCompile(`function\s+(` + jsIdentPattern + `)\(\)\s*\{\s*var\s+` + jsIdentPattern + `\s*=\s*\[`)
+	termPat    = `(?:` + jsIdentPattern + `\(\d+\)|"(?:[^"\\]|\\.)*")`
 	chainRe    = regexp.MustCompile(`(?:` + termPat + `\s*\+\s*){30,}` + termPat)
-	callRe     = regexp.MustCompile(`^(\w+)\((\d+)\)$`)
+	callRe     = regexp.MustCompile(`^(` + jsIdentPattern + `)\((\d+)\)$`)
 	b64Re      = regexp.MustCompile(`^[A-Za-z0-9+/]+={0,2}$`)
 )
 

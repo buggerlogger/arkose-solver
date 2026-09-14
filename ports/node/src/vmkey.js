@@ -18,10 +18,13 @@ const SPKI_PREFIX = 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA';
 const MAX_XOR_KEY_LEN = 16;
 
 const PLAIN_KEY_RE = /["'`]([A-Za-z0-9+/]{300,}={0,2})["'`]/g;
-const TABLE_RE = /function\s+(\w+)\(\)\s*\{\s*var\s+\w+\s*=\s*\[/g;
-const TERM = '(?:\\w+\\(\\d+\\)|"(?:[^"\\\\]|\\\\.)*")';
+// CAPI 4.5.0 uses a '$'-bearing identifier for the key's string table.
+const JS_IDENT = '[A-Za-z_$][\\w$]*';
+const TABLE_RE = new RegExp(
+  `function\\s+(${JS_IDENT})\\(\\)\\s*\\{\\s*var\\s+${JS_IDENT}\\s*=\\s*\\[`, 'g');
+const TERM = `(?:${JS_IDENT}\\(\\d+\\)|"(?:[^"\\\\]|\\\\.)*")`;
 const CHAIN_RE = new RegExp('(?:' + TERM + '\\s*\\+\\s*){30,}' + TERM, 'g');
-const CALL_RE = /^(\w+)\((\d+)\)$/;
+const CALL_RE = new RegExp(`^(${JS_IDENT})\\((\\d+)\\)$`);
 const B64_RE = /^[A-Za-z0-9+/]+={0,2}$/;
 
 const ESCAPES = { n: '\n', t: '\t', r: '\r', b: '\b', f: '\f', v: '\v', 0: '\0' };
